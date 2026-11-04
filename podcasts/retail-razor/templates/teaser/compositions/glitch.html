@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .g { position: absolute; inset: 0; }
+    .g i { position: absolute; left: 0; width: 1920px; display: block; opacity: 0; mix-blend-mode: screen; }
+  </style>
+  <div id="root" data-composition-id="glitch" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <!-- One burst per SECTION seam (hook->host, title->body, mid-teaser beats, before the cut-off line); each 0.24 s,
+         data-start = cut - 0.12. TEMPLATE: one div per seam AND list its id in IDS below. Pair each with sfx glitch.wav at cut - 0.10. -->
+    <div id="g1" class="g clip" data-start="4.78" data-duration="0.24" data-track-index="0"></div>
+    <div id="g2" class="g clip" data-start="12.38" data-duration="0.24" data-track-index="1"></div>
+    <div id="g3" class="g clip" data-start="30.23" data-duration="0.24" data-track-index="2"></div>
+    <div id="g4" class="g clip" data-start="44.13" data-duration="0.24" data-track-index="3"></div>
+    <div id="g5" class="g clip" data-start="53.13" data-duration="0.24" data-track-index="4"></div>
+  </div>
+  <script>
+    (function () {
+      let seed = 7;
+      const rnd = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
+      const colors = ["rgba(216,31,38,0.65)", "rgba(250,248,244,0.5)", "rgba(255,74,85,0.55)", "rgba(201,199,195,0.4)"];
+      const tl = gsap.timeline({ paused: true });
+      const IDS = ["#g1", "#g2", "#g3", "#g4", "#g5"];
+      IDS.forEach((id) => {
+        const host = document.querySelector(id);
+        const t0 = parseFloat(host.dataset.start);
+        for (let k = 0; k < 14; k++) {
+          const bar = document.createElement("i");
+          bar.style.top = Math.floor(rnd() * 1060) + "px";
+          bar.style.height = Math.floor(2 + rnd() * 34) + "px";
+          bar.style.background = colors[k % colors.length];
+          host.appendChild(bar);
+          // each bar flashes on and off twice, jumping sideways, inside the 0.24 s window
+          const a = t0 + rnd() * 0.08, dx = (rnd() - 0.5) * 260;
+          tl.set(bar, { opacity: 1, x: dx }, a);
+          tl.set(bar, { opacity: 0 }, a + 0.04 + rnd() * 0.03);
+          tl.set(bar, { opacity: 0.9, x: -dx * 0.6 }, a + 0.1);
+          tl.set(bar, { opacity: 0 }, a + 0.14 + rnd() * 0.04);
+        }
+      });
+      window.__timelines["glitch"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes hyperframes@0.8.217 *)",
+      "Bash(npx hyperframes *)",
+      "Bash(ffmpeg *)",
+      "Bash(ffprobe *)",
+      "Bash(python *)",
+      "Bash(ls *)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout -b *)",
+      "Bash(git pull)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(powershell -ExecutionPolicy Bypass -File _shared\\tools\\render_queue.ps1 *)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm *)",
+      "Bash(rm)",
+      "Bash(rmdir *)",
+      "Bash(unlink *)",
+      "Bash(shred *)",
+      "Bash(find * -delete*)",
+      "Bash(git clean *)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(rm *)",
+      "PowerShell(del *)",
+      "PowerShell(erase *)",
+      "PowerShell(rmdir *)",
+      "PowerShell(rd *)",
+      "PowerShell(ri *)",
+      "PowerShell(Clear-Content *)",
+      "PowerShell(cmd /c del *)",
+      "PowerShell(cmd /c rmdir *)",
+      "Read(.env)",
+      "Read(**/.env*)"
+    ]
+  }
+}

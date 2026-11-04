@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #120a07; }
+      /* TRRS warm brand ground */
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden;
+        background: radial-gradient(ellipse 90% 60% at 30% 22%, #4a2a1d 0%, #2a1610 45%, #120a07 100%); }
+      /* Speaker window: FULL WIDTH (Sharkpreneur-reference layout), thin red top/bottom line */
+      #win { position: absolute; left: 0; top: 325px; width: 1080px; height: 1270px; overflow: hidden; z-index: 1; background: #120a07;
+        box-shadow: 0 -2px 0 rgba(227,38,43,0.6), 0 2px 0 rgba(227,38,43,0.6), 0 0 120px rgba(227,38,43,0.16); }
+      .cam { position: absolute; inset: 0; }
+      /* Framing = a source crop [x, y, w, h] scaled to fill 1080x1270 (scale k = 1080 / w; h must be w * 1270/1080):
+         video left = -x*k, top = -y*k, width = 1920*k, height = 1080*k.
+         The values below are the S6E15 crops of the 1920x1080 finished episode (host left, guest right). RE-MEASURE
+         them on every new episode from real frames: keep clear of burned-in boxes/captions in the source. */
+      /* Host framing = source crop [230,156,680,800] (y >= 156 clears the burned title box) */
+      #aroll-h { position: absolute; left: -365px; top: -248px; width: 3049px; height: 1715px; }
+      /* Guest framing = source crop [950,113,744,875] */
+      #aroll-g { position: absolute; left: -1379px; top: -164px; width: 2787px; height: 1568px; }
+      /* B-roll plays FULL SCREEN */
+      .br { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 2; }
+    </style>
+  </head>
+  <body>
+    <!-- TRRS 9:16 REEL TEMPLATE (from the approved S6E15 R2 pilot). Copy the whole folder to
+         episodes/<SxEyy_guest>/work/hyperframes/rN, then fill in the TEMPLATE markers. Read the trrs-reel skill first.
+         Timeline in this skeleton: A-roll 0-30, outro 30-33 (root duration = A-roll end + 3).
+         Layering (z-index): speaker window 1 / b-roll 2 / cards + tags 5-6 / captions 8 / header logo 9 / outro 20.
+         Gotchas: a scene's host id MUST equal its data-composition-id (else it renders black); every timed element needs
+         class="clip" + data-start + data-duration (+ data-track-index); every <audio> needs id + data-duration;
+         never tween top/left/width/height (use transforms / clip-path); never tween opacity on a .clip itself. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="33" data-width="1080" data-height="1920">
+      <div id="win" data-layout-allow-overflow>
+        <!-- A-roll: ONE pre-cut file (assets/video/aroll.mp4, 1920x1080 full frame, 30 fps CFR, no audio, same length as
+             voice.wav). Each speaker shot = its own timed <video> of the same file inside its own untimed .cam wrapper,
+             with data-media-start = data-start. Hard cuts between speakers. Add/remove shots to match the EDL. -->
+        <div id="cam-h" class="cam">
+          <video id="aroll-h" class="clip" src="assets/video/aroll.mp4" data-start="0" data-duration="4" data-media-start="0" data-track-index="0" muted playsinline
+            data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":0.04,"contrast":0.14,"highlights":-0.5,"shadows":0.32,"whites":-0.18,"blacks":-0.04,"temperature":0.04,"tint":0,"vibrance":0.06,"saturation":-0.04},"details":{"vignette":0.32,"vignetteMidpoint":0.5,"vignetteRoundness":0,"vignetteFeather":0.7,"grain":0.14,"grainSize":0.3,"grainRoughness":0.5},"lut":null,"colorSpace":"rec709"}'></video>
+        </div>
+        <div id="cam-g" class="cam">
+          <video id="aroll-g" class="clip" src="assets/video/aroll.mp4" data-start="4" data-duration="26" data-media-start="4" data-track-index="1" muted playsinline
+            data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":0.04,"contrast":0.14,"highlights":-0.5,"shadows":0.32,"whites":-0.18,"blacks":-0.04,"temperature":0.04,"tint":0,"vibrance":0.06,"saturation":-0.04},"details":{"vignette":0.32,"vignetteMidpoint":0.5,"vignetteRoundness":0,"vignetteFeather":0.7,"grain":0.14,"grainSize":0.3,"grainRoughness":0.5},"lut":null,"colorSpace":"rec709"}'></video>
+        </div>
+      </div>
+
+      <!-- B-ROLL (full screen, cut on the words). Literal + real only (see CLAUDE.md). Example, uncomment and adapt:
+      <video id="br-1" class="clip br" src="assets/broll/clip1.mp4" data-start="8.0" data-duration="2.5" data-media-start="0" data-track-index="2" muted playsinline
+        data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":0.04,"contrast":0.12,"highlights":-0.3,"shadows":0.2,"whites":-0.1,"blacks":-0.04,"temperature":0.04,"tint":0,"vibrance":0.1,"saturation":0},"details":{"vignette":0.3,"vignetteMidpoint":0.5,"vignetteRoundness":0,"vignetteFeather":0.7,"grain":0.12,"grainSize":0.3,"grainRoughness":0.5},"lut":null,"colorSpace":"rec709"}'></video>
+      -->
+
+      <!-- Graphics. header/tags/captions run 0 -> A-roll end; outro from A-roll end for 3 s. -->
+      <div id="header" data-composition-id="header" data-composition-src="compositions/header.html" data-start="0" data-duration="30" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 9"></div>
+      <div id="tags" data-composition-id="tags" data-composition-src="compositions/tags.html" data-start="0" data-duration="8" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+      <!-- Example full-screen card (12-16). Copy compositions/card.html per card; hide the logo over it (header BROLL). -->
+      <div id="card" data-composition-id="card" data-composition-src="compositions/card.html" data-start="12" data-duration="4" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 6"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="30" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 8"></div>
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="30" data-duration="3" data-track-index="7" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 20"></div>
+
+      <!-- SOUND. voice -16 LUFS at volume 1. Music "Close Up" bed 0.2 under voice (pick data-media-start so the outro
+           clip lands on a bar line: groove at media 18.3 s, bar 2.286 s), outro clip 0.55 continuing the same media time
+           (music-out media-start = music media-start + outro start). SFX sparse: whoosh on b-roll/card cuts (0.2-0.35),
+           click on card beats (0.16-0.3), shing at outro start - 0.33 s (0.8). -->
+      <audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-duration="30" data-track-index="10" data-volume="1"></audio>
+      <audio id="music" class="clip" src="assets/audio/music.wav" data-start="0" data-duration="30" data-media-start="9.2" data-track-index="11" data-volume="0.2"></audio>
+      <audio id="music-out" class="clip" src="assets/audio/music.wav" data-start="30" data-duration="3" data-media-start="39.2" data-track-index="12" data-volume="0.55"></audio>
+      <audio id="sfx-wh1" class="clip" src="assets/sfx/whoosh.wav" data-start="11.85" data-duration="0.5" data-track-index="13" data-volume="0.3"></audio>
+      <audio id="sfx-click1" class="clip" src="assets/sfx/click.wav" data-start="12.8" data-duration="0.18" data-track-index="14" data-volume="0.25"></audio>
+      <audio id="sfx-shing" class="clip" src="assets/sfx/shing.wav" data-start="29.67" data-duration="1.16" data-track-index="15" data-volume="0.8"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // CAMERA: never a static shot. Slow drifts (ease "none") between GSAP punch-ins on key words
+      // (scale ~1.00 -> 1.14-1.18, 0.3 s, expo.out); ease back out (power2.inOut) to reset. Origins = the speaker's face
+      // inside the 1080x1270 window (S6E15: host "480px 120px", guest "552px 417px"; re-measure per episode).
+      const HF = "480px 120px", GF = "552px 417px";
+      const ZH = (t, d, a, b, ease) => tl.fromTo("#cam-h", { scale: a, transformOrigin: HF }, { scale: b, duration: d, ease, immediateRender: false }, t);
+      const ZG = (t, d, a, b, ease) => tl.fromTo("#cam-g", { scale: a, transformOrigin: GF }, { scale: b, duration: d, ease, immediateRender: false }, t);
+      tl.set("#cam-h", { scale: 1.0, transformOrigin: HF }, 0);
+      tl.set("#cam-g", { scale: 1.0, transformOrigin: GF }, 0);
+      // HOST 0-4 (example)
+      ZH(0.00, 2.40, 1.00, 1.05, "none");
+      ZH(2.40, 0.30, 1.05, 1.14, "expo.out");   // TEMPLATE: key word
+      ZH(2.70, 1.30, 1.14, 1.16, "none");
+      // GUEST 4-30 (example)
+      ZG(4.00, 3.00, 1.00, 1.05, "none");
+      ZG(7.00, 0.30, 1.05, 1.16, "expo.out");   // TEMPLATE: key word
+      ZG(7.30, 4.70, 1.16, 1.19, "none");
+      // card 12-16 covers the window
+      ZG(16.00, 6.00, 1.00, 1.06, "none");
+      ZG(22.00, 0.50, 1.06, 1.00, "power2.inOut");
+      ZG(22.50, 7.50, 1.00, 1.08, "none");      // last shot: hold ~1.2 s of air after the final word before the outro
+      // B-roll pushes (uncomment with the b-roll): [selector, start, duration]
+      // [["#br-1", 8.0, 2.5]].forEach(([s, t, d]) => tl.fromTo(s, { scale: 1.1 }, { scale: 1.03, duration: d, ease: "none", immediateRender: false }, t));
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

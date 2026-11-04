@@ -1,0 +1,12 @@
+{
+  "show": "THE RETAIL RAZOR SHOW",
+  "episode": "S0E00",
+  "guest_line": "WITH GUEST NAME, COMPANY",
+  "guest_alt": "Guest Name",
+  "covers": {
+    "1": {"lines": [["THE HOOK AS A", [], 120, 960], ["QUESTION", ["QUESTION"], 175, 640], ["IN THREE LINES?", [], 120, 960]],
+          "prop": "reddit", "face_x": 700, "sub": null},
+    "2": {"lines": [["FROM THIS ->", [], 160, 620], ["TO THAT", ["THAT"], 150, 960]],
+          "prop": "none", "face_x": 700, "sub": "an optional sub line"}
+  }
+}

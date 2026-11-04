@@ -1,0 +1,41 @@
+<template>
+  <!-- TRRS name tags. One tag per speaker, the FIRST time each appears on camera, ~3.4 s, never over b-roll/cards.
+       Position: lower-left of the speaker window (left 60 / top 1146), above the captions band (top 1290).
+       Name in Caveat 700 84px cream; role in Montserrat 800 28px peach, tracked uppercase.
+       TEMPLATE: set each tag's data-start (and the matching entry in TAGS below); delete the host tag if the host
+       is not on camera in this reel. Hosts: "Ricardo Belmar / Host, The Retail Razor Show",
+       "Casey Golden / Co-host, The Retail Razor Show". Guest: name + role exactly as the episode credits them. -->
+  <style>
+    @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    @font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat.ttf") format("truetype"); font-weight: 400 700; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat", sans-serif; }
+    .tag { position: absolute; left: 60px; top: 1146px; white-space: nowrap; }
+    .nm { font-family: "Caveat", cursive; font-weight: 700; font-size: 84px; line-height: 1; color: #fbeee6;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.5), 0 0 22px rgba(0,0,0,0.75); }
+    .role { margin-top: 8px; font-weight: 800; font-size: 28px; letter-spacing: 0.16em; text-transform: uppercase; color: #f2b48c;
+      text-shadow: 0 0 14px rgba(0,0,0,0.85), 0 1px 0 rgba(0,0,0,0.6); }
+  </style>
+  <div id="root" data-composition-id="tags" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="t-host" class="tag clip" data-start="0.2" data-duration="3.4" data-track-index="0">
+      <div id="t-host-nm" class="nm">Ricardo Belmar</div>
+      <div id="t-host-role" class="role">Host, The Retail Razor Show</div>
+    </div>
+    <div id="t-guest" class="tag clip" data-start="4.2" data-duration="3.4" data-track-index="1">
+      <div id="t-guest-nm" class="nm">Guest Name</div>
+      <div id="t-guest-role" class="role">Title, Company</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // [selector, start] — keep in sync with the data-start values above
+      const TAGS = [["#t-host", 0.2], ["#t-guest", 4.2]];
+      TAGS.forEach(([s, t]) => {
+        tl.fromTo(s + "-nm", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, t);
+        tl.fromTo(s + "-role", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, t + 0.12);
+        tl.to([s + "-nm", s + "-role"], { opacity: 0, duration: 0.2 }, t + 3.18);
+      });
+      window.__timelines["tags"] = tl;
+    })();
+  </script>
+</template>

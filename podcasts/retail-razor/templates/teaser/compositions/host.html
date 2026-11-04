@@ -1,0 +1,53 @@
+<template>
+  <!-- TRRS teaser HOST beat: the host's framing question. Handwritten host name (Caveat Brush) writes on with a drawn arrow
+       to him, role in peach; the question's lead-in words appear word by word (peach label) and its key word slams in huge.
+       Right-aligned (host sits camera-left in the episode frame; flip to left-aligned if he is on the right).
+       Both hosts are credited in a teaser: Ricardo here; Casey Golden ("Co-host · The Retail Razor Show") if she is on the episode.
+       TEMPLATE: rewrite words + WORDS cues (spoken word starts, local seconds) + #r-key, and re-point the arrow. -->
+  <style>
+    @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    @font-face { font-family: "Caveat Brush"; src: url("assets/fonts/CaveatBrush.ttf") format("truetype"); font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat", sans-serif; }
+    .scrim { position: absolute; inset: 0; background: linear-gradient(270deg, rgba(31,18,13,0.86) 0%, rgba(31,18,13,0.6) 30%, rgba(31,18,13,0) 55%); opacity: 0; }
+    .r { position: absolute; right: 100px; text-align: right; white-space: nowrap; }
+    .lbl { font-weight: 800; font-size: 32px; letter-spacing: 0.18em; text-transform: uppercase; color: #f2b48c; }
+    .hd { font-weight: 900; color: #fbeee6; letter-spacing: -0.025em; line-height: 0.95;
+      text-shadow: 0 0 18px rgba(255, 170, 120, 0.5), 0 0 52px rgba(255, 130, 80, 0.32); }
+    .w { display: inline-block; opacity: 0; }
+    #r-name { position: absolute; right: 96px; top: 132px; font-family: "Caveat Brush", cursive; font-size: 100px; line-height: 1; color: #fbeee6; white-space: nowrap;
+      clip-path: inset(-30% 100% -30% 0); text-shadow: 0 0 18px rgba(255, 170, 120, 0.45); }
+    #r-arrow { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+  </style>
+  <div id="root" data-composition-id="host" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="r-all" class="clip" data-start="0" data-duration="2.40" data-track-index="0" style="position:absolute; inset:0;">
+      <div id="r-scrim" class="scrim"></div>
+      <div id="r-name">Ricardo Belmar</div>
+      <div id="r-tag-l" class="r lbl" style="top: 268px; font-size: 26px;">Host · The Retail Razor Show</div>
+      <svg id="r-arrow" viewBox="0 0 1920 1080">
+        <path id="r-ap" d="M1222 214 C 1195 236, 1160 240, 1128 226" fill="none" stroke="#fbeee6" stroke-width="7" stroke-linecap="round"/>
+        <path id="r-ah" d="M1150 206 L1124 225 L1154 246" fill="none" stroke="#fbeee6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="r lbl" style="top: 420px;"><span id="r-w1" class="w">Lead</span> <span id="r-w2" class="w">in</span> <span id="r-w3" class="w">words</span></div>
+      <div id="r-key" class="r hd" style="top: 466px; font-size: 128px; opacity: 0;">Keyword</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const word = (s, t) => tl.fromTo(s, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out" }, t);
+      tl.fromTo("#r-scrim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.0);
+      tl.to("#r-name", { clipPath: "inset(-30% 0% -30% 0)", duration: 0.65, ease: "power1.inOut" }, 0.1);
+      word("#r-tag-l", 0.6);
+      ["#r-ap", "#r-ah"].forEach((p, i) => {
+        const len = document.querySelector(p).getTotalLength();
+        tl.fromTo(p, { attr: { "stroke-dasharray": len, "stroke-dashoffset": len } }, { attr: { "stroke-dashoffset": 0 }, duration: i ? 0.12 : 0.32, ease: "power2.out" }, i ? 0.98 : 0.68);
+      });
+      const WORDS = [["#r-w1", 0.05], ["#r-w2", 0.65], ["#r-w3", 0.97]];
+      const T_KEY = 1.87;
+      WORDS.forEach(([s, t]) => word(s, t));
+      tl.fromTo("#r-key", { opacity: 0, scale: 1.3, filter: "blur(14px)", transformOrigin: "100% 50%" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.22, ease: "expo.out" }, T_KEY);
+      tl.to("#r-all > *", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.24);
+      window.__timelines["host"] = tl;
+    })();
+  </script>
+</template>

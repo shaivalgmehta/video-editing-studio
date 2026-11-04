@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #h-logo { position: absolute; left: 60px; top: 132px; }
+    #h-logo img { height: 112px; display: block; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)); }
+  </style>
+  <div id="root" data-composition-id="header" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <!-- Retail Razor logo top-left (left 60 / top 132, height 112), only while the speaker window is on screen.
+         TEMPLATE: set h-all data-duration = A-roll end (= outro start). No headline/title text ever goes here. -->
+    <div id="h-all" class="clip" data-start="0" data-duration="30" data-track-index="0" style="position:absolute; inset:0;">
+      <div id="h-logo"><img src="assets/img/rr_logo.png" alt="Retail Razor"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Hide the logo over EVERY full-screen b-roll clip and full-screen card: [start, end] in reel seconds,
+      // cut exactly with the picture. Update this list whenever the timeline changes.
+      const BROLL = [[12.0, 16.0]];  // TEMPLATE: example window (matches the example card in index.html)
+      tl.set("#h-logo", { opacity: 1 }, 0);
+      BROLL.forEach(([a, b]) => {
+        tl.set("#h-logo", { opacity: 0 }, a);
+        tl.set("#h-logo", { opacity: 1 }, b);
+      });
+      window.__timelines["header"] = tl;
+    })();
+  </script>
+</template>

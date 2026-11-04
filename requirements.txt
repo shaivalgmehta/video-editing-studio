@@ -1,0 +1,8 @@
+# Shared tools (_shared/tools). DeepFilterNet cleanup uses its own venv; see _shared/tools/README.md.
+numpy
+scipy
+soundfile
+librosa
+pillow
+faster-whisper
+img2pdf

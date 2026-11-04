@@ -1,0 +1,23 @@
+<template>
+  <!-- TRRS teaser title card, 3.00 s, z-index 5, over black A-roll. -->
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #120a07; }
+    #t-cover { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="title" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="t-card" class="clip" data-start="0" data-duration="3.00" data-track-index="0" style="position:absolute; inset:0;">
+      <!-- The episode's own VIDEO COVER from the client (episode input/), copied to assets/img/video_cover.png and used EXACTLY as supplied
+           (CD decision: no rebuilt title card). Lands on a music hit. TEMPLATE: update the alt text to the cover's words. -->
+      <img id="t-cover" src="assets/img/video_cover.png" alt="Episode video cover: title, guest name and role, hosts">
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // 0.00 is the music drop: the cover slams in sharp, then a slow push holds attention for the read
+      tl.fromTo("#t-cover", { opacity: 0, scale: 1.14, filter: "blur(14px)" }, { opacity: 1, scale: 1.0, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, 0.0);
+      tl.fromTo("#t-cover", { scale: 1.0 }, { scale: 1.045, duration: 2.68, ease: "none", immediateRender: false }, 0.32);
+      window.__timelines["title"] = tl;
+    })();
+  </script>
+</template>

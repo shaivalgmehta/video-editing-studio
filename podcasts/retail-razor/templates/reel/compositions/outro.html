@@ -1,0 +1,117 @@
+<template>
+  <!-- TRRS reel outro, 3.00 s. Mount at the end with host id "outro", z-index 20; shing sfx at outro_start - 0.33 s.
+       Per episode change ONLY the two variables (ep_title = full-episode title, ep_show = "The Retail Razor Show · SxEyy"):
+       edit the defaults below (data-composition-variables AND the matching element text). Never restyle it. -->
+  <style>
+    @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: transparent; font-family: "Montserrat", sans-serif; }
+
+    /* Brand ground, revealed by the razor slash along the lower-left -> upper-right diagonal */
+    #o-ground { position: absolute; inset: 0; overflow: hidden;
+      background: radial-gradient(ellipse 70% 80% at 32% 45%, #4a2a1d 0%, #2a1610 45%, #120a07 100%);
+      clip-path: polygon(-100% 0%, 200% 300%, 200% 400%, -100% 400%); }
+    .glow { position: absolute; border-radius: 50%; pointer-events: none; }
+    #o-glow-a { left: -520px; top: -560px; width: 1300px; height: 1300px;
+      background: radial-gradient(circle, rgba(227, 38, 43, 0.42) 0%, rgba(227, 38, 43, 0.14) 38%, rgba(227, 38, 43, 0) 68%); }
+    #o-glow-b { right: -620px; bottom: -560px; width: 1400px; height: 1400px;
+      background: radial-gradient(circle, rgba(255, 110, 60, 0.30) 0%, rgba(227, 38, 43, 0.12) 40%, rgba(227, 38, 43, 0) 68%); }
+
+    /* Content column: text kept inside x 80-1000, y 190-1320 */
+    #o-stack { position: absolute; left: 80px; top: 190px; width: 920px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    #o-logo { width: 460px; height: 347px; overflow: hidden; opacity: 0; }
+    #o-logo img { width: 460px; height: auto; display: block; }
+    #o-tag { margin-top: 26px; font-size: 30px; font-weight: 800; letter-spacing: 0.26em; text-transform: uppercase; color: #f2b48c; white-space: nowrap; opacity: 0; }
+    #o-rule { margin-top: 64px; width: 120px; height: 4px; background: #e3262b; box-shadow: 0 0 16px rgba(227, 38, 43, 0.6); transform-origin: 50% 50%; }
+    #o-label { margin-top: 30px; font-size: 30px; font-weight: 800; letter-spacing: 0.32em; text-transform: uppercase; color: #d9a98a; white-space: nowrap; opacity: 0; }
+    #o-title { margin-top: 20px; width: 920px; font-size: 70px; font-weight: 900; line-height: 1.08; letter-spacing: -0.012em; color: #fbeee6;
+      text-shadow: 0 0 20px rgba(255, 170, 120, 0.50), 0 0 60px rgba(255, 130, 80, 0.30);
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; opacity: 0; }
+    #o-title .dot { color: #e3262b; text-shadow: 0 0 22px rgba(227, 38, 43, 0.45); }
+    #o-show { margin-top: 22px; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; color: #d9a98a; white-space: nowrap; opacity: 0; }
+    #o-icons { margin-top: 64px; display: flex; gap: 48px; }
+    #o-icons img { width: 96px; height: 96px; object-fit: contain; display: block; opacity: 0;
+      filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.45)); }
+    #o-follow { margin-top: 54px; padding: 18px 44px 18px 40px; border-radius: 999px; background: #e3262b; color: #fbeee6;
+      font-size: 32px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap;
+      box-shadow: 0 0 34px rgba(227, 38, 43, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4); opacity: 0; }
+    #o-follow .arw { display: inline-block; margin-left: 14px; }
+
+    /* Razor blade: a long rotated line parallel to the wipe edge (frame's TL-BR diagonal), moved along its normal */
+    #o-bladeRot { position: absolute; left: 540px; top: 960px; width: 0; height: 0; transform: rotate(60.64deg); }
+    #o-blade { position: absolute; left: -1400px; top: 0; width: 2800px; height: 0; }
+    #o-blade .trail { position: absolute; left: 0; top: 0; width: 2800px; height: 240px;
+      background: linear-gradient(to bottom, rgba(255, 74, 85, 0.40), rgba(227, 38, 43, 0.10) 40%, rgba(227, 38, 43, 0) 100%); }
+    #o-blade .edge { position: absolute; left: 0; top: -4px; width: 2800px; height: 8px; border-radius: 4px;
+      background: linear-gradient(to right, rgba(227, 38, 43, 0) 0%, #e3262b 18%, #ff4a55 40%, #fff0f0 50%, #ff4a55 60%, #e3262b 82%, rgba(227, 38, 43, 0) 100%);
+      box-shadow: 0 0 14px 3px rgba(255, 74, 85, 0.95), 0 0 50px 12px rgba(255, 74, 85, 0.55), 0 0 120px 30px rgba(227, 38, 43, 0.30); }
+    #o-blade .core { position: absolute; left: 0; top: -1px; width: 2800px; height: 2px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 10%, #ffffff 50%, rgba(255, 255, 255, 0) 90%); }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap
+    data-composition-variables='[{"id":"ep_title","type":"string","label":"Episode title (red period added automatically)","default":"Episode Title Goes Here","maxLength":70},{"id":"ep_show","type":"string","label":"Show and episode line","default":"The Retail Razor Show · S0E00","maxLength":40}]'>
+    <div id="o-card" class="clip" data-start="0" data-duration="3.00" data-track-index="0" style="position:absolute; inset:0;">
+      <div id="o-ground">
+        <div id="o-glow-a" class="glow"></div>
+        <div id="o-glow-b" class="glow"></div>
+        <div id="o-stack">
+          <div id="o-logo"><img src="assets/img/rr_logo.png" alt="Retail Razor"></div>
+          <div id="o-tag">Cutting through the clutter</div>
+          <div id="o-rule"></div>
+          <div id="o-label">Full episode</div>
+          <div id="o-title"><span id="o-title-txt" data-var-text="ep_title">Episode Title Goes Here</span><span class="dot">.</span></div>
+          <div id="o-show" data-var-text="ep_show">The Retail Razor Show · S0E00</div>
+          <div id="o-icons">
+            <img id="o-ic-apple" src="assets/img/logos/apple_podcasts.png" alt="Apple Podcasts">
+            <img id="o-ic-spotify" src="assets/img/logos/spotify.png" alt="Spotify">
+            <img id="o-ic-youtube" src="assets/img/logos/youtube.png" alt="YouTube">
+            <img id="o-ic-goodpods" src="assets/img/logos/goodpods.png" alt="Goodpods">
+          </div>
+          <div id="o-follow">Follow for more<span class="arw">&rarr;</span></div>
+        </div>
+      </div>
+      <div id="o-bladeRot"><div id="o-blade"><div class="trail"></div><div class="edge"></div><div class="core"></div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Wipe position c: 0 = lower-left corner, 2 = upper-right corner (c = x/1080 + (1920-y)/1920).
+      // Ground clip-path is the half-plane c' <= c; one unit of c = 941.3 px along the blade's normal.
+      const clip = (c) => `polygon(-100% ${-c * 100}%, 200% ${300 - c * 100}%, 200% 400%, -100% 400%)`;
+      const bladeY = (c) => -(c - 1) * 941.3; // local y inside the rotated wrapper; negative = toward upper-right
+      const C_MID = 0.83, C_END = 2.14, T_PEAK = 0.12, T_END = 0.40;
+
+      // 0.00-0.40 razor slash. Fastest frame at t = 0.12 (sfx "shing" cue): ease-in to the peak, matched-speed ease-out after.
+      tl.fromTo("#o-ground", { clipPath: clip(0) }, { clipPath: clip(C_MID), duration: T_PEAK, ease: "power2.in" }, 0);
+      tl.to("#o-ground", { clipPath: clip(C_END), duration: T_END - T_PEAK, ease: "power3.out" }, T_PEAK);
+      tl.fromTo("#o-blade", { y: bladeY(0) }, { y: bladeY(C_MID), duration: T_PEAK, ease: "power2.in" }, 0);
+      tl.to("#o-blade", { y: bladeY(C_END), duration: T_END - T_PEAK, ease: "power3.out" }, T_PEAK);
+      tl.to("#o-blade", { opacity: 0, duration: 0.10, ease: "power2.in" }, 0.32);
+
+      // Glow: lands with the wipe, then a slow drift through the hold
+      tl.fromTo("#o-glow-a", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.05);
+      tl.fromTo("#o-glow-b", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.15);
+      tl.fromTo("#o-glow-a", { x: 0, y: 0 }, { x: 70, y: 50, duration: 2.6, ease: "sine.inOut" }, 0.4);
+      tl.fromTo("#o-glow-b", { x: 0, y: 0 }, { x: -60, y: -40, duration: 2.6, ease: "sine.inOut" }, 0.4);
+
+      // 0.35-1.2 logo lands, tagline follows
+      tl.fromTo("#o-logo", { opacity: 0, scale: 0.92, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 0.35);
+      tl.fromTo("#o-tag", { opacity: 0, y: 10, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.62);
+
+      // 0.7-1.5 label, title, show line
+      tl.fromTo("#o-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 0.7);
+      tl.fromTo("#o-label", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, 0.75);
+      tl.fromTo("#o-title", { opacity: 0, y: 26, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.88);
+      tl.fromTo("#o-show", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 1.2);
+
+      // 1.1-1.8 platform icons stagger up
+      tl.fromTo("#o-icons img", { opacity: 0, y: 40, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.07, ease: "expo.out" }, 1.15);
+
+      // 1.5-2.0 follow pill
+      tl.fromTo("#o-follow", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 1.5);
+
+      // Hold 2.0-3.0 (glow drift only). No exit: the reel loops.
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,55 @@
+<template>
+  <!-- EXAMPLE full-screen explainer card in the approved TRRS card style (from S6E15 R2 rank.html).
+       Dark scrim over the brand ground, peach tracked label, cream chip that flips to red on the key word,
+       numbered rows that re-order ON the spoken words. Copy this file per card (new file name AND new
+       data-composition-id AND matching host id in index.html), then rewrite the content and cues.
+       Rules: full screen (logo hidden via header BROLL list), keep everything above y 1250 (captions band),
+       no invented numbers, illustrate only what the speaker says, list cards end with the LAST item ticked. -->
+  <style>
+    @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat", sans-serif; }
+    #k-ground { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 60% at 30% 22%, #4a2a1d 0%, #2a1610 45%, #120a07 100%); }
+    #k-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,10,7,0.78) 0%, rgba(31,18,13,0.86) 40%, rgba(18,10,7,0.6) 100%); opacity: 0; }
+    .lbl { position: absolute; left: 150px; top: 540px; font-weight: 800; font-size: 32px; letter-spacing: 0.18em; text-transform: uppercase; color: #f2b48c; white-space: nowrap; opacity: 0; }
+    #k-chip { position: absolute; left: 150px; top: 586px; height: 104px; padding: 0 34px; background: #fbeee6; color: #1f120d; font-weight: 900;
+      font-size: 76px; line-height: 104px; letter-spacing: -0.01em; white-space: nowrap; opacity: 0; }
+    .num { position: absolute; left: 150px; width: 70px; font-weight: 800; font-size: 34px; color: #d9a98a; line-height: 132px; opacity: 0; }
+    .row { position: absolute; left: 222px; width: 708px; height: 132px; background: rgba(35,37,43,0.94); border-left: 8px solid #9a6f5c; opacity: 0; }
+    .row .nm { position: absolute; left: 34px; top: 18px; font-size: 52px; font-weight: 800; color: #fbeee6; white-space: nowrap; letter-spacing: -0.01em; }
+    .row .tg { position: absolute; left: 36px; top: 84px; font-weight: 800; font-size: 28px; letter-spacing: 0.14em; color: #d9a98a; text-transform: uppercase; white-space: nowrap; }
+    .row .bg { position: absolute; inset: 0; background: #e3262b; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="card" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="k-all" class="clip" data-start="0" data-duration="4" data-track-index="0" style="position:absolute; inset:0;">
+      <div id="k-ground"></div>
+      <div id="k-scrim"></div>
+      <div id="k-lbl" class="lbl">Card label</div>
+      <div id="k-chip">KEY IDEA</div>
+      <div id="k-n1" class="num" style="top: 720px;">01</div>
+      <div id="k-n2" class="num" style="top: 872px;">02</div>
+      <div id="k-n3" class="num" style="top: 1024px;">03</div>
+      <div id="k-ra" class="row" style="top: 720px;"><div class="bg"></div><div class="nm">Row A</div><div class="tg">Sub label</div></div>
+      <div id="k-rb" class="row" style="top: 872px;"><div class="bg"></div><div class="nm">Row B</div><div class="tg">Sub label</div></div>
+      <div id="k-rc" class="row" style="top: 1024px;"><div class="bg"></div><div class="nm">Row C</div><div class="tg">Sub label</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const STEP = 152;
+      // Cue times are LOCAL to this card: (word start in words.json) - (card data-start in index.html).
+      const T_KEY = 0.8, T_MOVE = 2.2;
+      tl.fromTo("#k-scrim", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.0);
+      tl.fromTo("#k-lbl", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 0.05);
+      tl.fromTo("#k-chip", { opacity: 0, scale: 0.8, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 0.08);
+      tl.fromTo(".num, #k-ra, #k-rb, #k-rc", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", stagger: 0.04 }, 0.12);
+      // key word: chip flips to brand red
+      tl.to("#k-chip", { backgroundColor: "#e3262b", color: "#fbeee6", duration: 0.2 }, T_KEY);
+      // the argument moves: row C climbs to #1, the others shift down, the winner lights red
+      tl.to("#k-rc", { y: -2 * STEP, duration: 0.5, ease: "power3.inOut" }, T_MOVE - 0.15);
+      tl.to(["#k-ra", "#k-rb"], { y: STEP, duration: 0.5, ease: "power3.inOut" }, T_MOVE - 0.15);
+      tl.to("#k-rc .bg", { opacity: 1, duration: 0.2 }, T_MOVE + 0.3);
+      window.__timelines["card"] = tl;
+    })();
+  </script>
+</template>

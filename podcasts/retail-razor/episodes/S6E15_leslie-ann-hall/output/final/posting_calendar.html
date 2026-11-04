@@ -1,0 +1,361 @@
+<title>S6E15 Launch Week</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Libre+Franklin:wght@400;500;600&display=swap">
+<style>
+/* Layout: week-at-a-glance grid (days × platforms), then one section per day with ready-to-copy post cards */
+:root{
+  --bg:#faf6f2; --surface:#ffffff; --ink:#2a1610; --muted:#7a6559; --line:#ead9cd;
+  --brand:#c81f25; --brand-soft:#fbe4e2; --peach:#b9744a;
+  --ig:#c13584; --yt:#e00000; --li:#0a66c2; --x:#1d1d1f;
+  --display:"Montserrat",system-ui,sans-serif; --body:"Libre Franklin",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#150c08; --surface:#21140f; --ink:#fbeee6; --muted:#c3a796; --line:#3a261d;
+  --brand:#ff4a55; --brand-soft:#3a1715; --peach:#f2b48c;
+  --ig:#e45aa8; --yt:#ff5a5a; --li:#4d9bf0; --x:#e9e2dc; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#150c08; --surface:#21140f; --ink:#fbeee6; --muted:#c3a796; --line:#3a261d;
+  --brand:#ff4a55; --brand-soft:#3a1715; --peach:#f2b48c;
+  --ig:#e45aa8; --yt:#ff5a5a; --li:#4d9bf0; --x:#e9e2dc; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header .eyebrow{font:600 12px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--peach)}
+h1{font:900 clamp(30px,5vw,48px)/1.05 var(--display);margin:10px 0 8px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--brand)}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:20px 0 28px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+h2{font:800 20px/1.2 var(--display);margin:0 0 12px}
+/* week grid */
+.gridwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:13px}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:10px;vertical-align:top;text-align:left}
+th:last-child,td:last-child{border-right:0} tr:last-child td{border-bottom:0}
+thead th{font:800 13px/1.2 var(--display)} thead th small{display:block;font:500 12px var(--body);color:var(--muted);margin-top:2px}
+thead th.launch{background:var(--brand-soft)} thead th.launch small{color:var(--brand);font-weight:600}
+tbody th{font:600 13px var(--display);white-space:nowrap}
+td a.pill{display:block;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px;padding:6px 8px;margin-bottom:6px;line-height:1.3}
+td a.pill:hover,td a.pill:focus-visible{border-color:var(--c);outline:none}
+td a.pill b{display:block;font:600 12px var(--display)} td a.pill i{font-style:normal;color:var(--muted);font-size:12px}
+td.empty{color:var(--muted)}
+/* day sections */
+.day{margin-top:44px;scroll-margin-top:16px}
+.dayhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:16px}
+.dayhead h2{margin:0;font-size:24px}
+.tag{font:600 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--brand);color:#fff;padding:5px 8px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font:600 11px/1 var(--display);letter-spacing:.04em;padding:5px 8px;border-radius:999px;color:#fff;background:var(--c)}
+.type{font:600 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.card h3{font:800 17px/1.25 var(--display);margin:0}
+.file{font:500 12.5px/1.4 ui-monospace,Consolas,monospace;color:var(--muted);word-break:break-all;background:var(--bg);border:1px dashed var(--line);border-radius:6px;padding:6px 8px}
+.field{font:600 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-top:4px}
+.copy{white-space:pre-wrap;font-size:14px;background:var(--bg);border-radius:6px;padding:10px 12px;margin:0;max-height:260px;overflow:auto}
+.title{font-weight:600}
+.note{font-size:13px;color:var(--muted);border-left:3px solid var(--peach);padding-left:10px}
+button.cp{align-self:flex-start;font:600 12px var(--display);border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer}
+button.cp:hover{background:var(--ink);color:var(--bg)} button.cp:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+a.dl{font:600 12.5px/1 var(--display);text-decoration:none;color:var(--brand);border:1px solid var(--brand);border-radius:6px;padding:7px 10px;background:var(--surface)}
+a.dl:hover{background:var(--brand);color:var(--surface)} a.dl:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+a.dl.big{display:inline-block;font-size:14px;padding:10px 14px}
+.driveline{margin:14px 0 0}
+.rest{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:16px}
+footer{margin-top:48px;font-size:13px;color:var(--muted)}
+footer ul{padding-left:18px;margin:6px 0 0}
+@media (prefers-reduced-motion:no-preference){a.pill{transition:border-color .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">The Retail Razor Show · S6E15 · Leslie Ann Hall, Iced Media</div>
+    <h1>Launch week posting schedule <em>Nov 3–9</em></h1>
+    <p class="lede">Everything to post this week, day by day: which platform, which file, and the exact copy. The episode "AI Search Is a Mirror for Your Brand" goes live Tuesday, November 3. Every file is in the shared Google Drive folder, and each post below links straight to its file.</p>
+    <p class="driveline"><a id="driveRoot" class="dl big" href="#" target="_blank" rel="noopener">Open the S6E15 Drive folder ↗</a></p>
+    <div class="legend" id="legend"></div>
+  </header>
+
+  <section>
+    <h2>Week at a glance</h2>
+    <div class="gridwrap"><table id="grid"></table></div>
+  </section>
+
+  <div id="days"></div>
+
+  <footer>
+    <strong>Posting notes</strong>
+    <ul>
+      <li>Reels go to Instagram and YouTube Shorts on the same day: same video and same caption, with the title used only on YouTube.</li>
+      <li>On YouTube and LinkedIn, swap "link in bio" for the episode link (LinkedIn and YouTube can't use link in bio).</li>
+      <li>Carousels: post the PNG slides on Instagram, and upload the PDF as a document post on LinkedIn with the same text.</li>
+      <li>Wording in quotation marks is Leslie's or Ricardo's exact words from the episode.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const P = {
+  ig:{name:"Instagram",c:"var(--ig)"}, yt:{name:"YouTube Shorts",c:"var(--yt)"},
+  li:{name:"LinkedIn",c:"var(--li)"}, x:{name:"X / Bluesky",c:"var(--x)"}
+};
+const ROWS = ["ig","yt","li","x"];
+const R = "reels/", C = "carousels/", T = "tweets/";
+const DAYS = [
+ {id:"nov-3",d:"Tue",n:"Nov 3",tag:"Launch day",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R3 · AI search is a mirror",file:R+"TRRS_S6E15_R3_9x16_v2.mp4",title:"AI search is a mirror for your brand",
+   copy:`"AI search is a mirror for what the world thinks about your brand." – Leslie Ann Hall, Iced Media
+
+If your organic team, paid team, PR team, e-commerce team and Amazon team are each pushing a different product and message, AI picks that up. Ricardo Belmar sits down with Leslie Ann Hall to understand why ranking in AI search should be the foundation under every channel.
+
+New episode of The Retail Razor Show is out now.
+
+#AISearch #GEO`},
+  {pl:["li"],type:"Text post",name:"L1 · Curiosity",file:"Podcast cover image",
+   copy:`Your Meta ads could be making money for your competitors.
+Here's how.
+You spend budget on ads.
+Someone sees your ad. Likes your product. Visits your website.
+But before buying, they open ChatGPT and ask:
+"What's the best product for my problem?"
+ChatGPT recommends your competitor.
+You created the demand and someone else got the sale.
+Leslie Ann Hall, CEO of Iced Media, discussed this on The Retail Razor Show.
+She calls it "vibes to validation."
+Your ads create the interest.
+But customers increasingly look elsewhere for proof before buying.
+And here's where Leslie says brands are making a mistake.
+They're trying to get their entire product catalog recommended by AI.
+Leslie suggests focusing on a handful of hero products.
+I'd go further.
+Start with ONE product.
+Become the obvious choice for ONE specific problem.
+Not "best skincare."
+But "best moisturizer for dry, sensitive skin."
+Then make sure the evidence exists.
+Customer reviews. Creator demonstrations. YouTube videos. Independent recommendations.
+Here's something every ecommerce founder should try today.
+Open ChatGPT.
+Ask what the best product is for the specific problem yours solves.
+See which brands get recommended.
+Then ask why.
+You might discover that your competitors are winning customers you paid to attract.
+Getting someone interested and getting them to choose you are now two different jobs.
+We discussed this with Leslie Ann Hall on The Retail Razor Show, S6E15.
+Have you checked whether ChatGPT recommends your brand or your competitors?`}
+ ]},
+ {id:"nov-4",d:"Wed",n:"Nov 4",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R2 · Indie brands vs SEO giants",file:R+"TRRS_S6E15_R2_9x16_v4.mp4",title:"Can indie brands beat the giants in AI search?",
+   copy:`SEO rewarded the brands that have been around for decades. AI search plays by different rules.
+
+Leslie Ann Hall, Founder & CEO of Iced Media, explains why GEO (generative engine optimization) is a much bigger opportunity for indie and challenger brands.
+
+Recorded live at Shoptalk Fall with Ricardo Belmar.
+
+#GEO #IndieBrands`},
+  {pl:["ig","li"],type:"Carousel",name:"C1 · How to win in AI search",file:C+"C1_playbook/ (8 PNG slides · TRRS_S6E15_C1_carousel.pdf for LinkedIn)",
+   copy:`How to win in AI search, from Iced Media's Leslie Ann Hall 👇
+
+"AI search is a mirror for what the world thinks about your brand."
+
+So:
+Pick your hero products. Not all 200.
+Use one message across every team: organic, paid, PR, e-commerce and Amazon.
+Create content humans and machines can understand.
+
+The 4 sources Leslie sees AI cite most in beauty: Reddit, YouTube, PR rankings and "best of" lists, and TikTok Shop. And "it's changing every day."
+
+Save this for your next planning meeting. Full episode with Ricardo Belmar: link in bio.`},
+  {pl:["x"],type:"Image post",name:"Post 1 · Bottom funnel bloat test",file:T+"TRRS_S6E15_X1_bloat.png",
+   copy:`Quick test for bottom funnel bloat:
+Split last month's paid spend into new customers vs people who already buy from you.
+If the returning side gets an outsized share, you've got it. That's Iced Media's name for the problem, and Leslie Ann Hall says they see it all the time.`}
+ ]},
+ {id:"nov-5",d:"Thu",n:"Nov 5",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R6 · Vibes to validation",file:R+"TRRS_S6E15_R6_9x16_v1.mp4",title:"Shoppers added a new step before they buy",
+   copy:`It used to be: see it from a creator, add to cart, done. Now there's an extra step.
+
+Leslie Ann Hall calls the new customer journey "vibes to validation." Brand love still sparks the interest, but then shoppers ask: Is this the best product for me? Is it worth the price? Are there competitors I'm not aware of? And they go to Reddit and the LLMs to check.
+
+Why brand marketing and AI search now have to work hand in hand, on The Retail Razor Show.
+
+#CustomerJourney #AISearch`},
+  {pl:["li"],type:"Text post",name:"L2 · Contrarian",file:"No image",
+   copy:`Your Meta ROAS is improving.
+But your customer base isn't growing.
+Here's why: you spend $50 to acquire a new customer.
+Meanwhile, your retargeting campaign reports conversions at $10 each.
+So you shift more budget into retargeting.
+Your ROAS goes up and everyone's happy.
+But here's the thing. You might be paying to convert people who would have bought anyway.
+And spending less on finding new customers.
+Leslie Ann Hall, CEO of Iced Media, calls this "bottom funnel bloat."
+She discussed it on the latest episode of The Retail Razor Show.
+There are two very different jobs in marketing:
+Create demand. Get new people interested in your brand.
+Capture demand. Convert people who are already interested.
+ROAS doesn't tell you how much new business your advertising actually created.
+Here's something worth checking:
+Look at your last 90 days.
+Has your Meta ROAS increased?
+Now look at your new customer numbers.
+Are they growing too?
+Marketers: What do you trust more when measuring growth: platform ROAS, blended CAC, or incremental revenue?`}
+ ]},
+ {id:"nov-6",d:"Fri",n:"Nov 6",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R1 · The Reddit final check",file:R+"TRRS_S6E15_R1_9x16_v2.mp4",title:"Do you check Reddit before you buy?",
+   copy:`Do you check Reddit before you buy?
+
+According to Leslie Ann Hall of Iced Media, over half of Redditors do what they call a "final check" on Reddit before they make a purchase. She admits she does it too, before booking a hotel or buying new running shoes.
+
+Ricardo Belmar asks her why Reddit has become such a big part of how shoppers decide. Full conversation, recorded live at Shoptalk Fall.
+
+#Reddit #ConsumerBehavior`},
+  {pl:["ig","li"],type:"Carousel",name:"C2 · Everyone says… Leslie says…",file:C+"C2_myth-vs-reality/ (7 PNG slides · TRRS_S6E15_C2_carousel.pdf for LinkedIn)",
+   copy:`5 beliefs AI is changing. Swipe to see what Leslie Ann Hall says instead 👉
+
+✕ AI search is a new channel → ✓ It's the foundation channel
+✕ Legacy brands own search → ✓ GEO is letting indie brands rank higher
+✕ Rank for every product → ✓ Focus on your hero products
+✕ Spend more on conversion ads → ✓ That's "bottom funnel bloat"
+✕ Creator post → add to cart → ✓ There's a new validation stage in between
+
+Which one surprised you? Tell us in the comments.
+Full episode with Ricardo Belmar, recorded live at Shoptalk Fall: link in bio.`},
+  {pl:["x"],type:"Image post",name:"Post 2 · The Reddit final check",file:T+"TRRS_S6E15_X2_reddit.png",
+   copy:`"Reddit is the number one most trusted source to build consumer confidence."
+That's Leslie Ann Hall on where shoppers go to double-check before buying. Over half of Redditors do a final check there first.
+
+Weekend homework: search Reddit for
+• your brand name
+• your hero product + "worth it"
+• your category + "best"
+That's the kind of thread shoppers read before they buy.`}
+ ]},
+ {id:"nov-7",d:"Sat",n:"Nov 7",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R5 · Bottom funnel bloat",file:R+"TRRS_S6E15_R5_9x16_v1.mp4",title:`Is your ad budget suffering from "bottom funnel bloat"?`,
+   copy:`Iced Media is a Meta, TikTok and Google partner, and Leslie Ann Hall is still warning brands about this.
+
+She calls it "bottom funnel bloat": an outsized share of spend going to conversion media, paying more to get existing customers to buy more often, and leaning on promotions and sales, all at the expense of finding new customers.
+
+Ricardo Belmar and Leslie get into why brand marketing matters more than ever.
+
+#PerformanceMarketing #BrandMarketing`}
+ ]},
+ {id:"nov-8",d:"Sun",n:"Nov 8",posts:[
+  {pl:["ig","yt"],type:"Reel",name:"R4 · 200 products, 3 rules",file:R+"TRRS_S6E15_R4_9x16_v2.mp4",title:"3 rules for winning in AI search",
+   copy:`Got 200 products? You "might not deserve to rank for everything."
+
+Leslie Ann Hall's three rules for winning in AI search:
+Be intentional about a handful of hero products you really have the right to rank for.
+Get otherwise siloed teams working together with the same message.
+Make sure your content is understood by both humans and machines.
+
+Save this for your next planning session.
+
+#AISearch #GEO`},
+  {pl:["ig","li"],type:"Carousel",name:"C3 · Ricardo asked. Leslie answered.",file:C+"C3_qa/ (7 PNG slides · TRRS_S6E15_C3_carousel.pdf for LinkedIn)",
+   copy:`5 questions every brand should be asking about AI and discovery. Ricardo Belmar put them to Iced Media's Leslie Ann Hall, live at Shoptalk Fall
+
+Q: What should brands do?
+Q: Has brand marketing been overlooked?
+Q: Is trust changing?
+Q: How important is Reddit?
+Q: Treat every channel equally?
+
+Save it and share it with your team.
+
+#AIinRetail #RedditMarketing`},
+  {pl:["x"],type:"Poll",name:"Post 3 · Where AI gets its answers",file:T+"TRRS_S6E15_X3_sources.png",
+   copy:`Leslie Ann Hall says these are among the top sources AI tools cite in beauty right now.
+Which one is your brand weakest on?
+○ Reddit
+○ YouTube
+○ PR & listicles
+○ TikTok Shop`,
+   note:"Set up as a native poll with these four options where the platform supports it."}
+ ]},
+ {id:"nov-9",d:"Mon",n:"Nov 9",rest:true,posts:[]}
+];
+
+// Google Drive: every file the client posts, by post key (the part of the name before " · ")
+const F = id => `https://drive.google.com/file/d/${id}/view`;
+const FOLDER = id => `https://drive.google.com/drive/folders/${id}`;
+const DOC = id => `https://docs.google.com/document/d/${id}/edit`;
+const DRIVE_ROOT = FOLDER("1lq8i5-RjIvpNiHOWW7k0xJaIz0P_KUA1");
+const REEL_DOC = ["Caption doc", DOC("1tAkQ-POHGs5c1O6lRTGeFZ2ZhkaqqvhjdDk3MwDvOYg")];
+const CAR_DOC = ["Caption doc", DOC("1dqXs8xcULfIPV4qTx2RDksAFQhzs1Mf1riQdsJLB4JM")];
+const X_DOC = ["Post doc", DOC("1KVAOxpIGCGdZCVQ9W_KyQ4cvNAukZubdIMcy4pPYQo4")];
+const LI_DOC = ["Post doc", DOC("1XyAiqXzJXHK8zmBTqQJhMge7_rnO1ROv9F2Tvto9Afg")];
+const DRIVE = {
+  "R1": {fn:"Reels/TRRS_S6E15_R1.mp4", links:[["Video",F("1I-Hp7xubr8zT51mAITsoAV3fhel3tQgb")],["Cover image",F("1sWMJvrub_53obseIZZQ7ilsUyUuELJ7r")],REEL_DOC]},
+  "R2": {fn:"Reels/TRRS_S6E15_R2.mp4", links:[["Video",F("1lHS0ZeSpkDNHkRz4Ttn0e4dlvzEqfRyA")],["Cover image",F("17xNmHkCzRUcflN0z144DA2G3GIOzyRNG")],REEL_DOC]},
+  "R3": {fn:"Reels/TRRS_S6E15_R3.mp4", links:[["Video",F("1pTo2gGYuBjIK8xhF5zwpmqqgL9qP9pEP")],["Cover image",F("1quS97LeVbT4rinWV3PhgaIc36DdHIgkz")],REEL_DOC]},
+  "R4": {fn:"Reels/TRRS_S6E15_R4.mp4", links:[["Video",F("1xuICqXgtEHMgj8BubocUhc_8Rf1psUfL")],["Cover image",F("1oeDoklpQ3aTQ7nHLBMba-Jqk25ltlbTm")],REEL_DOC]},
+  "R5": {fn:"Reels/TRRS_S6E15_R5.mp4", links:[["Video",F("12qqTpBCtQo4Hvhlauhl1QX63wn5gJiH-")],["Cover image",F("1bXooFRu_ouF0EZB7w0q4bWMFd5yks7W9")],REEL_DOC]},
+  "R6": {fn:"Reels/TRRS_S6E15_R6.mp4", links:[["Video",F("19sFbLmhlmO8T2YT2wwjgW9F0yzbFZ-Zi")],["Cover image",F("1IlAAeiexJBw7A9YF-dq4AKC7Gje4NaCI")],REEL_DOC]},
+  "C1": {fn:"Carousels/C1_playbook (8 slides + PDF)", links:[["Slides folder",FOLDER("1eEnNhllrdLsIPoTc2bzojzlmUu1Dbdmc")],["PDF for LinkedIn",F("1PE_m1tsLl3Kx_UNXvpVl5R7B2_I228dQ")],CAR_DOC]},
+  "C2": {fn:"Carousels/C2_myth-vs-reality (7 slides + PDF)", links:[["Slides folder",FOLDER("1aFH0O2kHLuxNAjLTF1b9AamZy6Lv8qsk")],["PDF for LinkedIn",F("1TrA3IShEq7C562v4zd-d44Jdxp_jB5ZS")],CAR_DOC]},
+  "C3": {fn:"Carousels/C3_qa (7 slides + PDF)", links:[["Slides folder",FOLDER("1ZL0ihG6Dyzu1j_fHXZvluctM4OTMFAix")],["PDF for LinkedIn",F("18SWv29wohEx-vC5Un3QiLM9GqT1OQHmw")],CAR_DOC]},
+  "Post 1": {fn:"BlueSky / X Posts/TRRS_S6E15_X1_bloat.png", links:[["Image",F("1YrvBGDq54mp3tGIaxCaexzQ6OqKIcYBb")],X_DOC]},
+  "Post 2": {fn:"BlueSky / X Posts/TRRS_S6E15_X2_reddit.png", links:[["Image",F("1J9eYN755IIqYY0XyWjcTUwFaCM7vwXmw")],X_DOC]},
+  "Post 3": {fn:"BlueSky / X Posts/TRRS_S6E15_X3_sources.png", links:[["Image",F("1Sxs371tYeiEOsp8Qfcdknxzuhlajd653")],X_DOC]},
+  "L1": {fn:"LinkedIn Post/S6E15 Leslie Ann Hall Podcast Cover.png", links:[["Image",F("1evGxF7oCrES-BH3PkrxwFMSc3Bc9EMil")],LI_DOC]},
+  "L2": {fn:"No image (text only)", links:[LI_DOC]}
+};
+DAYS.forEach(d => d.posts.forEach(p => { const k = DRIVE[p.name.split(" · ")[0]]; if (k) { p.file = k.fn; p.links = k.links; } }));
+document.getElementById("driveRoot").href = DRIVE_ROOT;
+
+const esc = s => s.replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+let uid = 0;
+DAYS.forEach(d => d.posts.forEach(p => p.uid = "p" + (++uid)));
+
+document.getElementById("legend").innerHTML = ROWS.map(k =>
+  `<span><i class="dot" style="background:${P[k].c}"></i>${P[k].name}</span>`).join("");
+
+// Week grid
+let g = `<thead><tr><th></th>${DAYS.map(d =>
+  `<th class="${d.tag ? "launch" : ""}">${d.d} ${d.n}<small>${d.tag || (d.rest ? "No posts" : "")}</small></th>`).join("")}</tr></thead><tbody>`;
+ROWS.forEach(k => {
+  g += `<tr><th>${P[k].name}</th>`;
+  DAYS.forEach(d => {
+    const items = d.posts.filter(p => p.pl.includes(k));
+    g += items.length ? `<td>${items.map(p =>
+      `<a class="pill" href="#${d.id}" data-target="${p.uid}" style="--c:${P[k].c}"><b>${esc(p.name)}</b><i>${p.type}</i></a>`).join("")}</td>`
+      : `<td class="empty">–</td>`;
+  });
+  g += `</tr>`;
+});
+document.getElementById("grid").innerHTML = g + `</tbody>`;
+
+// Day sections
+document.getElementById("days").innerHTML = DAYS.map(d => `
+  <section class="day" id="${d.id}">
+    <div class="dayhead"><h2>${d.d}day ${d.n}`.replace("Tueday","Tuesday").replace("Wedday","Wednesday").replace("Thuday","Thursday").replace("Satday","Saturday").replace("Friday","Friday") + `</h2>${d.tag ? `<span class="tag">${d.tag}</span>` : ""}</div>
+    ${d.rest ? `<div class="rest">No posts scheduled. Use the day to reply to comments and check which posts performed best.</div>` :
+    `<div class="cards">${d.posts.map(p => `
+      <article class="card" id="${p.uid}">
+        <div class="top">${p.pl.map(k => `<span class="chip" style="--c:${P[k].c}">${P[k].name}</span>`).join("")}<span class="type">${p.type}</span></div>
+        <h3>${esc(p.name)}</h3>
+        <div class="file">${esc(p.file)}</div>
+        ${p.links ? `<div class="links">${p.links.map(([l,u]) => `<a class="dl" href="${u}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}</div>` : ""}
+        ${p.title ? `<div class="field">YouTube Shorts title</div><div class="title">${esc(p.title)}</div>` : ""}
+        <div class="field">${p.pl.includes("ig") && p.pl.includes("yt") ? "Instagram caption / YouTube description" : "Post copy"}</div>
+        <pre class="copy" id="${p.uid}-t">${esc(p.copy)}</pre>
+        ${p.note ? `<div class="note">${esc(p.note)}</div>` : ""}
+        <button class="cp" type="button" data-copy="${p.uid}-t">Copy text</button>
+      </article>`).join("")}</div>`}
+  </section>`).join("");
+
+// Copy buttons with selection fallback
+document.addEventListener("click", e => {
+  const b = e.target.closest("button.cp"); if (!b) return;
+  const el = document.getElementById(b.dataset.copy);
+  const done = () => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy text", 1600); };
+  const select = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected: press Ctrl/Cmd+C"; };
+  try { navigator.clipboard.writeText(el.textContent).then(done, select); } catch (_) { select(); }
+});
+</script>
