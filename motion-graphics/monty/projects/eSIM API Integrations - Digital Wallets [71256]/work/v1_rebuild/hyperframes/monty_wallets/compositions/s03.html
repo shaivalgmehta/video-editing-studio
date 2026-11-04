@@ -1,0 +1,86 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s03-hl { left: 568px; top: 122px; }
+    #s03-hl .ln + .ln { margin-left: 214px; }
+    #s03-rings { left: 834px; top: 760px; width: 0; height: 0; }
+    .s03-ring { position: absolute; border-radius: 50%; }
+    .s03-pulse { position: absolute; left: -200px; top: -200px; width: 400px; height: 400px; border-radius: 50%; border: 3px solid var(--purple); }
+    #s03-map { left: 626px; top: 430px; width: 416px; height: 680px; border-radius: 40px 40px 0 0; overflow: hidden; background: #c4e0ea; }
+    #s03-pin { left: 806px; top: 686px; width: 56px; height: 72px; }
+    #s03-nt { left: 965px; top: 500px; width: 362px; height: 340px; }
+    #s03-nt .top { position: absolute; left: 38px; right: 40px; top: 56px; display: flex; align-items: center; gap: 12px;
+      font-weight: 700; font-size: 21px; color: var(--purple); }
+    #s03-nt .top .i { font-size: 22px; }
+    #s03-nt .now { margin-left: auto; font-weight: 400; font-size: 15px; color: var(--ink2); }
+    #s03-nt .q { position: absolute; left: 38px; top: 94px; font-weight: 700; font-size: 29px; color: var(--ink); white-space: nowrap; }
+    #s03-nt .s { position: absolute; left: 40px; top: 136px; font-weight: 400; font-size: 20px; line-height: 1.2; color: var(--ink2); }
+    #s03-row { position: absolute; left: 38px; right: 42px; top: 216px; height: 64px; border-radius: 14px; background: var(--amber-l);
+      display: flex; align-items: center; gap: 12px; padding: 0 18px; font-weight: 700; font-size: 21px; color: var(--navy); }
+    #s03-row .i { color: var(--amber-d); font-size: 19px; }
+    #s03-row .pr { margin-left: auto; }
+  </style>
+  <div id="root" data-composition-id="s03" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s03-stage">
+      <div id="s03-rings" class="abs">
+        <div class="s03-ring" style="left:-520px;top:-520px;width:1040px;height:1040px;border:2px solid rgba(122,88,222,0.18)"></div>
+        <div class="s03-ring" style="left:-410px;top:-410px;width:820px;height:820px;border:2px solid rgba(0,165,205,0.45)"></div>
+        <div class="s03-ring" style="left:-312px;top:-312px;width:624px;height:624px;border:3px solid rgba(0,165,205,0.85)"></div>
+        <div class="s03-pulse" id="s03-pu1"></div>
+        <div class="s03-pulse" id="s03-pu2"></div>
+        <div class="s03-pulse" id="s03-pu3"></div>
+      </div>
+
+      <div id="s03-map" class="abs">
+        <svg width="416" height="680" viewBox="0 0 416 680" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round">
+          <path d="M45 0 L130 150 L60 230 L0 300" /><path d="M0 60 L100 50 L110 120 L20 140" /><path d="M75 0 L170 130 L250 60 L320 0" />
+          <path d="M200 0 L240 50 M290 0 L330 60 L380 20" /><path d="M150 40 L210 100 L150 160 L95 120" /><path d="M250 60 L340 150 L416 70" />
+          <path d="M0 210 L190 400 L340 240 L416 300" /><path d="M120 330 L250 200 L330 280" /><path d="M0 290 L90 380 L0 470" />
+          <path d="M60 420 L200 290 M200 290 L300 380 L416 270" /><path d="M0 520 L150 400 L280 520 L416 430" /><path d="M90 540 L200 450 L320 560" />
+          <path d="M0 600 L110 520 L230 640 L180 680" /><path d="M300 380 L360 460 L416 420" /><path d="M260 470 L416 610" /><path d="M320 560 L240 680" />
+          <path d="M40 680 L150 600 L210 680" /><path d="M350 140 L416 200" /><path d="M170 130 L160 230 L250 200" />
+          <path id="s03-route" d="M30 90 C 120 140, 140 260, 210 300" stroke-linecap="butt" stroke="#7a58de" stroke-width="6" stroke-dasharray="1" stroke-dashoffset="1" pathLength="1" />
+        </svg>
+      </div>
+      <svg id="s03-pin" class="abs" width="56" height="72" viewBox="0 0 56 72"><path d="M28 0 C12.5 0 0 12.5 0 28 C0 46 28 72 28 72 C28 72 56 46 56 28 C56 12.5 43.5 0 28 0 Z" fill="#7a58de" /><circle cx="28" cy="27" r="10" fill="#fff" /></svg>
+
+      <div id="s03-hl" class="hl">
+        <div class="ln"><span class="w">Spot </span><span class="w">the </span><span class="w">trip.</span></div>
+        <div class="ln acc"><span class="w">Offer </span><span class="w">the </span><span class="w">data.</span></div>
+      </div>
+
+      <div id="s03-nt" class="card">
+        <div class="top"><span class="i" style="--i:url(assets/icons/wallet.svg)"></span>Your Wallet<span class="now">now</span></div>
+        <div class="q">Heading to Paris?</div>
+        <div class="s">Get online the moment<br />you land.</div>
+        <div id="s03-row"><span class="i" style="--i:url(assets/icons/globe.svg)"></span>France 10 GB<span class="pr">$13</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    KIT.acc("#s03-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    // the map comes up as the music kicks in on "With the Monty eSIM API"
+    tl.fromTo("#s03-map", { y: 680 }, { y: 0, duration: 0.9, ease: "expo.out" }, 0.05);
+    tl.fromTo(".s03-ring", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.0, ease: "expo.out", stagger: -0.08 }, 0.2);
+    KIT.rise(tl, "#s03-hl .ln:nth-child(1) .w", 0.45);
+    // the trip draws across the map, the pin drops on "spots the trip"
+    tl.to("#s03-route", { strokeDashoffset: 0, duration: 2.6, ease: "power1.inOut" }, 0.9);
+    tl.fromTo("#s03-pin", { opacity: 0, y: -260 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.in" }, 3.45);
+    tl.fromTo("#s03-pin", { scaleY: 1 }, { scaleY: 0.8, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 100%", ease: "power1.out" }, 3.77);
+    [3.8, 4.6, 5.4].forEach((t, k) => {
+      tl.fromTo(`#s03-pu${k + 1}`, { scale: 0.1, opacity: 0.8 }, { scale: 1.6, opacity: 0, duration: 1.5, ease: "power2.out" }, t);
+    });
+    // "...and offers data at the right moment."
+    KIT.card(tl, "#s03-nt", 4.6, { x: 120, sc: 0.8 });
+    KIT.rise(tl, "#s03-hl .ln:nth-child(2) .w", 4.85);
+    tl.fromTo("#s03-row", { scale: 1 }, { scale: 1.05, duration: 0.18, yoyo: true, repeat: 1, ease: "power1.out" }, 5.25);
+    tl.fromTo("#s03-nt", { scale: 1 }, { scale: 1.03, duration: 0.16, yoyo: true, repeat: 1, ease: "power1.out" }, 6.0);
+    // exit: the offer card flies on into the next scene's phone
+    tl.to("#s03-nt", { x: -40, y: 80, scale: 1.15, opacity: 0, duration: 0.3, ease: "power2.in" }, 6.7);
+    KIT.out(tl, ["#s03-map", "#s03-pin"], 6.7, { y: 600, d: 0.42 });
+    KIT.out(tl, "#s03-rings", 6.7, { sc: 1.3, d: 0.42 });
+    KIT.out(tl, "#s03-hl", 6.7, { y: -80, d: 0.38 });
+    window.__timelines["s03"] = tl;
+  </script>
+</template>

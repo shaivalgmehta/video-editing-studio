@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s01-pill { left: 110px; top: 341px; }
+    #s01-l1 { left: 108px; top: 425px; }
+    #s01-l2 { left: 108px; top: 520px; }
+    #s01-phone { left: 1233px; top: 40px; }
+    #s01-head { top: 92px; }
+    #s01-flight { top: 164px; height: 145px; border-radius: 22px; border: 2px solid #dfe5ea; background: #fff; padding: 22px 28px; }
+    #s01-flight .code { font-weight: 700; font-size: 34px; color: var(--navy); line-height: 1; }
+    #s01-flight .city { font-size: 18px; color: var(--navy); margin-top: 6px; }
+    #s01-plane { left: 180px; top: 30px; font-size: 40px; color: var(--cyan); }
+    #s01-hotel { left: 28px; top: 96px; font-size: 18px; color: var(--navy); display: flex; gap: 8px; align-items: center; }
+    #s01-esim { top: 328px; height: 145px; border-radius: 22px; padding: 26px 28px; display: block;
+      border: 2px solid #12708f; background: linear-gradient(110deg, #ffffff, #c8e3ec); }
+    #s01-esim .t1 { font-weight: 700; font-size: 27px; color: var(--navy); }
+    #s01-esim .t2 { font-size: 18px; color: var(--navy); margin-top: 2px; }
+    #s01-esim .pr { font-weight: 700; font-size: 18px; color: var(--teal); margin-top: 16px; }
+    #s01-btn { top: 493px; }
+  </style>
+  <div data-hf-id="hf-q5mn" id="root" data-composition-id="s01" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-9y2z" class="stage" id="s01-stage">
+      <div data-hf-id="hf-2ed9" id="s01-pill" class="abs pill">eSIM for the travel industry</div>
+      <div data-hf-id="hf-og6o" id="s01-l1" class="abs h lt"><span data-hf-id="hf-lrhv" class="w">You </span><span data-hf-id="hf-r2ic" class="w">sell </span><span data-hf-id="hf-9o0j" class="w">the </span><span data-hf-id="hf-opuv" class="w">trip.</span></div>
+      <div data-hf-id="hf-pvr9" id="s01-l2" class="abs h bd"><span data-hf-id="hf-jc5w" class="w">Sell </span><span data-hf-id="hf-cto3" class="w">the </span><span data-hf-id="hf-yk1c" class="w">connection </span><span data-hf-id="hf-vezg" class="w">too.</span></div>
+
+      <div data-hf-id="hf-56f7" id="s01-phone" class="phone">
+        <div data-hf-id="hf-zn7g" class="scr">
+          <div data-hf-id="hf-clec" id="s01-head" class="pad">
+            <div data-hf-id="hf-g9ms" class="ph-title" style="font-size:28px">Trip confirmed</div>
+            <div data-hf-id="hf-36vo" class="ph-sub">Booking #LX4821</div>
+          </div>
+          <div data-hf-id="hf-po6g" id="s01-flight" class="pad">
+            <div data-hf-id="hf-uwr7" class="abs" style="left:28px;top:24px"><div data-hf-id="hf-tdb7" class="code">LHR</div><div data-hf-id="hf-rxif" class="city">London</div></div>
+            <div data-hf-id="hf-xq8c" id="s01-plane" class="abs i" style="--i:url(assets/icons/plane.svg)"></div>
+            <div data-hf-id="hf-2oee" class="abs" style="right:28px;top:24px"><div data-hf-id="hf-g1q1" class="code">LIS</div><div data-hf-id="hf-ey96" class="city">Lisbon</div></div>
+            <div data-hf-id="hf-t9jq" id="s01-hotel" class="abs"><span data-hf-id="hf-dnoo" class="i" style="--i:url(assets/icons/bed.svg);color:var(--cyan)"></span>Hotel · 12 to 16 May</div>
+          </div>
+          <div data-hf-id="hf-sj2k" id="s01-esim" class="pad">
+            <div data-hf-id="hf-g3it" class="t1">Portugal 5GB</div>
+            <div data-hf-id="hf-sq1x" class="t2">Online when you land</div>
+            <div data-hf-id="hf-vcpe" class="pr">+ €9</div>
+          </div>
+          <div data-hf-id="hf-fyfm" id="s01-btn" class="pad btn">Complete booking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    MS.grad("#s01-l2");
+    const tl = gsap.timeline({ paused: true });
+    // open on motion: the phone rises into frame
+    tl.fromTo("#s01-phone", { y: 760, opacity: 1 }, { y: 0, duration: 1.1, ease: "expo.out" }, 0);
+    MS.pop(tl, "#s01-head", 0.35, { y: 20, b: 8 });
+    MS.pop(tl, "#s01-flight", 0.5, { y: 30 });
+    tl.fromTo("#s01-plane", { x: -110, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 0.6);
+    tl.fromTo("#s01-hotel", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 1.3);
+    // the button waits in the eSIM slot, then makes room for it
+    tl.fromTo("#s01-btn", { y: -134, opacity: 0, filter: "blur(10px)" }, { y: -164, opacity: 1, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, 0.8);
+    // left: pill, then the words on the voice
+    MS.pop(tl, "#s01-pill", 0.15, { x: -40, y: 0, sc: 0.95 });
+    MS.words(tl, "#s01-l1 .w:nth-child(-n+2)", 0.05, { s: 0.16 });
+    MS.words(tl, "#s01-l1 .w:nth-child(n+3)", 2.12, { s: 0.2 });
+    MS.words(tl, "#s01-l2 .w", 3.28, { s: 0.11 });
+    // the connection lands in the basket on "connection"
+    tl.fromTo("#s01-esim", { opacity: 0, scale: 0.8, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 3.6);
+    tl.fromTo("#s01-btn", { y: -164 }, { y: 0, duration: 0.7, ease: "expo.out", immediateRender: false }, 3.6);
+    MS.exit(tl, "#s01-stage", 4.4, "whip");
+    window.__timelines["s01"] = tl;
+  </script>
+</template>

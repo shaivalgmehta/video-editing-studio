@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s19-l1, #s19-l2 { left: 0; width: 1920px; text-align: center; }
+    #s19-l1 { top: 340px; font-size: 124px; }
+    #s19-l2 { top: 470px; font-size: 132px; }
+    #s19-url { left: 802px; top: 682px; width: 316px; height: 60px; border-radius: 30px; justify-content: center;
+      background: linear-gradient(90deg, #9acbdc, #49a7cb); font-size: 30px; }
+  </style>
+  <div data-hf-id="hf-wn6y" id="root" data-composition-id="s19" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-cgss" class="stage" id="s19-stage">
+      <div data-hf-id="hf-jh31" id="s19-l1" class="abs h lt"><span data-hf-id="hf-jc5w" class="w">Sell </span><span data-hf-id="hf-9o0j" class="w">the </span><span data-hf-id="hf-opuv" class="w">trip.</span></div>
+      <div data-hf-id="hf-qb2g" id="s19-l2" class="abs h bd"><span data-hf-id="hf-z8mk" class="w">Sell </span><span data-hf-id="hf-cto3" class="w">the </span><span data-hf-id="hf-b0qi" class="w">connection.</span></div>
+      <div data-hf-id="hf-xyfc" id="s19-url" class="abs pill">montyesim.com</div>
+    </div>
+  </div>
+  <script>
+    MS.grad("#s19-l2", [80, 176, 205], [0, 165, 205]);
+    const tl = gsap.timeline({ paused: true });
+    MS.words(tl, "#s19-l1 .w", 0.25, { s: 0.15, d: 0.5 });
+    MS.words(tl, "#s19-l2 .w", 0.9, { s: 0.15, d: 0.5 });
+    // "Learn more at montyesim.com": the address lands with the music's last hit
+    MS.badge(tl, "#s19-url", 2.73);
+    window.__timelines["s19"] = tl;
+  </script>
+</template>

@@ -1,0 +1,85 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s06-hl { left: 80px; top: 230px; line-height: 1.0; }
+    #s06-hl .ln.wrap { width: 920px; }
+    /* cards drawn 1:1 inside a group scaled to 72% (group never animated) */
+    #s06-grid { left: 0; top: 0; width: 1636px; height: 2909px; transform: scale(0.72); transform-origin: 0 0; }
+    .s06-c { width: 500px; height: 560px; border-radius: 42px; }
+    .s06-c .img { position: absolute; left: 11px; top: 11px; width: 478px; height: 390px; border-radius: 32px; overflow: hidden; }
+    .s06-c .ct { position: absolute; left: 48px; top: 438px; font-size: 27px; }
+    .s06-c .lab { position: absolute; left: 48px; top: 484px; display: flex; align-items: center; gap: 14px; font-weight: 400; font-size: 24px; color: var(--ink2); }
+    .s06-c .lab .i { font-size: 27px; }
+    #s06-c1 { left: 111px; top: 750px; }
+    #s06-c1 .img { background: linear-gradient(180deg, #f1edfd 0%, #c9b9f5 100%); }
+    #s06-c2 { left: 875px; top: 861px; }
+    #s06-c2 .img { background: linear-gradient(180deg, #fff8e8 0%, #fcd58a 100%); }
+    #s06-c3 { left: 493px; top: 1389px; }
+    #s06-c3 .img { background: linear-gradient(180deg, #e3f2f7 0%, #a6d8e8 100%); }
+    .s06-coin { position: absolute; width: 120px; height: 22px; border-radius: 5px; background: #fff; box-shadow: inset 0 -4px 0 #f3e3bd; }
+    .s06-bar { position: absolute; bottom: 0; width: 94px; transform-origin: 50% 100%; background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.55)); }
+  </style>
+  <div id="root" data-composition-id="s06" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s06-stage">
+      <div id="s06-grid" class="abs">
+      <div id="s06-c1" class="card s06-c">
+        <div class="img">
+          <svg width="478" height="390" viewBox="0 0 478 390">
+            <polyline id="s06-arrow" points="-5,180 57,118 190,282 405,28" fill="none" stroke="#fff" stroke-width="11" stroke-linejoin="round" stroke-linecap="butt" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <polyline id="s06-head" points="362,22 410,20 414,68" fill="none" stroke="#fff" stroke-width="11" stroke-linejoin="round" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="ct">Margin on every bundle</div>
+        <div class="lab"><span class="i" style="--i:url(assets/icons/chart-line.svg);color:var(--purple)"></span>Earn</div>
+      </div>
+      <div id="s06-c2" class="card s06-c">
+        <div class="img">
+          <div id="s06-coins">
+            <span class="s06-coin" style="left:46px;top:322px"></span><span class="s06-coin" style="left:49px;top:300px"></span><span class="s06-coin" style="left:44px;top:278px"></span><span class="s06-coin" style="left:50px;top:256px"></span><span class="s06-coin" style="left:45px;top:234px"></span>
+            <span class="s06-coin" style="left:310px;top:322px"></span><span class="s06-coin" style="left:313px;top:300px"></span><span class="s06-coin" style="left:308px;top:278px"></span><span class="s06-coin" style="left:314px;top:256px"></span><span class="s06-coin" style="left:309px;top:234px"></span><span class="s06-coin" style="left:312px;top:212px"></span>
+            <span class="s06-coin" style="left:178px;top:322px"></span><span class="s06-coin" style="left:181px;top:300px"></span><span class="s06-coin" style="left:176px;top:278px"></span><span class="s06-coin" style="left:182px;top:256px"></span><span class="s06-coin" style="left:177px;top:234px"></span><span class="s06-coin" style="left:180px;top:212px"></span><span class="s06-coin" style="left:175px;top:190px"></span><span class="s06-coin" style="left:179px;top:168px"></span><span class="s06-coin" style="left:181px;top:146px"></span><span class="s06-coin" style="left:176px;top:124px"></span>
+          </div>
+        </div>
+        <div class="ct">Balances stay with you</div>
+        <div class="lab"><span class="i" style="--i:url(assets/icons/coins.svg);color:var(--amber-d)"></span>Keep</div>
+      </div>
+      <div id="s06-c3" class="card s06-c">
+        <div class="img">
+          <div class="s06-bar" style="left:-52px;height:96px"></div>
+          <div class="s06-bar" style="left:66px;height:130px"></div>
+          <div class="s06-bar" style="left:190px;height:330px;background:linear-gradient(180deg, #00a5cd, #0b6e99)"></div>
+          <div class="s06-bar" style="left:313px;height:240px"></div>
+          <div class="s06-bar" style="left:436px;height:170px"></div>
+        </div>
+        <div class="ct">More sessions per user</div>
+        <div class="lab"><span class="i" style="--i:url(assets/icons/mobile-screen-button.svg);color:var(--cyan)"></span>Grow</div>
+      </div>
+      </div>
+
+      <div id="s06-hl" class="hl">
+        <div class="ln"><span class="w">New </span><span class="w">revenue.</span></div>
+        <div class="ln acc wrap"><span class="w">More </span><span class="w">reasons </span><span class="w">to </span><span class="w">open </span><span class="w">your </span><span class="w">app.</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    KIT.acc("#s06-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    // "You earn on every bundle,"
+    KIT.rise(tl, "#s06-hl .ln:nth-child(1) .w", 0.2);
+    KIT.card(tl, "#s06-c1", 0.4, { y: 160, sc: 0.85, r: -4, d: 0.7 });
+    tl.to("#s06-arrow", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 0.95);
+    tl.fromTo("#s06-head", { opacity: 0, scale: 0.4, transformOrigin: "410px 20px" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 1.75);
+    // "keep balances in your wallet,"
+    KIT.card(tl, "#s06-c2", 2.25, { y: 160, sc: 0.85, r: 4, d: 0.7 });
+    tl.fromTo(".s06-coin", { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.in", stagger: 0.035 }, 2.6);
+    // "and give users one more reason to open your app."
+    KIT.card(tl, "#s06-c3", 4.15, { y: 160, sc: 0.85, r: -4, d: 0.7 });
+    tl.fromTo(".s06-bar", { scaleY: 0 }, { scaleY: 1, duration: 0.55, ease: "back.out(1.4)", stagger: 0.08 }, 4.5);
+    KIT.rise(tl, "#s06-hl .ln:nth-child(2) .w", 4.45, { s: 0.06 });
+    // exit
+    KIT.out(tl, ["#s06-c1", "#s06-c2", "#s06-c3"], 6.8, { y: -160, sc: 0.85, s: 0.04, d: 0.4 });
+    KIT.out(tl, "#s06-hl", 6.8, { y: 80, d: 0.38 });
+    window.__timelines["s06"] = tl;
+  </script>
+</template>

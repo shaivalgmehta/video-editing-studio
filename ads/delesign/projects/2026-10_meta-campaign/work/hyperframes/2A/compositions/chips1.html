@@ -1,0 +1,89 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hanken Grotesk";
+      src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: block;
+    }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    #chips-row {
+      position: absolute;
+      left: 65px;
+      top: 300px;
+      width: 950px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .chip {
+      padding: 26px 40px 30px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #1e293b;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      box-shadow: 0 6px 20px rgba(30, 41, 59, 0.12);
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .chip.tag { background: #1e293b; color: #ffffff; }
+    #chips-counter {
+      position: absolute;
+      left: 65px;
+      top: 590px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      opacity: 0;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 1;
+      padding: 20px 32px 22px;
+      border-radius: 18px;
+      background: rgba(30, 41, 59, 0.85);
+    }
+    #chips-counter .num { color: #ff5532; font-variant-numeric: tabular-nums; min-width: 1.3em; display: inline-block; text-align: center; }
+    #chips-counter .arrow { color: #c7b0ff; }
+    #chips-counter .lbl { font-size: 30px; font-weight: 500; color: rgba(255, 255, 255, 0.7); margin-left: 8px; }
+  </style>
+  <div id="root" data-composition-id="chips1" data-width="1080" data-height="1920">
+    <div id="chips-row" class="clip" data-start="0" data-duration="5.1" data-track-index="0">
+      <div class="chip" id="chip-1">Landing pages</div>
+      <div class="chip" id="chip-2">Ads</div>
+      <div class="chip" id="chip-3">Social graphics</div>
+    </div>
+    <div id="chips-counter" class="clip" data-start="0" data-duration="5.1" data-track-index="1">
+      <span>Requests:</span><span class="num" id="chips-from">18</span><span class="arrow">→</span><span class="num" id="chips-to">27</span><span class="lbl">illustrative</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var V = Object.assign(
+        { countFrom: 18, countTo: 27, tChip1: 0.08, tChip2: 1.04, tChip3: 1.44, tTag: 2.56, tCount: 3.44, tCountEnd: 4.9, tOut: 5.0 },
+        window.__hyperframes && window.__hyperframes.getVariables ? window.__hyperframes.getVariables() : {}
+      );
+      var tl = gsap.timeline({ paused: true });
+      function pop(sel, at) {
+        tl.fromTo(sel, { opacity: 0, y: 14, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.22, ease: "power3.out" }, at);
+      }
+      pop("#chip-1", V.tChip1);
+      pop("#chip-2", V.tChip2);
+      pop("#chip-3", V.tChip3);
+      document.getElementById("chips-from").textContent = String(V.countFrom);
+      document.getElementById("chips-to").textContent = String(V.countFrom);
+      tl.fromTo("#chips-counter", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, V.tCount);
+      var c = { v: V.countFrom };
+      tl.to(c, {
+        v: V.countTo, duration: Math.max(0.3, V.tCountEnd - V.tCount - 0.1), ease: "power1.inOut", snap: "v",
+        onUpdate: function () { document.getElementById("chips-to").textContent = String(Math.round(c.v)); }
+      }, V.tCount + 0.1);
+      tl.to(["#chip-1", "#chip-2", "#chip-3", "#chips-counter"], { opacity: 0, duration: 0.12, ease: "power2.in" }, V.tOut);
+      window.__timelines["chips1"] = tl;
+    })();
+  </script>
+</template>

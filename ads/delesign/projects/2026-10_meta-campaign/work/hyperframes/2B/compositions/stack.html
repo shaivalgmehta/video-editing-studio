@@ -1,0 +1,59 @@
+<template>
+  <style>
+    @font-face { font-family: "Hanken Grotesk"; src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    @font-face { font-family: "Architects Daughter"; src: url("assets/fonts/ArchitectsDaughter-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    .card { position: absolute; left: 65px; width: 950px; height: 230px; border-radius: 26px; background: #fff; color: #1e293b; box-shadow: 0 8px 28px rgba(30, 41, 59, 0.16); overflow: hidden; opacity: 0; }
+    .card .head { display: flex; align-items: center; gap: 20px; padding: 24px 28px; font-weight: 800; font-size: 50px; letter-spacing: -0.015em; line-height: 1; white-space: nowrap; }
+    .card .num { width: 58px; height: 58px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; color: #1e293b; font-size: 34px; font-weight: 800; flex: 0 0 auto; }
+    .card .body { position: relative; height: 120px; padding: 0 28px 16px; }
+    #st-ok { position: absolute; left: 28px; top: 6px; padding: 18px 30px 20px; border-radius: 18px; background: #33473b; color: #fff; font-weight: 800; font-size: 46px; line-height: 1; opacity: 0; white-space: nowrap; }
+    #st-counter { position: absolute; left: 28px; top: 10px; display: flex; align-items: baseline; gap: 14px; font-weight: 700; font-size: 50px; line-height: 1; opacity: 0; }
+    #st-counter .num2 { color: #ff5532; font-variant-numeric: tabular-nums; min-width: 1.2em; display: inline-block; text-align: center; }
+    #st-counter .arrow { color: #c7b0ff; }
+    #st-counter .lbl { font-size: 28px; font-weight: 500; color: #6c7786; margin-left: 8px; }
+    #st-cal { position: absolute; left: 28px; top: 4px; width: 620px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; opacity: 0; }
+    #st-cal .day { height: 30px; border-radius: 8px; background: #f1f5f9; }
+    #st-leave { position: absolute; left: 28px; top: 42px; height: 42px; border-radius: 10px; background: #1e293b; color: #fff; font-weight: 700; font-size: 30px; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; width: 0px; opacity: 0; overflow: hidden; white-space: nowrap; }
+    #st-note { position: absolute; left: 28px; top: 104px; font-size: 42px; font-family: "Architects Daughter", cursive; font-size: 44px; color: #ff5532; opacity: 0; transform-origin: 50% 50%; }
+  </style>
+  <div id="root" data-composition-id="stack" data-width="1080" data-height="1920">
+    <!-- host at 11.3 s. 1: "The first job looks fine" (11.42 -> 0.12); 2: "work piles up" (12.9 -> 1.6); 3: "out on leave" (14.3 -> 3.0) -->
+    <div id="st-card1" class="card clip" data-start="0" data-duration="5.5" data-track-index="0" style="top: 260px">
+      <div class="head"><span class="num">1</span><span>First job</span></div>
+      <div class="body"><div id="st-ok">Looks fine</div></div>
+    </div>
+    <div id="st-card2" class="card clip" data-start="1.5" data-duration="4.0" data-track-index="1" style="top: 500px">
+      <div class="head"><span class="num">2</span><span>Monthly work</span></div>
+      <div class="body"><div id="st-counter"><span>Requests:</span><span class="num2" id="st-from">4</span><span class="arrow">→</span><span class="num2" id="st-to">4</span><span class="lbl">illustrative</span></div></div>
+    </div>
+    <div id="st-card3" class="card clip" data-start="2.9" data-duration="2.6" data-track-index="2" style="top: 740px; height: 300px">
+      <div class="head"><span class="num">3</span><span>Designer on leave</span></div>
+      <div class="body">
+        <div id="st-cal"><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div></div>
+        <div id="st-leave">OUT OF OFFICE</div>
+        <div id="st-note">who's chasing?</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var OPEN = "inset(0px 0px 0px 0px round 26px)", SHUT = "inset(0px 0px 120px 0px round 26px)";
+      function land(sel, at) { tl.fromTo(sel, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" }, at); }
+      function collapse(sel, at) { tl.fromTo(sel, { clipPath: OPEN }, { clipPath: SHUT, duration: 0.3, ease: "power3.inOut" }, at); }
+      land("#st-card1", 0.15);
+      tl.fromTo("#st-ok", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, 0.95); // "fine" 12.3
+      collapse("#st-card1", 1.55); land("#st-card2", 1.6);
+      tl.fromTo("#st-counter", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 2.0);
+      var c = { v: 4 };
+      tl.to(c, { v: 13, duration: 0.9, ease: "power1.inOut", snap: "v", onUpdate: function () { document.getElementById("st-to").textContent = String(Math.round(c.v)); } }, 2.1); // "piles up"
+      collapse("#st-card2", 2.95); land("#st-card3", 3.0);
+      tl.fromTo("#st-cal", { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out" }, 3.3);
+      tl.fromTo("#st-leave", { opacity: 0, width: 0 }, { opacity: 1, width: 420, duration: 0.35, ease: "power3.out" }, 3.7); // "leave" 15.0
+      tl.fromTo("#st-note", { opacity: 0, rotation: -6, scale: 0.9 }, { opacity: 1, rotation: -4, scale: 1, duration: 0.22, ease: "power3.out" }, 4.4); // "chasing" 15.66
+      tl.to(["#st-card1", "#st-card2", "#st-card3"], { opacity: 0, y: -18, duration: 0.14, ease: "power2.in", stagger: 0.03 }, 5.3);
+      window.__timelines["stack"] = tl;
+    })();
+  </script>
+</template>

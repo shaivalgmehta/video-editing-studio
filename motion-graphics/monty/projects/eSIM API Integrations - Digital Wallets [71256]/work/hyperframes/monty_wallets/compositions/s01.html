@@ -1,0 +1,74 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s01-hl { left: 110px; top: 478px; }
+    #s01-hl .ln + .ln { margin-left: 202px; }
+    #s01-ph { left: 1150px; top: 45px; }
+    #s01-trip { top: 386px; height: 100px; background: var(--purple-l); }
+    #s01-trip .i { font-size: 32px; color: var(--purple); }
+    .s01-c { width: 208px; height: 206px; }
+    .s01-c .tx { position: absolute; left: 32px; top: 38px; }
+    .s01-c .tile { position: absolute; left: 32px; top: 110px; }
+    .s01-c .pr { position: absolute; left: 110px; top: 128px; font-weight: 700; font-size: 22px; color: var(--ink); }
+    #s01-c1 { left: 990px; top: 255px; }
+    #s01-c2 { left: 1055px; top: 668px; }
+    #s01-c3 { left: 1537px; top: 565px; }
+  </style>
+  <div id="root" data-composition-id="s01" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s01-stage"><div class="cam" id="s01-cam">
+      <div id="s01-ph" class="phone">
+        <span class="btn-l" style="top:150px;height:40px"></span><span class="btn-l" style="top:220px;height:80px"></span><span class="btn-r"></span>
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="wallet-head">
+            <div class="wh1"><span class="i" style="--i:url(assets/icons/wallet.svg)"></span>Your Wallet</div>
+            <div class="wh2">Balance</div>
+            <div class="wh3" id="s01-bal">$1,240.00</div>
+          </div>
+          <div class="ph-label" style="top:344px">Upcoming trip</div>
+          <div id="s01-trip" class="ph-row">
+            <span class="i" style="--i:url(assets/icons/plane.svg)"></span>
+            <div><div class="ct">Paris</div><div class="cs">12 to 16 May</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="s01-hl" class="hl">
+        <div class="ln"><span class="w">Your </span><span class="w">users </span><span class="w">travel</span></div>
+        <div class="ln acc"><span class="w">with </span><span class="w">your </span><span class="w">wallet.</span></div>
+      </div>
+
+      <div id="s01-c1" class="card s01-c">
+        <div class="tx"><div class="ct">Flight booked</div><div class="cs">NY to Paris</div></div>
+        <span class="tile purple"><span class="i" style="--i:url(assets/icons/plane.svg)"></span></span>
+        <span class="pr">$612</span>
+      </div>
+      <div id="s01-c2" class="card s01-c">
+        <div class="tx"><div class="ct">Hotel paid</div><div class="cs">Paris, 4 nights</div></div>
+        <span class="tile amber"><span class="i" style="--i:url(assets/icons/bed.svg)"></span></span>
+        <span class="pr">$520</span>
+      </div>
+      <div id="s01-c3" class="card s01-c">
+        <div class="tx"><div class="ct">FX Exchange</div><div class="cs">USD to EUR</div></div>
+        <span class="tile cyan"><span class="i" style="--i:url(assets/icons/money-bill-transfer.svg)"></span></span>
+        <span class="pr">€400</span>
+      </div>
+    </div></div>
+  </div>
+  <script>
+    KIT.acc("#s01-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    KIT.drift(tl, "#s01-cam", 3.95);
+    // "Your users already plan their trips in your wallet."
+    // headline -> the wallet -> its trip -> the trip's spend, card by card -> back to the headline
+    KIT.build(tl, "#s01-hl .ln:nth-child(1)", 0.05, { d: 0.7 });
+    tl.fromTo("#s01-ph", { y: 620 }, { y: 0, duration: 1.0, ease: "expo.out" }, 0.35);
+    KIT.build(tl, "#s01-trip", 1.2, { y: 14 });
+    KIT.build(tl, "#s01-c1", 1.45, { x: 24, y: 0 });
+    KIT.build(tl, "#s01-c2", 1.7, { x: 24, y: 0 });
+    KIT.build(tl, "#s01-c3", 1.95, { x: -24, y: 0 });
+    KIT.build(tl, "#s01-hl .ln:nth-child(2)", 2.2);
+    KIT.panOut(tl, "#s01-stage", 3.15);
+    window.__timelines["s01"] = tl;
+  </script>
+</template>

@@ -1,0 +1,76 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s07-pill { left: 110px; top: 341px; }
+    #s07-l1 { left: 108px; top: 425px; }
+    #s07-l2 { left: 108px; top: 520px; }
+    #s07-chips { left: 108px; top: 632px; display: flex; gap: 16px; }
+    #s07-phone { left: 1233px; top: 40px; }
+    #s07-ti { top: 84px; }
+    .s07-row { position: absolute; height: 100px; }
+    .s07-row .pr { margin-left: auto; align-self: flex-start; margin-top: 26px; font-weight: 700; font-size: 20px; color: var(--teal-d); }
+    #s07-r1 { top: 134px; } #s07-r2 { top: 248px; }
+    #s07-rec { top: 376px; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; color: #7b56dd; }
+    #s07-r3 { top: 412px; }
+    #s07-tot { top: 538px; display: flex; justify-content: space-between; font-weight: 700; font-size: 28px; color: var(--navy); }
+    #s07-btn { top: 593px; }
+  </style>
+  <div data-hf-id="hf-w6kl" id="root" data-composition-id="s07" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-132l" class="stage" id="s07-stage">
+      <div data-hf-id="hf-dj0b" id="s07-pill" class="abs pill">Booking apps and OTAs · API</div>
+      <div data-hf-id="hf-pzxu" id="s07-l1" class="abs h lt"><span data-hf-id="hf-gr5s" class="w">Data </span><span data-hf-id="hf-gpzr" class="w">in </span><span data-hf-id="hf-9o0j" class="w">the</span></div>
+      <div data-hf-id="hf-l5kn" id="s07-l2" class="abs h bd"><span data-hf-id="hf-hv6b" class="w">booking </span><span data-hf-id="hf-312i" class="w">flow.</span></div>
+      <div data-hf-id="hf-r19g" id="s07-chips" class="abs">
+        <span data-hf-id="hf-590u" class="chip"><span data-hf-id="hf-qqqx" class="i" style="--i:url(assets/icons/location-dot.svg)"></span>Matched to destination</span>
+        <span data-hf-id="hf-ohwp" class="chip"><span data-hf-id="hf-r8w3" class="i" style="--i:url(assets/icons/basket-shopping.svg)"></span>One basket</span>
+        <span data-hf-id="hf-bu1l" class="chip"><span data-hf-id="hf-5x86" class="i" style="--i:url(assets/icons/tag.svg)"></span>Your price</span>
+      </div>
+
+      <div data-hf-id="hf-kg4p" id="s07-phone" class="phone">
+        <div data-hf-id="hf-zn7g" class="scr">
+          <div data-hf-id="hf-9vj6" id="s07-ti" class="pad ph-title" style="font-size:28px">Your basket</div>
+          <div data-hf-id="hf-tbwk" id="s07-r1" class="pad row s07-row">
+            <span data-hf-id="hf-dvjt" class="tile"><span data-hf-id="hf-x3q8" class="i" style="--i:url(assets/icons/plane.svg)"></span></span>
+            <div data-hf-id="hf-yeow"><div data-hf-id="hf-03rv" class="t1">Flight to Lisbon</div><div data-hf-id="hf-bitd" class="t2">12 May · 1 traveler</div></div>
+            <div data-hf-id="hf-qt7j" class="pr">€186</div>
+          </div>
+          <div data-hf-id="hf-1zsf" id="s07-r2" class="pad row s07-row">
+            <span data-hf-id="hf-v559" class="tile"><span data-hf-id="hf-7x3t" class="i" style="--i:url(assets/icons/bed.svg)"></span></span>
+            <div data-hf-id="hf-y7yw"><div data-hf-id="hf-3z2z" class="t1">Hotel · 4 nights</div><div data-hf-id="hf-dd8r" class="t2">Alfama, Lisbon</div></div>
+            <div data-hf-id="hf-qdo1" class="pr">€412</div>
+          </div>
+          <div data-hf-id="hf-4hds" id="s07-rec" class="pad">RECOMMENDED FOR PORTUGAL</div>
+          <div data-hf-id="hf-gdm0" id="s07-r3" class="pad row s07-row esim">
+            <span data-hf-id="hf-deac" class="tile lav"><span data-hf-id="hf-7eef" class="i" style="--i:url(assets/icons/globe.svg)"></span></span>
+            <div data-hf-id="hf-x11t"><div data-hf-id="hf-g3it" class="t1">Portugal 5GB</div><div data-hf-id="hf-auca" class="t2">15 days · 5G</div></div>
+          </div>
+          <div data-hf-id="hf-z15p" id="s07-tot" class="pad"><span data-hf-id="hf-7qep">Total</span><span data-hf-id="hf-e59e" id="s07-sum">€598</span></div>
+          <div data-hf-id="hf-vqa8" id="s07-btn" class="pad btn">Complete booking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    MS.grad("#s07-l2", [0, 165, 205], [108, 181, 205]);
+    const tl = gsap.timeline({ paused: true });
+    // the phone carries in from the right, matching the whip that left
+    tl.fromTo("#s07-phone", { x: 720, filter: "blur(14px)" }, { x: 0, filter: "blur(0px)", duration: 0.9, ease: "expo.out" }, 0.05);
+    MS.pop(tl, "#s07-pill", 0.25, { x: -40, y: 0, sc: 0.95 });
+    MS.pop(tl, "#s07-ti", 0.35, { y: 16, b: 6 });
+    MS.pop(tl, "#s07-r1, #s07-r2", 0.5, { y: 30, s: 0.15 });
+    // total and button sit high until the eSIM is added
+    tl.fromTo("#s07-tot, #s07-btn", { y: -150, opacity: 0 }, { y: -150, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.75);
+    MS.words(tl, "#s07-l1 .w", 1.4, { s: 0.12 });
+    MS.words(tl, "#s07-l2 .w", 2.3, { s: 0.16 });
+    // "add travel data": recommended eSIM drops into the basket
+    tl.fromTo("#s07-rec", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.1);
+    tl.fromTo("#s07-tot, #s07-btn", { y: -150 }, { y: 0, duration: 0.6, ease: "expo.out", immediateRender: false }, 2.2);
+    tl.fromTo("#s07-r3", { opacity: 0, scale: 0.8, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 2.27);
+    MS.count(tl, "#s07-sum", 2.45, 598, 607, { pre: "€", d: 0.6 });
+    MS.pop(tl, "#s07-chips .chip", 3.3, { y: 16, sc: 0.85, b: 6, d: 0.55, s: 0.1 });
+    // "checkout": the button is pressed
+    tl.fromTo("#s07-btn", { scale: 1 }, { scale: 0.95, duration: 0.12, ease: "power2.in", yoyo: true, repeat: 1 }, 3.5);
+    MS.exit(tl, "#s07-stage", 4.05, "blur");
+    window.__timelines["s07"] = tl;
+  </script>
+</template>

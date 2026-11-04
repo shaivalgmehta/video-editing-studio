@@ -1,0 +1,25 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; background: #000; font-family: "Inter", sans-serif; }
+    .line { position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; font-weight: 600; line-height: 1; }
+    #sl-head { top: 610px; font-size: 104px; letter-spacing: -0.075em; color: #c30a0a; }
+    #sl-word { top: 860px; font-size: 200px; letter-spacing: -0.07em; color: #ffffff; }
+    .w { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="slate" data-width="1080" data-height="1920">
+    <div id="sl-bg" class="clip" data-start="0" data-duration="1.82" data-track-index="0" style="position:absolute;inset:0;background:#000"></div>
+    <!-- "It's why this isn't day trading." -->
+    <div id="sl-head" class="line">It’s why this isn’t...</div>
+    <div id="sl-word" class="line"><span id="sl-day" class="w">day</span> <span id="sl-trading" class="w">trading</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Local times (scene starts at 5.64): day 1.22, trading 1.38
+      tl.set("#sl-day", { opacity: 1 }, 1.22);
+      tl.set("#sl-trading", { opacity: 1 }, 1.38);
+      window.__timelines["slate"] = tl;
+    })();
+  </script>
+</template>

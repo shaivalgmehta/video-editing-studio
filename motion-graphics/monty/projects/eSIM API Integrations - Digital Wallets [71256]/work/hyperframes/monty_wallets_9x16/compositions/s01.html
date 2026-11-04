@@ -1,0 +1,80 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s01-hl { left: 80px; top: 230px; }
+    #s01-hl .ln + .ln { margin-left: 110px; }
+    #s01-phw { left: 290px; top: 450px; }
+    #s01-trip { top: 386px; height: 100px; background: var(--purple-l); }
+    #s01-trip .i { font-size: 32px; color: var(--purple); }
+    .s01-c { width: 208px; height: 206px; }
+    .s01-c .tx { position: absolute; left: 32px; top: 38px; }
+    .s01-c .tile { position: absolute; left: 32px; top: 110px; }
+    .s01-c .pr { position: absolute; left: 110px; top: 128px; font-weight: 700; font-size: 22px; color: var(--ink); }
+    #s01-c1 { left: 92px; top: 620px; }
+    #s01-c2 { left: 120px; top: 1080px; }
+    #s01-c3 { left: 760px; top: 890px; }
+  </style>
+  <div id="root" data-composition-id="s01" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s01-stage">
+      <div id="s01-phw" class="phw"><div id="s01-ph" class="phone">
+        <span class="btn-l" style="top:150px;height:40px"></span><span class="btn-l" style="top:220px;height:80px"></span><span class="btn-r"></span>
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="wallet-head">
+            <div class="wh1"><span class="i" style="--i:url(assets/icons/wallet.svg)"></span>Your Wallet</div>
+            <div class="wh2">Balance</div>
+            <div class="wh3" id="s01-bal">$1,240.00</div>
+          </div>
+          <div class="ph-label" style="top:344px">Upcoming trip</div>
+          <div id="s01-trip" class="ph-row">
+            <span class="i" style="--i:url(assets/icons/plane.svg)"></span>
+            <div><div class="ct">Paris</div><div class="cs">12 to 16 May</div></div>
+          </div>
+        </div>
+      </div></div>
+
+      <div id="s01-hl" class="hl">
+        <div class="ln"><span class="w">Your </span><span class="w">users </span><span class="w">travel</span></div>
+        <div class="ln acc"><span class="w">with </span><span class="w">your </span><span class="w">wallet.</span></div>
+      </div>
+
+      <div id="s01-c1" class="card s01-c">
+        <div class="tx"><div class="ct">Flight booked</div><div class="cs">NY to Paris</div></div>
+        <span class="tile purple"><span class="i" style="--i:url(assets/icons/plane.svg)"></span></span>
+        <span class="pr">$612</span>
+      </div>
+      <div id="s01-c2" class="card s01-c">
+        <div class="tx"><div class="ct">Hotel paid</div><div class="cs">Paris, 4 nights</div></div>
+        <span class="tile amber"><span class="i" style="--i:url(assets/icons/bed.svg)"></span></span>
+        <span class="pr">$520</span>
+      </div>
+      <div id="s01-c3" class="card s01-c">
+        <div class="tx"><div class="ct">FX Exchange</div><div class="cs">USD to EUR</div></div>
+        <span class="tile cyan"><span class="i" style="--i:url(assets/icons/money-bill-transfer.svg)"></span></span>
+        <span class="pr">€400</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    KIT.acc("#s01-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    // "Your users already plan their trips in your wallet."
+    KIT.rise(tl, "#s01-hl .ln:nth-child(1) .w", 0.25);
+    KIT.rise(tl, "#s01-hl .ln:nth-child(2) .w", 0.6);
+    KIT.phone(tl, "#s01-ph", 0.1, { y: 420 });
+    KIT.count(tl, "#s01-bal", 0.55, 0, 1240, { pre: "$", dp: 2, d: 1.0 });
+    KIT.card(tl, "#s01-trip", 1.3, { sc: 0.9, y: 30, d: 0.5 });
+    // the trip's spending lands as cards on "plan their trips"
+    KIT.card(tl, "#s01-c1", 1.62, { x: -60, r: -6 });
+    KIT.card(tl, "#s01-c2", 1.94, { x: -60, r: 6 });
+    KIT.card(tl, "#s01-c3", 2.29, { x: 60, r: 6 });
+    KIT.drift(tl, "#s01-c1", 2.3, 1.15, -12);
+    KIT.drift(tl, "#s01-c3", 2.95, 0.5, -8);
+    KIT.drift(tl, "#s01-c2", 2.6, 0.85, 10);
+    // exit: cards and phone drop away, words lift
+    KIT.out(tl, ["#s01-c1", "#s01-c2", "#s01-c3"], 3.15, { y: 160, sc: 0.8, s: 0.03, d: 0.36 });
+    KIT.out(tl, "#s01-ph", 3.15, { y: 900, d: 0.42 });
+    KIT.out(tl, "#s01-hl", 3.15, { y: -80, d: 0.38 });
+    window.__timelines["s01"] = tl;
+  </script>
+</template>

@@ -15,12 +15,15 @@ CLAUDE.md                 level 1: global editing rules (verbatim captions, no i
 _shared/tools/            transcription, alignment, audio metrics, DeepFilterNet cleanup, render queue (+ README)
 _shared/music|references/ empty: your licensed beds and style-reference videos go here (not committed)
 ads/                      level 2: paid social ads (CLAUDE.md + ad-edit skill)
+  delesign/               level 3: talking-head Meta ads - delesign-ad skill, pipeline scripts (tools/), ad template,
+                          CD standing decisions, and the Oct 2026 campaign's reports + HyperFrames sources (2A-2D)
 podcasts/                 level 2: podcast repurposing (reels, teasers, covers, carousels) + 4 skills
-  retail-razor/           level 3 WORKED EXAMPLE: a real show's brand rules, CD decisions, skills
-                          (trrs-style/-reel/-teaser/-cover/-carousel) and HyperFrames templates (reel, teaser, cover)
-  retail-razor/episodes/S6E15_…/  the process record of one full episode job (briefs, EDLs, review notes, captions,
-                          posting calendar) with the media removed
+  retail-razor/           level 3: a show's brand rules, CD decisions, skills (trrs-style/-reel/-teaser/-cover/-carousel)
+                          and HyperFrames templates (reel, teaser, cover); episodes/S6E15_… is the process record of one
+                          full episode job (briefs, EDLs, review notes, captions, posting calendar)
+  sharkpreneur/           level 3: reels in a client-supplied reference style - sharkpreneur-reel skill + SP1 source
 motion-graphics/          level 2: VO-led explainers from storyboards
+  monty/                  level 3: eSIM explainers - colour/type kit, decisions, and three jobs' HyperFrames sources
 _templates/new-client/    empty client skeletons per type of work
 _templates/new-job/       empty input/ work/ output/ job skeleton
 memory/                   seed memory for Claude (lessons learned); see "Memory" below
@@ -61,7 +64,8 @@ with the lessons in `memory/`, open the repo once in Claude Code, then copy the 
 
 ## Not included
 
-- Client media, transcripts, client logos and photos.
+- Client media, transcripts, client logos, photos, screenshots and storyboards. HyperFrames projects therefore
+  open without their footage, images and audio: put the client's files back at the paths their `index.html` uses.
 - Stock music and SFX: their licences (e.g. Mixkit) don't allow redistribution. Templates list the track IDs to
   download in their `assets/LICENSES.md` / README; place them at the paths the template expects.
 - Fonts in the templates are open-licence Google Fonts (OFL).

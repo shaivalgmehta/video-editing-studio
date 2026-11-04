@@ -1,0 +1,40 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    #dg-bg { position: absolute; inset: 0; background-color: #050506;
+      background-image: radial-gradient(circle, #2b2a2e 7px, transparent 7.5px); background-size: 93px 93px; background-position: 44px 34px; }
+    #dg-title { position: absolute; left: 0; width: 1080px; top: 560px; text-align: center; white-space: nowrap;
+      font-size: 116px; font-weight: 600; letter-spacing: -0.075em; line-height: 1; color: #c30a0a; }
+    .pill { position: absolute; top: 920px; width: 286px; height: 80px; border-radius: 16px; background: #fbfbf8;
+      display: flex; align-items: center; justify-content: center; white-space: nowrap;
+      font-size: 50px; font-weight: 600; letter-spacing: -0.07em; color: #111214; opacity: 0; }
+    #dg-p3 { color: #429b46; }
+    .arrow { position: absolute; top: 958px; width: 48px; height: 4px; background: #a62626; opacity: 0; }
+    .arrow::after { content: ""; position: absolute; right: -2px; top: -7px; width: 12px; height: 12px;
+      border-top: 4px solid #a62626; border-right: 4px solid #a62626; transform: rotate(45deg); }
+  </style>
+  <div id="root" data-composition-id="diagram" data-width="1080" data-height="1920">
+    <div id="dg-bg" class="clip" data-start="0" data-duration="4.74" data-track-index="0"></div>
+    <div id="dg-title">The Framework</div>
+    <!-- "It's gotta be predictable, it's gotta be repeatable, and it's gotta be mathematically based." -->
+    <div id="dg-p1" class="pill" style="left: 42px;">Predictable</div>
+    <div id="dg-a1" class="arrow" style="left: 334px;"></div>
+    <div id="dg-p2" class="pill" style="left: 397px;">Repeatable</div>
+    <div id="dg-a2" class="arrow" style="left: 689px;"></div>
+    <div id="dg-p3" class="pill" style="left: 752px;">Math-based</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Local times (scene starts at 14.88): predictable .42, repeatable 1.84, mathematically 3.54
+      tl.fromTo("#dg-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, 0.02);
+      tl.fromTo("#dg-p1", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.16, ease: "back.out(2)" }, 0.42);
+      tl.fromTo("#dg-a1", { opacity: 0, scaleX: 0, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power2.out" }, 1.70);
+      tl.fromTo("#dg-p2", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.16, ease: "back.out(2)" }, 1.84);
+      tl.fromTo("#dg-a2", { opacity: 0, scaleX: 0, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.14, ease: "power2.out" }, 3.40);
+      tl.fromTo("#dg-p3", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.16, ease: "back.out(2)" }, 3.54);
+      window.__timelines["diagram"] = tl;
+    })();
+  </script>
+</template>

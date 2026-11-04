@@ -1,0 +1,714 @@
+[
+ {
+  "id": "g0",
+  "start": 0.994,
+  "end": 1.726,
+  "visEnd": 1.726,
+  "words": [
+   {
+    "text": "I'm",
+    "start": 0.994,
+    "end": 1.327
+   },
+   {
+    "text": "not",
+    "start": 1.327,
+    "end": 1.46
+   },
+   {
+    "text": "gonna",
+    "start": 1.46,
+    "end": 1.593
+   },
+   {
+    "text": "tell",
+    "start": 1.593,
+    "end": 1.726
+   }
+  ]
+ },
+ {
+  "id": "g1",
+  "start": 1.726,
+  "end": 2.259,
+  "visEnd": 2.259,
+  "words": [
+   {
+    "text": "you",
+    "start": 1.726,
+    "end": 1.86
+   },
+   {
+    "text": "we're",
+    "start": 1.86,
+    "end": 2.059
+   },
+   {
+    "text": "the",
+    "start": 2.059,
+    "end": 2.126
+   },
+   {
+    "text": "most",
+    "start": 2.126,
+    "end": 2.259
+   }
+  ]
+ },
+ {
+  "id": "g2",
+  "start": 2.259,
+  "end": 3.124,
+  "visEnd": 3.124,
+  "words": [
+   {
+    "text": "creative",
+    "start": 2.259,
+    "end": 2.592
+   },
+   {
+    "text": "design",
+    "start": 2.592,
+    "end": 2.791
+   },
+   {
+    "text": "team",
+    "start": 2.791,
+    "end": 2.924
+   },
+   {
+    "text": "you'll",
+    "start": 2.924,
+    "end": 3.124
+   }
+  ]
+ },
+ {
+  "id": "g3",
+  "start": 3.124,
+  "end": 3.59,
+  "visEnd": 3.847,
+  "words": [
+   {
+    "text": "ever",
+    "start": 3.124,
+    "end": 3.257
+   },
+   {
+    "text": "hire,",
+    "start": 3.257,
+    "end": 3.59
+   }
+  ]
+ },
+ {
+  "id": "g4",
+  "start": 3.847,
+  "end": 4.546,
+  "visEnd": 4.546,
+  "words": [
+   {
+    "text": "but",
+    "start": 3.847,
+    "end": 4.002
+   },
+   {
+    "text": "we're",
+    "start": 4.002,
+    "end": 4.235
+   },
+   {
+    "text": "the",
+    "start": 4.313,
+    "end": 4.391
+   },
+   {
+    "text": "one",
+    "start": 4.391,
+    "end": 4.546
+   }
+  ]
+ },
+ {
+  "id": "g5",
+  "start": 4.546,
+  "end": 4.935,
+  "visEnd": 5.162,
+  "words": [
+   {
+    "text": "that",
+    "start": 4.546,
+    "end": 4.702
+   },
+   {
+    "text": "shows",
+    "start": 4.702,
+    "end": 4.935
+   }
+  ]
+ },
+ {
+  "id": "g6",
+  "start": 5.162,
+  "end": 5.73,
+  "visEnd": 5.73,
+  "words": [
+   {
+    "text": "up",
+    "start": 5.162,
+    "end": 5.288
+   },
+   {
+    "text": "for",
+    "start": 5.288,
+    "end": 5.414
+   },
+   {
+    "text": "when",
+    "start": 5.414,
+    "end": 5.603
+   },
+   {
+    "text": "the",
+    "start": 5.603,
+    "end": 5.73
+   }
+  ]
+ },
+ {
+  "id": "g7",
+  "start": 5.73,
+  "end": 6.423,
+  "visEnd": 6.423,
+  "words": [
+   {
+    "text": "work",
+    "start": 5.73,
+    "end": 5.919
+   },
+   {
+    "text": "comes",
+    "start": 5.919,
+    "end": 6.108
+   },
+   {
+    "text": "in",
+    "start": 6.108,
+    "end": 6.234
+   },
+   {
+    "text": "every",
+    "start": 6.234,
+    "end": 6.423
+   }
+  ]
+ },
+ {
+  "id": "g8",
+  "start": 6.423,
+  "end": 6.675,
+  "visEnd": 6.988,
+  "words": [
+   {
+    "text": "month.",
+    "start": 6.423,
+    "end": 6.675
+   }
+  ]
+ },
+ {
+  "id": "g9",
+  "start": 6.988,
+  "end": 7.604,
+  "visEnd": 7.604,
+  "words": [
+   {
+    "text": "And",
+    "start": 6.988,
+    "end": 7.156
+   },
+   {
+    "text": "you",
+    "start": 7.156,
+    "end": 7.268
+   },
+   {
+    "text": "shouldn't",
+    "start": 7.268,
+    "end": 7.436
+   },
+   {
+    "text": "decide",
+    "start": 7.436,
+    "end": 7.604
+   }
+  ]
+ },
+ {
+  "id": "g10",
+  "start": 7.604,
+  "end": 7.995,
+  "visEnd": 7.995,
+  "words": [
+   {
+    "text": "that",
+    "start": 7.604,
+    "end": 7.715
+   },
+   {
+    "text": "based",
+    "start": 7.715,
+    "end": 7.827
+   },
+   {
+    "text": "on",
+    "start": 7.827,
+    "end": 7.939
+   },
+   {
+    "text": "what",
+    "start": 7.939,
+    "end": 7.995
+   }
+  ]
+ },
+ {
+  "id": "g11",
+  "start": 7.995,
+  "end": 8.386,
+  "visEnd": 8.736,
+  "words": [
+   {
+    "text": "I",
+    "start": 7.995,
+    "end": 8.107
+   },
+   {
+    "text": "say.",
+    "start": 8.107,
+    "end": 8.386
+   }
+  ]
+ },
+ {
+  "id": "g12",
+  "start": 8.888,
+  "end": 9.543,
+  "visEnd": 9.543,
+  "words": [
+   {
+    "text": "You",
+    "start": 8.888,
+    "end": 9.034
+   },
+   {
+    "text": "should",
+    "start": 9.034,
+    "end": 9.252
+   },
+   {
+    "text": "see",
+    "start": 9.252,
+    "end": 9.471
+   },
+   {
+    "text": "the",
+    "start": 9.471,
+    "end": 9.543
+   }
+  ]
+ },
+ {
+  "id": "g13",
+  "start": 9.543,
+  "end": 10.344,
+  "visEnd": 10.495,
+  "words": [
+   {
+    "text": "actual",
+    "start": 9.543,
+    "end": 9.835
+   },
+   {
+    "text": "designs,",
+    "start": 9.835,
+    "end": 10.344
+   }
+  ]
+ },
+ {
+  "id": "g14",
+  "start": 10.495,
+  "end": 11.142,
+  "visEnd": 11.142,
+  "words": [
+   {
+    "text": "how",
+    "start": 10.495,
+    "end": 10.689
+   },
+   {
+    "text": "we",
+    "start": 10.689,
+    "end": 10.818
+   },
+   {
+    "text": "handle",
+    "start": 10.818,
+    "end": 11.012
+   },
+   {
+    "text": "the",
+    "start": 11.012,
+    "end": 11.142
+   }
+  ]
+ },
+ {
+  "id": "g15",
+  "start": 11.142,
+  "end": 11.465,
+  "visEnd": 11.656,
+  "words": [
+   {
+    "text": "feedback,",
+    "start": 11.142,
+    "end": 11.465
+   }
+  ]
+ },
+ {
+  "id": "g16",
+  "start": 11.656,
+  "end": 12.269,
+  "visEnd": 12.269,
+  "words": [
+   {
+    "text": "and",
+    "start": 11.656,
+    "end": 11.792
+   },
+   {
+    "text": "what",
+    "start": 11.792,
+    "end": 11.928
+   },
+   {
+    "text": "it's",
+    "start": 11.928,
+    "end": 12.133
+   },
+   {
+    "text": "like",
+    "start": 12.133,
+    "end": 12.269
+   }
+  ]
+ },
+ {
+  "id": "g17",
+  "start": 12.269,
+  "end": 12.678,
+  "visEnd": 12.678,
+  "words": [
+   {
+    "text": "to",
+    "start": 12.269,
+    "end": 12.337
+   },
+   {
+    "text": "work",
+    "start": 12.337,
+    "end": 12.473
+   },
+   {
+    "text": "with",
+    "start": 12.473,
+    "end": 12.609
+   },
+   {
+    "text": "the",
+    "start": 12.609,
+    "end": 12.678
+   }
+  ]
+ },
+ {
+  "id": "g18",
+  "start": 12.678,
+  "end": 12.95,
+  "visEnd": 13.3,
+  "words": [
+   {
+    "text": "team.",
+    "start": 12.678,
+    "end": 12.95
+   }
+  ]
+ },
+ {
+  "id": "g19",
+  "start": 13.3,
+  "end": 14.419,
+  "visEnd": 14.419,
+  "words": [
+   {
+    "text": "That's",
+    "start": 13.3,
+    "end": 13.498
+   },
+   {
+    "text": "why",
+    "start": 13.498,
+    "end": 13.629
+   },
+   {
+    "text": "Delesign",
+    "start": 13.629,
+    "end": 14.156
+   },
+   {
+    "text": "offers",
+    "start": 14.222,
+    "end": 14.419
+   }
+  ]
+ },
+ {
+  "id": "g20",
+  "start": 14.419,
+  "end": 15.867,
+  "visEnd": 16.217,
+  "words": [
+   {
+    "text": "a",
+    "start": 14.419,
+    "end": 14.485
+   },
+   {
+    "text": "15-day",
+    "start": 14.485,
+    "end": 14.946
+   },
+   {
+    "text": "money-back",
+    "start": 14.946,
+    "end": 15.209
+   },
+   {
+    "text": "guarantee.",
+    "start": 15.341,
+    "end": 15.867
+   }
+  ]
+ },
+ {
+  "id": "g21",
+  "start": 16.343,
+  "end": 17.276,
+  "visEnd": 17.276,
+  "words": [
+   {
+    "text": "Not",
+    "start": 16.343,
+    "end": 16.543
+   },
+   {
+    "text": "the",
+    "start": 16.543,
+    "end": 16.609
+   },
+   {
+    "text": "flashiest,",
+    "start": 16.609,
+    "end": 17.276
+   }
+  ]
+ },
+ {
+  "id": "g22",
+  "start": 17.276,
+  "end": 17.743,
+  "visEnd": 17.743,
+  "words": [
+   {
+    "text": "but",
+    "start": 17.276,
+    "end": 17.41
+   },
+   {
+    "text": "the",
+    "start": 17.41,
+    "end": 17.476
+   },
+   {
+    "text": "one",
+    "start": 17.476,
+    "end": 17.61
+   },
+   {
+    "text": "that",
+    "start": 17.61,
+    "end": 17.743
+   }
+  ]
+ },
+ {
+  "id": "g23",
+  "start": 17.743,
+  "end": 18.21,
+  "visEnd": 18.539,
+  "words": [
+   {
+    "text": "shows",
+    "start": 17.743,
+    "end": 17.943
+   },
+   {
+    "text": "up.",
+    "start": 17.943,
+    "end": 18.21
+   }
+  ]
+ },
+ {
+  "id": "g24",
+  "start": 18.539,
+  "end": 19.192,
+  "visEnd": 19.192,
+  "words": [
+   {
+    "text": "So",
+    "start": 18.539,
+    "end": 18.757
+   },
+   {
+    "text": "if",
+    "start": 18.757,
+    "end": 18.829
+   },
+   {
+    "text": "you're",
+    "start": 18.829,
+    "end": 19.047
+   },
+   {
+    "text": "looking",
+    "start": 19.047,
+    "end": 19.192
+   }
+  ]
+ },
+ {
+  "id": "g25",
+  "start": 19.192,
+  "end": 20.57,
+  "visEnd": 20.57,
+  "words": [
+   {
+    "text": "at",
+    "start": 19.192,
+    "end": 19.41
+   },
+   {
+    "text": "recurring",
+    "start": 19.41,
+    "end": 19.918
+   },
+   {
+    "text": "design",
+    "start": 19.918,
+    "end": 20.135
+   },
+   {
+    "text": "workload",
+    "start": 20.135,
+    "end": 20.57
+   }
+  ]
+ },
+ {
+  "id": "g26",
+  "start": 20.57,
+  "end": 20.933,
+  "visEnd": 20.933,
+  "words": [
+   {
+    "text": "and",
+    "start": 20.57,
+    "end": 20.643
+   },
+   {
+    "text": "want",
+    "start": 20.643,
+    "end": 20.715
+   },
+   {
+    "text": "to",
+    "start": 20.715,
+    "end": 20.788
+   },
+   {
+    "text": "see",
+    "start": 20.788,
+    "end": 20.933
+   }
+  ]
+ },
+ {
+  "id": "g27",
+  "start": 20.933,
+  "end": 21.586,
+  "visEnd": 21.802,
+  "words": [
+   {
+    "text": "if",
+    "start": 20.933,
+    "end": 21.006
+   },
+   {
+    "text": "there's",
+    "start": 21.006,
+    "end": 21.151
+   },
+   {
+    "text": "a",
+    "start": 21.151,
+    "end": 21.223
+   },
+   {
+    "text": "fit,",
+    "start": 21.223,
+    "end": 21.586
+   }
+  ]
+ },
+ {
+  "id": "g28",
+  "start": 21.802,
+  "end": 22.458,
+  "visEnd": 22.793,
+  "words": [
+   {
+    "text": "book",
+    "start": 21.802,
+    "end": 21.966
+   },
+   {
+    "text": "a",
+    "start": 21.966,
+    "end": 22.02
+   },
+   {
+    "text": "call",
+    "start": 22.02,
+    "end": 22.184
+   },
+   {
+    "text": "today.",
+    "start": 22.184,
+    "end": 22.458
+   }
+  ]
+ }
+]

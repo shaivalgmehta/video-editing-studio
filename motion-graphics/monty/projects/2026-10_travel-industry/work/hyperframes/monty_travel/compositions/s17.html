@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s17-h { left: 0; width: 1920px; text-align: center; top: 270px; }
+    .s17-c { position: absolute; top: 453px; width: 372px; height: 380px; }
+    .s17-c .bg { position: absolute; left: 0; top: 50px; width: 372px; height: 330px; border-radius: 40px 40px 0 0;
+      background: linear-gradient(180deg, #ffffff 55%, rgba(255, 255, 255, 0) 100%); }
+    .s17-c .disc { position: absolute; left: 46px; top: 0; font-size: 46px; }
+    .s17-c .big { position: absolute; left: 46px; top: 130px; font-weight: 700; font-size: 50px; line-height: 1.2; white-space: nowrap; }
+    .s17-c .sm { font-weight: 400; font-size: 26px; line-height: 1.22; color: var(--ink); margin-top: 4px; }
+  </style>
+  <div data-hf-id="hf-vo9g" id="root" data-composition-id="s17" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-xfte" class="stage" id="s17-stage">
+      <div data-hf-id="hf-37te" id="s17-h" class="abs h"><span data-hf-id="hf-mrj7" class="w lt">A </span><span data-hf-id="hf-utjz" class="w lt">product </span><span data-hf-id="hf-ui6o" class="w lt">travelers </span><span data-hf-id="hf-n102" class="w bd dark">love </span><span data-hf-id="hf-do9b" class="w bd dark">to </span><span data-hf-id="hf-8wc9" class="w bd dark">use.</span></div>
+
+      <div data-hf-id="hf-pytq" id="s17-c1" class="s17-c" style="left:102px" data-layout-allow-overflow>
+        <div data-hf-id="hf-m7dd" class="bg"></div>
+        <span data-hf-id="hf-nfa2" class="disc" style="background:#06a6cf;box-shadow:0 0 0 10px rgba(6,166,207,.15)"><span data-hf-id="hf-x3q8" class="i" style="--i:url(assets/icons/plane.svg)"></span></span>
+        <div data-hf-id="hf-co33" class="big" style="color:var(--cyan)"><span data-hf-id="hf-lure" id="s17-n">200</span>+<div data-hf-id="hf-d32y" class="sm">Countries<br data-hf-id="hf-x5px" />and regions</div></div>
+      </div>
+      <div data-hf-id="hf-7goq" id="s17-c2" class="s17-c" style="left:550px" data-layout-allow-overflow>
+        <div data-hf-id="hf-ws3p" class="bg"></div>
+        <span data-hf-id="hf-pqqv" class="disc" style="background:#7b58dc;box-shadow:0 0 0 10px rgba(123,88,220,.15)"><span data-hf-id="hf-uvr0" class="i" style="--i:url(assets/icons/map-location-dot.svg)"></span></span>
+        <div data-hf-id="hf-2qj5" class="big" style="color:#7b58dc">Local,<br data-hf-id="hf-rsrt" />regional<br data-hf-id="hf-szow" />and global<div data-hf-id="hf-di8l" class="sm">Bundles</div></div>
+      </div>
+      <div data-hf-id="hf-iya9" id="s17-c3" class="s17-c" style="left:998px" data-layout-allow-overflow>
+        <div data-hf-id="hf-xz0s" class="bg"></div>
+        <span data-hf-id="hf-7xq6" class="disc" style="background:#e463b2;box-shadow:0 0 0 10px rgba(228,99,178,.15)"><span data-hf-id="hf-1l22" class="i" style="--i:url(assets/icons/qrcode.svg)"></span></span>
+        <div data-hf-id="hf-gwjb" class="big" style="color:#e463b2">&lt;2<br data-hf-id="hf-sldv" />Minutes<div data-hf-id="hf-889e" class="sm">To install,<br data-hf-id="hf-qluq" />by QR</div></div>
+      </div>
+      <div data-hf-id="hf-ajcz" id="s17-c4" class="s17-c" style="left:1446px" data-layout-allow-overflow>
+        <div data-hf-id="hf-xkpr" class="bg"></div>
+        <span data-hf-id="hf-d6kh" class="disc" style="background:var(--navy);box-shadow:0 0 0 10px rgba(19,41,75,.12)"><span data-hf-id="hf-g3t4" class="i" style="--i:url(assets/icons/sim-card.svg)"></span></span>
+        <div data-hf-id="hf-k167" class="big" style="color:var(--navy)">One eSIM<div data-hf-id="hf-4za3" class="sm">For every trip</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    MS.words(tl, "#s17-h .lt", 0.1, { s: 0.1 });
+    MS.words(tl, "#s17-h .bd", 0.5, { s: 0.12 });
+    const card = (id, t) => MS.pop(tl, `${id} .bg, ${id} .disc, ${id} .big`, t, { y: 50, sc: 0.92, s: 0.06 });
+    card("#s17-c1", 0.3);
+    MS.count(tl, "#s17-n", 0.4, 0, 200, { d: 0.9, e: "power3.out" });
+    card("#s17-c2", 1.5);
+    card("#s17-c3", 2.85);
+    card("#s17-c4", 3.3);
+    MS.exit(tl, "#s17-stage", 4.05, "blur");
+    window.__timelines["s17"] = tl;
+  </script>
+</template>

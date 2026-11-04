@@ -1,0 +1,84 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s04-hl { left: 165px; top: 176px; line-height: 1.14; }
+    #s04-one { left: 1415px; top: 796px; }
+    #s04-ph { left: 710px; top: 255px; }
+    #s04-ph .wallet-head { height: 345px; }
+    #s04-ph .wh1 { top: 150px; } #s04-ph .wh2 { top: 204px; } #s04-ph .wh3 { top: 234px; }
+    #s04-item { top: 431px; height: 112px; background: var(--amber-l); }
+    #s04-item .g { font-size: 34px; color: var(--amber-d); }
+    #s04-item .ct { color: var(--navy); }
+    #s04-item .pr { margin-left: auto; font-weight: 700; font-size: 22px; color: var(--ink); }
+    #s04-btn { position: absolute; left: 36px; right: 36px; top: 570px; }
+    #s04-tap { position: absolute; left: 196px; top: 588px; width: 46px; height: 46px; border-radius: 50%; background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 6px rgba(251, 176, 43, 0.7); }
+    #s04-rip { position: absolute; left: 139px; top: 531px; width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--amber); }
+    .s04-c { width: 226px; height: 226px; }
+    .s04-c .ct { position: absolute; left: 35px; top: 52px; }
+    .s04-c .tile { position: absolute; left: 35px; top: 120px; width: 72px; height: 72px; font-size: 32px; }
+    #s04-c1 { left: 385px; top: 713px; }
+    #s04-c2 { left: 1308px; top: 330px; }
+  </style>
+  <div id="root" data-composition-id="s04" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s04-stage"><div class="cam" id="s04-cam">
+      <div id="s04-ph" class="phone">
+        <span class="btn-l" style="top:150px;height:40px"></span><span class="btn-l" style="top:220px;height:80px"></span><span class="btn-r"></span>
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="wallet-head">
+            <div class="wh1"><span class="i" style="--i:url(assets/icons/wallet.svg)"></span>Your Wallet</div>
+            <div class="wh2">Balance</div>
+            <div class="wh3"><span id="s04-b1" style="display:inline-block">$1,240.00</span><span id="s04-b2" style="position:absolute;left:0;top:0">$1,227.10</span></div>
+          </div>
+          <div class="ph-label" style="top:384px">Confirm Purchase</div>
+          <div id="s04-item" class="ph-row">
+            <span class="i g" style="--i:url(assets/icons/globe.svg)"></span>
+            <div><div class="ct">France 10 GB</div><div class="cs">15 Days · 5G</div></div>
+            <span class="pr">$13</span>
+          </div>
+          <div id="s04-btn" class="pbtn">Pay from balance</div>
+          <div id="s04-rip"></div>
+          <div id="s04-tap"></div>
+        </div>
+      </div>
+
+      <div id="s04-hl" class="hl">
+        <div class="ln"><span class="w">Pay </span><span class="w">from</span></div>
+        <div class="ln"><span class="w">balance.</span></div>
+      </div>
+      <div id="s04-one" class="hl"><div class="ln acc"><span class="w">One </span><span class="w">tap.</span></div></div>
+
+      <div id="s04-c1" class="card s04-c">
+        <div class="ct">No card<br />needed</div>
+        <span class="tile amber"><span class="i" style="--i:url(assets/icons/credit-card.svg)"></span></span>
+      </div>
+      <div id="s04-c2" class="card s04-c">
+        <div class="ct">No second<br />checkout</div>
+        <span class="tile purple"><span class="i" style="--i:url(assets/icons/bag-shopping.svg)"></span></span>
+      </div>
+    </div></div>
+  </div>
+  <script>
+    KIT.acc("#s04-one .acc");
+    const tl = gsap.timeline({ paused: true });
+    // the camera pans onto the wallet holding the offer
+    KIT.panIn(tl, "#s04-stage");
+    // "...in one tap."  the tap, the balance changes, the words
+    tl.fromTo("#s04-tap", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 2.4);
+    tl.to(["#s04-btn", "#s04-tap"], { scale: 0.94, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out" }, 2.72);
+    tl.fromTo("#s04-rip", { opacity: 0.9, scale: 0.3 }, { opacity: 0, scale: 1.5, duration: 0.7, ease: "power2.out" }, 2.75);
+    tl.to("#s04-tap", { opacity: 0, duration: 0.25, ease: "power2.in" }, 3.1);
+    tl.to("#s04-b1", { opacity: 0, y: -24, duration: 0.3, ease: "power2.in" }, 2.85);
+    tl.fromTo("#s04-b2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 3.0);
+    KIT.build(tl, "#s04-one .ln", 3.0, { x: -24, y: 0 });
+    // "No card, no second checkout."
+    KIT.build(tl, "#s04-c1", 3.45, { x: 24, y: 0 });
+    KIT.build(tl, "#s04-c2", 4.25, { x: -24, y: 0 });
+    // hand-off: the phone travels to where the next scene's phone stands while the rest pans away
+    tl.to("#s04-ph", { x: 440, y: -125, duration: 0.6, ease: "power3.inOut" }, 5.25);
+    tl.to("#s04-ph", { opacity: 0, duration: 0.2, ease: "none" }, 5.7);
+    KIT.panOut(tl, ["#s04-hl", "#s04-one", "#s04-c1", "#s04-c2"], 5.25);
+    window.__timelines["s04"] = tl;
+  </script>
+</template>

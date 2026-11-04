@@ -1,0 +1,171 @@
+<!doctype html>
+<html
+  lang="en"
+  data-composition-variables='[
+    {"id":"hookText","type":"string","label":"Hook bar","default":"Painted all year round."},
+    {"id":"ctaHeadline","type":"string","label":"End card headline","default":"Get a reliable designer"},
+    {"id":"ctaButton","type":"string","label":"End card button","default":"Speak to us"},
+    {"id":"ctaSub","type":"string","label":"End card sub-line","default":"Ongoing design support for agencies"},
+    {"id":"orange","type":"color","label":"Sunset Orange","default":"#FF5532"},
+    {"id":"charcoal","type":"color","label":"Charcoal","default":"#1E293B"},
+    {"id":"green","type":"color","label":"Deep Green","default":"#33473B"},
+    {"id":"lavender","type":"color","label":"French Lavender","default":"#C7B0FF"},
+    {"id":"offwhite","type":"color","label":"Off-white","default":"#F8FAFC"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Hanken Grotesk";
+        src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+        font-weight: 100 900;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Architects Daughter";
+        src: url("assets/fonts/ArchitectsDaughter-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-display: block;
+      }
+      :root {
+        --orange: #ff5532;
+        --charcoal: #1e293b;
+        --green: #33473b;
+        --lavender: #c7b0ff;
+        --offwhite: #f8fafc;
+        --font-display: "Hanken Grotesk", sans-serif;
+        --font-hand: "Architects Daughter", cursive;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root { position: relative; width: 1080px; height: 1920px; background: #000; font-family: var(--font-display); }
+      /* The A-roll: an untimed wrapper the root timeline animates for the picture-in-picture,
+         around the timed video. Nothing else times it. */
+      #cam {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 1;
+        background: transparent;
+        box-shadow: 0 12px 36px rgba(30, 41, 59, 0.22);
+      }
+      #cam video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      /* Untimed push-in wrappers around timed, silent B-roll videos */
+      .broll { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+      .broll video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <!-- Cut v2 timeline (A-roll 43.767 s): sit-down pre-roll 0-1.83 s, first word at 1.90 s.
+         Old v1 times map as: before the freelancers line +1.833 s, after it -0.84 s. -->
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="46.77"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Off-white ground under the camera: only visible while the camera is picture-in-picture -->
+      <div id="ground" style="position: absolute; inset: 0; z-index: 0; background-color: #f8fafc; background-image: radial-gradient(circle, #d7dee8 1.6px, transparent 1.6px); background-size: 30px 30px; background-position: 15px 15px"></div>
+      <!-- A-roll with the cleaned voice -->
+      <div id="cam">
+        <video
+          id="aroll"
+          class="clip"
+          src="assets/aroll.mp4"
+          data-start="0"
+          data-duration="43.767"
+          data-track-index="0"
+          data-has-audio="true"
+          playsinline
+        ></video>
+      </div>
+
+      <!-- Golden Gate B-roll, silent, over the voice -->
+      <div id="broll1-push" class="broll">
+        <video id="broll1" class="clip" src="assets/broll/gg03_wide_6s.mp4" data-start="2.47" data-duration="2.72" data-track-index="1" muted playsinline></video>
+      </div>
+      <div id="broll2-push" class="broll">
+        <video id="broll2" class="clip" src="assets/broll/gg01_tower_6s.mp4" data-start="5.19" data-duration="2.24" data-track-index="1" muted playsinline></video>
+      </div>
+      <div id="broll3-push" class="broll">
+        <video id="broll3" class="clip" src="assets/broll/gg04_fog_6s.mp4" data-start="35.48" data-duration="1.68" data-track-index="1" muted playsinline></video>
+      </div>
+      <div id="broll4-push" class="broll">
+        <video id="broll4" class="clip" src="assets/broll/gg01_tower_6s.mp4" data-start="37.16" data-duration="1.12" data-media-start="3" data-track-index="1" muted playsinline></video>
+      </div>
+
+      <!-- Graphics scenes -->
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html"
+           data-start="0" data-duration="7.43" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="chips1" data-composition-id="chips1" data-composition-src="compositions/chips1.html"
+           data-start="9.03" data-duration="5.1" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"
+           data-variable-values='{"countFrom":18,"countTo":27,"tChip1":0.08,"tChip2":1.04,"tChip3":1.44,"tCount":3.44,"tCountEnd":4.9,"tOut":5.0}'></div>
+      <div id="options" data-composition-id="options" data-composition-src="compositions/options.html"
+           data-start="14.03" data-duration="12.43" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="portfolio" data-composition-id="portfolio" data-composition-src="compositions/portfolio.html"
+           data-start="26.26" data-duration="1.9" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="goscreens" data-composition-id="goscreens" data-composition-src="compositions/goscreens.html"
+           data-start="28.86" data-duration="6.7" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="chips2" data-composition-id="chips2" data-composition-src="compositions/chips2.html"
+           data-start="38.26" data-duration="1.75" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 3"
+           data-variable-values='{"countFrom":27,"countTo":36,"tChip1":0.02,"tChip2":0.2,"tChip3":0.38,"tCount":0.8,"tCountEnd":1.55,"tOut":1.65}'></div>
+      <div id="endcard" data-composition-id="endcard" data-composition-src="compositions/endcard.html"
+           data-start="43.767" data-duration="3.0" data-track-index="2" data-track-kind="graphics"
+           data-width="1080" data-height="1920" style="z-index: 7"></div>
+
+      <!-- Captions: one host for every group -->
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html"
+           data-start="0" data-duration="43.767" data-track-index="3" data-track-kind="captions"
+           data-width="1080" data-height="1920" style="z-index: 6"></div>
+
+      <!-- One soft click per card entrance -->
+      <audio id="sfx-chip1" class="clip" src="assets/sfx/click-soft.mp3" data-start="9.11" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-chip2" class="clip" src="assets/sfx/click-soft.mp3" data-start="10.07" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-chip3" class="clip" src="assets/sfx/click-soft.mp3" data-start="10.47" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-card1" class="clip" src="assets/sfx/click-soft.mp3" data-start="14.07" data-duration="0.37" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-card2" class="clip" src="assets/sfx/click-soft.mp3" data-start="18.39" data-duration="0.37" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-card3" class="clip" src="assets/sfx/click-soft.mp3" data-start="21.0" data-duration="0.37" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-card4" class="clip" src="assets/sfx/click-soft.mp3" data-start="25.48" data-duration="0.37" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-go1" class="clip" src="assets/sfx/click-soft.mp3" data-start="29.0" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-go2" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.08" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-go3" class="clip" src="assets/sfx/click-soft.mp3" data-start="32.66" data-duration="0.37" data-track-index="4" data-volume="0.45"></audio>
+      <audio id="sfx-chipsB" class="clip" src="assets/sfx/click-soft.mp3" data-start="38.28" data-duration="0.37" data-track-index="4" data-volume="0.4"></audio>
+      <audio id="sfx-end" class="clip" src="assets/sfx/click-soft.mp3" data-start="43.92" data-duration="0.37" data-track-index="4" data-volume="0.5"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // Slow push-ins on the B-roll (wrapper transforms, never the video element)
+      tl.fromTo("#broll1-push", { scale: 1.0 }, { scale: 1.06, duration: 2.72, ease: "none" }, 2.47);
+      tl.fromTo("#broll2-push", { scale: 1.08 }, { scale: 1.0, duration: 2.24, ease: "none" }, 5.19);
+      tl.fromTo("#broll3-push", { scale: 1.0 }, { scale: 1.05, duration: 1.68, ease: "none" }, 35.48);
+      tl.fromTo("#broll4-push", { scale: 1.04 }, { scale: 1.1, duration: 1.12, ease: "none" }, 37.16);
+      // Picture-in-picture from the chips (after "Agency design work is the same") to the bridge B-roll:
+      // bottom-left, inside the safe zone. The graphics own the frame for the whole middle.
+      gsap.set("#cam", { transformOrigin: "0 0" });
+      tl.fromTo("#cam", { scale: 1, x: 0, y: 0, borderRadius: 0 },
+        { scale: 0.2407, x: 65, y: 680, borderRadius: 72, duration: 0.45, ease: "power3.out" }, 8.85);
+      // While picture-in-picture, the camera rides above the graphics (z 5) and below the captions (z 6)
+      tl.set("#cam", { zIndex: 5 }, 9.15);
+      tl.set("#cam", { zIndex: 1 }, 35.48);
+      tl.to("#cam", { scale: 1, x: 0, y: 0, borderRadius: 0, duration: 0.3, ease: "power2.in" }, 35.48);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

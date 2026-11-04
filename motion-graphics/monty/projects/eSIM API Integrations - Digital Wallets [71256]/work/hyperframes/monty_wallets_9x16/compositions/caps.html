@@ -1,0 +1,73 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    /* house captions: Montserrat, white on a soft navy pill, low centre */
+    .cap { position: absolute; left: 0; top: 1450px; width: 1080px; text-align: center; opacity: 0; visibility: hidden; }
+    .cap span { display: inline-block; padding: 10px 28px 12px; border-radius: 18px; background: rgba(19, 41, 75, 0.86);
+      font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 44px; line-height: 1.2; color: #fff; max-width: 860px; }
+  </style>
+  <div id="root" data-composition-id="caps" data-width="1080" data-height="1920" data-layout-allow-overlap>
+      <div class="cap" id="cap00"><span>Your users already plan</span></div>
+      <div class="cap" id="cap01"><span>their trips in your wallet.</span></div>
+      <div class="cap" id="cap02"><span>Then they land,</span></div>
+      <div class="cap" id="cap03"><span>and buy data somewhere else.</span></div>
+      <div class="cap" id="cap04"><span>With the Monty eSIM API,</span></div>
+      <div class="cap" id="cap05"><span>your wallet spots the trip</span></div>
+      <div class="cap" id="cap06"><span>and offers data</span></div>
+      <div class="cap" id="cap07"><span>at the right moment.</span></div>
+      <div class="cap" id="cap08"><span>Users pay from their balance</span></div>
+      <div class="cap" id="cap09"><span>in one tap.</span></div>
+      <div class="cap" id="cap10"><span>No card,</span></div>
+      <div class="cap" id="cap11"><span>no second checkout.</span></div>
+      <div class="cap" id="cap12"><span>They land online.</span></div>
+      <div class="cap" id="cap13"><span>And when data runs low,</span></div>
+      <div class="cap" id="cap14"><span>they top up in the app.</span></div>
+      <div class="cap" id="cap15"><span>You earn on every bundle,</span></div>
+      <div class="cap" id="cap16"><span>keep balances in your wallet,</span></div>
+      <div class="cap" id="cap17"><span>and give users</span></div>
+      <div class="cap" id="cap18"><span>one more reason</span></div>
+      <div class="cap" id="cap19"><span>to open your app.</span></div>
+      <div class="cap" id="cap20"><span>One API covers it all,</span></div>
+      <div class="cap" id="cap21"><span>in 200-plus countries and regions.</span></div>
+      <div class="cap" id="cap22"><span>Monty eSIM.</span></div>
+      <div class="cap" id="cap23"><span>Travel data,</span></div>
+      <div class="cap" id="cap24"><span>built into your wallet.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // [group, open, close] in film seconds, from work/transcript.json via work/make_caps.py
+    [
+      ["#cap00", 0.24, 2.0],
+      ["#cap01", 2.0, 3.68],
+      ["#cap02", 3.68, 4.96],
+      ["#cap03", 4.96, 7.04],
+      ["#cap04", 7.04, 9.52],
+      ["#cap05", 9.52, 11.2],
+      ["#cap06", 11.2, 12.24],
+      ["#cap07", 12.24, 13.68],
+      ["#cap08", 13.68, 15.44],
+      ["#cap09", 15.44, 16.64],
+      ["#cap10", 16.64, 17.44],
+      ["#cap11", 17.44, 18.96],
+      ["#cap12", 18.96, 20.64],
+      ["#cap13", 20.64, 22.24],
+      ["#cap14", 22.24, 23.84],
+      ["#cap15", 23.84, 25.92],
+      ["#cap16", 25.92, 27.6],
+      ["#cap17", 27.6, 28.64],
+      ["#cap18", 28.64, 29.6],
+      ["#cap19", 29.6, 30.96],
+      ["#cap20", 30.96, 32.88],
+      ["#cap21", 32.88, 35.68],
+      ["#cap22", 35.68, 37.12],
+      ["#cap23", 37.12, 38.16],
+      ["#cap24", 38.16, 40.15]
+    ].forEach(([sel, s, e]) => {
+      tl.set(sel, { visibility: "visible" }, s);
+      tl.fromTo(sel, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, s);
+      tl.to(sel, { opacity: 0, duration: 0.1, ease: "power2.in" }, e - 0.1);
+      tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+    });
+    window.__timelines["caps"] = tl;
+  </script>
+</template>

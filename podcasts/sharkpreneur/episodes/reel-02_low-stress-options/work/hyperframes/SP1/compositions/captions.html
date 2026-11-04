@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; }
+    .cap { position: absolute; left: 0; width: 1080px; top: 1512px; text-align: center; white-space: nowrap;
+      font-size: 74px; font-weight: 600; letter-spacing: -0.06em; line-height: 1; color: #ffffff;
+      text-shadow: 3px 4px 0 rgba(0,0,0,0.55), 0 0 18px rgba(0,0,0,0.35); }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-caption-zone>
+    <!-- One line per group, 1-3 words, cut on the word; none over the hook or the slate -->
+    <div id="c0" class="cap clip" data-start="2.66" data-duration="0.44" data-track-index="0">Low stress</div>
+    <div id="c1" class="cap clip" data-start="3.10" data-duration="0.82" data-track-index="0">was really</div>
+    <div id="c2" class="cap clip" data-start="3.92" data-duration="0.76" data-track-index="0">at the core</div>
+    <div id="c3" class="cap clip" data-start="4.68" data-duration="0.44" data-track-index="0">of everything</div>
+    <div id="c4" class="cap clip" data-start="5.12" data-duration="0.52" data-track-index="0">we do.</div>
+    <div id="c5" class="cap clip" data-start="7.56" data-duration="0.34" data-track-index="0">I like to</div>
+    <div id="c6" class="cap clip" data-start="7.90" data-duration="0.32" data-track-index="0">say it’s</div>
+    <div id="c7" class="cap clip" data-start="8.22" data-duration="0.56" data-track-index="0">boringly</div>
+    <div id="c8" class="cap clip" data-start="8.78" data-duration="0.66" data-track-index="0">profitable.</div>
+    <div id="c9" class="cap clip" data-start="9.44" data-duration="0.48" data-track-index="0">I don’t try</div>
+    <div id="c10" class="cap clip" data-start="9.92" data-duration="0.66" data-track-index="0">to impress you</div>
+    <div id="c11" class="cap clip" data-start="10.58" data-duration="0.40" data-track-index="0">with how much</div>
+    <div id="c12" class="cap clip" data-start="10.98" data-duration="0.44" data-track-index="0">I know</div>
+    <div id="c13" class="cap clip" data-start="11.42" data-duration="1.34" data-track-index="0">about options.</div>
+    <div id="c14" class="cap clip" data-start="12.76" data-duration="0.72" data-track-index="0">I just want</div>
+    <div id="c15" class="cap clip" data-start="13.48" data-duration="0.62" data-track-index="0">to impress you</div>
+    <div id="c16" class="cap clip" data-start="14.10" data-duration="0.76" data-track-index="0">with simplicity.</div>
+    <div id="c17" class="cap clip" data-start="14.86" data-duration="0.44" data-track-index="0">It’s gotta be</div>
+    <div id="c18" class="cap clip" data-start="15.30" data-duration="0.84" data-track-index="0">predictable,</div>
+    <div id="c19" class="cap clip" data-start="16.14" data-duration="0.58" data-track-index="0">it’s gotta be</div>
+    <div id="c20" class="cap clip" data-start="16.72" data-duration="1.04" data-track-index="0">repeatable,</div>
+    <div id="c21" class="cap clip" data-start="17.76" data-duration="0.48" data-track-index="0">and it’s gotta</div>
+    <div id="c22" class="cap clip" data-start="18.24" data-duration="0.80" data-track-index="0">be mathematically</div>
+    <div id="c23" class="cap clip" data-start="19.04" data-duration="0.58" data-track-index="0">based.</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

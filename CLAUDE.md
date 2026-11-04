@@ -7,7 +7,7 @@ Rules and skills are layered. Work inside a project folder and the `CLAUDE.md` +
 |---|---|---|
 | 1 General video editing | `./CLAUDE.md`, `./.claude/skills/` | rules and procedures for any edit (cutting, audio, captions, HyperFrames, QA, delivery, sourcing) |
 | 2 Type of work | `ads/`, `podcasts/`, `motion-graphics/` | what is specific to that kind of video (e.g. repurposing a podcast into reels) |
-| 3 Client | `<type>/<client>/` (worked example: `podcasts/retail-razor/`) | the client's brand, standing CD decisions, templates, and per-deliverable skills (reel, teaser, cover…) |
+| 3 Client | `ads/delesign/`, `podcasts/retail-razor/`, `podcasts/sharkpreneur/`, `motion-graphics/monty/` (add yours as `<type>/<client>/`) | the client's brand, standing CD decisions, templates, and per-deliverable skills (reel, teaser, cover…) |
 
 ## Layout
 

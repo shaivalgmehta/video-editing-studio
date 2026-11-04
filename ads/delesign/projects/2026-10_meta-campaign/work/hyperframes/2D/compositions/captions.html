@@ -1,0 +1,112 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hanken Grotesk";
+      src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      font-family: "Hanken Grotesk", sans-serif;
+    }
+    .cap-group {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      bottom: 672px; /* pill bottom at 1248 = 65% of 1920 */
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      overflow: visible;
+    }
+    .cap-pill {
+      max-width: 950px; /* 6% side margins */
+      padding: 18px 40px 22px;
+      border-radius: 24px;
+      background: rgba(30, 41, 59, 0.85); /* Charcoal #1E293B at 85% */
+      text-align: center;
+      overflow: visible;
+    }
+    .cap-line {
+      display: flex;
+      justify-content: center;
+      gap: 0.32em;
+      white-space: nowrap;
+      line-height: 1.14;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .cap-word {
+      display: inline-block;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-caption-zone>
+    <div id="captions-stage"></div>
+    <div id="captions-drv" class="clip" data-start="0" data-duration="37.967" data-track-index="0"
+         style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></div>
+  </div>
+  <script>
+    (function () {
+      var GROUPS = [{"id": "g0", "start": 1.792, "end": 2.666, "visEnd": 2.666, "words": [{"text": "I", "start": 1.792, "end": 2.025}, {"text": "still", "start": 2.025, "end": 2.316}, {"text": "remember", "start": 2.316, "end": 2.549}, {"text": "the", "start": 2.549, "end": 2.666}]}, {"id": "g1", "start": 2.666, "end": 3.307, "visEnd": 3.307, "words": [{"text": "first", "start": 2.666, "end": 2.841}, {"text": "phone", "start": 2.841, "end": 3.074}, {"text": "number", "start": 3.074, "end": 3.249}, {"text": "I", "start": 3.249, "end": 3.307}]}, {"id": "g2", "start": 3.307, "end": 3.949, "visEnd": 4.299, "words": [{"text": "ever", "start": 3.307, "end": 3.424}, {"text": "learnt.", "start": 3.541, "end": 3.949}]}, {"id": "g3", "start": 4.419, "end": 5.337, "visEnd": 5.687, "words": [{"text": "Some", "start": 4.419, "end": 4.563}, {"text": "things", "start": 4.563, "end": 4.706}, {"text": "just", "start": 4.763, "end": 4.878}, {"text": "stick.", "start": 4.993, "end": 5.337}]}, {"id": "g4", "start": 5.788, "end": 6.416, "visEnd": 6.416, "words": [{"text": "And", "start": 5.788, "end": 5.927}, {"text": "that's", "start": 5.927, "end": 6.207}, {"text": "what", "start": 6.207, "end": 6.276}, {"text": "I", "start": 6.276, "end": 6.416}]}, {"id": "g5", "start": 6.416, "end": 7.393, "visEnd": 7.393, "words": [{"text": "want", "start": 6.416, "end": 6.556}, {"text": "your", "start": 6.556, "end": 6.765}, {"text": "clients'", "start": 6.765, "end": 7.044}, {"text": "brands", "start": 7.184, "end": 7.393}]}, {"id": "g6", "start": 7.393, "end": 7.951, "visEnd": 7.951, "words": [{"text": "to", "start": 7.393, "end": 7.463}, {"text": "feel", "start": 7.463, "end": 7.672}, {"text": "like", "start": 7.672, "end": 7.812}, {"text": "for", "start": 7.812, "end": 7.951}]}, {"id": "g7", "start": 7.951, "end": 8.23, "visEnd": 8.516, "words": [{"text": "us.", "start": 7.951, "end": 8.23}]}, {"id": "g8", "start": 8.516, "end": 9.357, "visEnd": 9.477, "words": [{"text": "Not", "start": 8.516, "end": 8.726}, {"text": "just", "start": 8.726, "end": 8.866}, {"text": "the", "start": 8.866, "end": 9.007}, {"text": "logo,", "start": 9.007, "end": 9.357}]}, {"id": "g9", "start": 9.477, "end": 10.153, "visEnd": 10.153, "words": [{"text": "but", "start": 9.477, "end": 9.68}, {"text": "what", "start": 9.68, "end": 9.815}, {"text": "each", "start": 9.815, "end": 10.018}, {"text": "one", "start": 10.018, "end": 10.153}]}, {"id": "g10", "start": 10.153, "end": 10.966, "visEnd": 11.274, "words": [{"text": "liked", "start": 10.153, "end": 10.357}, {"text": "and", "start": 10.357, "end": 10.492}, {"text": "rejected.", "start": 10.492, "end": 10.966}]}, {"id": "g11", "start": 11.274, "end": 12.251, "visEnd": 12.251, "words": [{"text": "Client", "start": 11.274, "end": 11.623}, {"text": "one", "start": 11.623, "end": 11.833}, {"text": "likes", "start": 11.833, "end": 12.042}, {"text": "simple", "start": 12.042, "end": 12.251}]}, {"id": "g12", "start": 12.251, "end": 12.74, "visEnd": 12.904, "words": [{"text": "layouts,", "start": 12.251, "end": 12.74}]}, {"id": "g13", "start": 12.904, "end": 13.833, "visEnd": 13.833, "words": [{"text": "client", "start": 12.904, "end": 13.214}, {"text": "two", "start": 13.214, "end": 13.369}, {"text": "needs", "start": 13.369, "end": 13.678}, {"text": "very", "start": 13.678, "end": 13.833}]}, {"id": "g14", "start": 13.833, "end": 14.917, "visEnd": 15.084, "words": [{"text": "specific", "start": 13.833, "end": 14.22}, {"text": "typography,", "start": 14.22, "end": 14.917}]}, {"id": "g15", "start": 15.084, "end": 15.706, "visEnd": 15.706, "words": [{"text": "client", "start": 15.084, "end": 15.332}, {"text": "three", "start": 15.332, "end": 15.519}, {"text": "has", "start": 15.519, "end": 15.643}, {"text": "an", "start": 15.643, "end": 15.706}]}, {"id": "g16", "start": 15.706, "end": 16.577, "visEnd": 16.577, "words": [{"text": "ad", "start": 15.706, "end": 15.83}, {"text": "format", "start": 15.955, "end": 16.141}, {"text": "their", "start": 16.203, "end": 16.39}, {"text": "team", "start": 16.39, "end": 16.577}]}, {"id": "g17", "start": 16.577, "end": 17.075, "visEnd": 17.425, "words": [{"text": "prefers.", "start": 16.577, "end": 17.075}]}, {"id": "g18", "start": 17.732, "end": 18.422, "visEnd": 18.422, "words": [{"text": "The", "start": 17.732, "end": 17.92}, {"text": "last", "start": 17.92, "end": 18.109}, {"text": "round", "start": 18.109, "end": 18.36}, {"text": "of", "start": 18.36, "end": 18.422}]}, {"id": "g19", "start": 18.422, "end": 19.113, "visEnd": 19.113, "words": [{"text": "feedback", "start": 18.422, "end": 18.736}, {"text": "should", "start": 18.736, "end": 18.862}, {"text": "help", "start": 18.862, "end": 18.987}, {"text": "with", "start": 18.987, "end": 19.113}]}, {"id": "g20", "start": 19.113, "end": 19.866, "visEnd": 20.178, "words": [{"text": "the", "start": 19.113, "end": 19.175}, {"text": "next", "start": 19.175, "end": 19.364}, {"text": "brief.", "start": 19.364, "end": 19.866}]}, {"id": "g21", "start": 20.178, "end": 21.247, "visEnd": 21.247, "words": [{"text": "We", "start": 20.178, "end": 20.343}, {"text": "keep", "start": 20.343, "end": 20.589}, {"text": "the", "start": 20.589, "end": 20.672}, {"text": "guidelines", "start": 20.672, "end": 21.247}]}, {"id": "g22", "start": 21.247, "end": 22.315, "visEnd": 22.315, "words": [{"text": "and", "start": 21.247, "end": 21.412}, {"text": "reference", "start": 21.412, "end": 21.823}, {"text": "work", "start": 21.823, "end": 21.987}, {"text": "close", "start": 22.089, "end": 22.315}]}, {"id": "g23", "start": 22.315, "end": 23.065, "visEnd": 23.332, "words": [{"text": "to", "start": 22.315, "end": 22.39}, {"text": "the", "start": 22.39, "end": 22.54}, {"text": "requests.", "start": 22.54, "end": 23.065}]}, {"id": "g24", "start": 23.332, "end": 24.039, "visEnd": 24.039, "words": [{"text": "So", "start": 23.332, "end": 23.473}, {"text": "we're", "start": 23.544, "end": 23.685}, {"text": "not", "start": 23.685, "end": 23.827}, {"text": "starting", "start": 23.827, "end": 24.039}]}, {"id": "g25", "start": 24.039, "end": 24.957, "visEnd": 24.957, "words": [{"text": "from", "start": 24.039, "end": 24.251}, {"text": "zero", "start": 24.251, "end": 24.604}, {"text": "every", "start": 24.675, "end": 24.816}, {"text": "time", "start": 24.816, "end": 24.957}]}, {"id": "g26", "start": 24.957, "end": 25.735, "visEnd": 25.735, "words": [{"text": "a", "start": 24.957, "end": 25.099}, {"text": "new", "start": 25.099, "end": 25.24}, {"text": "campaign", "start": 25.24, "end": 25.593}, {"text": "comes", "start": 25.593, "end": 25.735}]}, {"id": "g27", "start": 25.735, "end": 26.017, "visEnd": 26.305, "words": [{"text": "in.", "start": 25.735, "end": 26.017}]}, {"id": "g28", "start": 26.305, "end": 27.142, "visEnd": 27.142, "words": [{"text": "And", "start": 26.305, "end": 26.514}, {"text": "when", "start": 26.514, "end": 26.654}, {"text": "someone", "start": 26.654, "end": 26.933}, {"text": "needs", "start": 26.933, "end": 27.142}]}, {"id": "g29", "start": 27.142, "end": 28.049, "visEnd": 28.246, "words": [{"text": "to", "start": 27.142, "end": 27.281}, {"text": "cover", "start": 27.281, "end": 27.56}, {"text": "an", "start": 27.56, "end": 27.63}, {"text": "account,", "start": 27.63, "end": 28.049}]}, {"id": "g30", "start": 28.246, "end": 29.04, "visEnd": 29.04, "words": [{"text": "that", "start": 28.246, "end": 28.378}, {"text": "context", "start": 28.378, "end": 28.775}, {"text": "is", "start": 28.775, "end": 28.908}, {"text": "right", "start": 28.908, "end": 29.04}]}, {"id": "g31", "start": 29.04, "end": 29.305, "visEnd": 29.571, "words": [{"text": "there.", "start": 29.04, "end": 29.305}]}, {"id": "g32", "start": 29.571, "end": 30.45, "visEnd": 30.45, "words": [{"text": "And", "start": 29.571, "end": 29.774}, {"text": "that", "start": 29.774, "end": 29.977}, {"text": "matters", "start": 29.977, "end": 30.248}, {"text": "when", "start": 30.248, "end": 30.45}]}, {"id": "g33", "start": 30.45, "end": 31.465, "visEnd": 31.465, "words": [{"text": "several", "start": 30.45, "end": 30.789}, {"text": "client", "start": 30.789, "end": 31.059}, {"text": "brands", "start": 31.059, "end": 31.329}, {"text": "are", "start": 31.329, "end": 31.465}]}, {"id": "g34", "start": 31.465, "end": 31.938, "visEnd": 32.288, "words": [{"text": "involved.", "start": 31.465, "end": 31.938}]}, {"id": "g35", "start": 32.405, "end": 33.263, "visEnd": 33.543, "words": [{"text": "Some", "start": 32.405, "end": 32.577}, {"text": "things", "start": 32.577, "end": 32.691}, {"text": "just", "start": 32.805, "end": 32.863}, {"text": "stick,", "start": 32.977, "end": 33.263}]}, {"id": "g36", "start": 33.543, "end": 34.437, "visEnd": 34.437, "words": [{"text": "and", "start": 33.543, "end": 33.68}, {"text": "your", "start": 33.68, "end": 33.818}, {"text": "clients'", "start": 33.818, "end": 34.093}, {"text": "brands", "start": 34.162, "end": 34.437}]}, {"id": "g37", "start": 34.437, "end": 34.987, "visEnd": 35.276, "words": [{"text": "should", "start": 34.437, "end": 34.574}, {"text": "too.", "start": 34.643, "end": 34.987}]}, {"id": "g38", "start": 35.276, "end": 35.955, "visEnd": 35.955, "words": [{"text": "Book", "start": 35.276, "end": 35.547}, {"text": "a", "start": 35.547, "end": 35.615}, {"text": "call", "start": 35.615, "end": 35.819}, {"text": "if", "start": 35.819, "end": 35.955}]}, {"id": "g39", "start": 35.955, "end": 36.566, "visEnd": 36.634, "words": [{"text": "you", "start": 35.955, "end": 36.023}, {"text": "need", "start": 36.023, "end": 36.158}, {"text": "a", "start": 36.158, "end": 36.226}, {"text": "designer", "start": 36.226, "end": 36.566}]}, {"id": "g40", "start": 36.634, "end": 37.245, "visEnd": 37.245, "words": [{"text": "that", "start": 36.634, "end": 36.769}, {"text": "you", "start": 36.769, "end": 36.905}, {"text": "can", "start": 36.905, "end": 36.973}, {"text": "rely", "start": 36.973, "end": 37.245}]}, {"id": "g41", "start": 37.245, "end": 37.584, "visEnd": 37.927, "words": [{"text": "on.", "start": 37.245, "end": 37.584}]}];
+      var FONT = "Hanken Grotesk";
+      var BASE = 66, MIN = 54, MAX_LINE = 870; // 950 pill max minus padding
+      var ACTIVE = "#FF5532", INACTIVE = "#ffffff";
+      var ctx = document.createElement("canvas").getContext("2d");
+      function width(text, size) {
+        ctx.font = "700 " + size + "px " + FONT;
+        return ctx.measureText(text).width * 1.06;
+      }
+      function lineWidth(ws, size) {
+        return ws.reduce(function (t, w, i) { return t + width(w.text, size) + (i ? size * 0.32 : 0); }, 0);
+      }
+      function split(ws, size) {
+        if (lineWidth(ws, size) <= MAX_LINE) return [ws];
+        var best = null, imb = Infinity;
+        for (var s = 1; s < ws.length; s++) {
+          var a = ws.slice(0, s), b = ws.slice(s);
+          var wa = lineWidth(a, size), wb = lineWidth(b, size);
+          if (wa <= MAX_LINE && wb <= MAX_LINE && Math.abs(wa - wb) < imb) { best = [a, b]; imb = Math.abs(wa - wb); }
+        }
+        return best;
+      }
+      var stage = document.getElementById("captions-stage");
+      GROUPS.forEach(function (g, gi) {
+        var size = BASE, lines = split(g.words, size);
+        while (!lines && size > MIN) { size -= 2; lines = split(g.words, size); }
+        if (!lines) lines = [g.words];
+        var el = document.createElement("div");
+        el.className = "cap-group"; el.id = "cap-" + g.id;
+        var pill = document.createElement("div"); pill.className = "cap-pill";
+        var wi = 0;
+        lines.forEach(function (lw) {
+          var line = document.createElement("div"); line.className = "cap-line"; line.style.fontSize = size + "px";
+          lw.forEach(function (w) {
+            var span = document.createElement("span"); span.className = "cap-word";
+            span.id = "cap-" + g.id + "-w" + (wi++); span.textContent = w.text; line.appendChild(span);
+          });
+          pill.appendChild(line);
+        });
+        el.appendChild(pill); stage.appendChild(el);
+      });
+
+      var tl = gsap.timeline({ paused: true });
+      GROUPS.forEach(function (g) {
+        var el = "#cap-" + g.id;
+        var t0 = Math.max(0.05, g.start);
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.06, ease: "none" }, t0);
+        g.words.forEach(function (w, i) {
+          var ws = el + "-w" + i;
+          tl.set(ws, { color: i === 0 ? ACTIVE : INACTIVE }, t0);
+          if (i > 0) tl.to(ws, { color: ACTIVE, duration: 0.06, ease: "none" }, Math.max(t0, w.start - 0.03));
+        });
+        // hard off at visEnd (= the next group's start), so two groups never overlap
+        tl.set(el, { opacity: 0 }, g.visEnd);
+      });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

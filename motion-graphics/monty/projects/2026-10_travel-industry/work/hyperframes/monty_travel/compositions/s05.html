@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s05-eb, #s05-h { left: 0; width: 1920px; text-align: center; }
+    #s05-eb { top: 226px; }
+    #s05-h { top: 266px; }
+    .s05-t { position: absolute; width: 427px; height: 195px; background: #fff; display: flex; align-items: center; gap: 22px; padding-left: 39px; }
+    .s05-t .tile { width: 107px; height: 107px; border-radius: 22px; font-size: 54px; background: linear-gradient(180deg, #18a2cb, #93cde1); }
+    .s05-t .nm { font-weight: 700; font-size: 27px; line-height: 1.12; color: var(--teal-d); white-space: nowrap; }
+  </style>
+  <div data-hf-id="hf-fvbf" id="root" data-composition-id="s05" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-q6fz" class="stage" id="s05-stage">
+      <div data-hf-id="hf-7x05" id="s05-eb" class="abs eyebrow">Who it's for</div>
+      <div data-hf-id="hf-y8fn" id="s05-h" class="abs h"><span data-hf-id="hf-px5s" class="w lt">Built </span><span data-hf-id="hf-o9un" class="w lt">for </span><span data-hf-id="hf-65nv" class="w lt">the </span><span data-hf-id="hf-uch2" class="w bd">travel </span><span data-hf-id="hf-wlm0" class="w bd">ecosystem.</span></div>
+
+      <div data-hf-id="hf-uzqr" class="s05-t" style="left:67px;top:415px;border-radius:40px 40px 0 40px"><span data-hf-id="hf-dvjt" class="tile"><span data-hf-id="hf-x3q8" class="i" style="--i:url(assets/icons/plane.svg)"></span></span><div data-hf-id="hf-wm1c" class="nm">Airlines</div></div>
+      <div data-hf-id="hf-8idp" class="s05-t" style="left:520px;top:415px;border-radius:40px"><span data-hf-id="hf-v559" class="tile"><span data-hf-id="hf-i6f4" class="i" style="--i:url(assets/icons/ticket.svg)"></span></span><div data-hf-id="hf-def1" class="nm">OTAs &amp;<br data-hf-id="hf-x5px" />Travel agencies</div></div>
+      <div data-hf-id="hf-kz2h" class="s05-t" style="left:973px;top:415px;border-radius:40px 40px 40px 0"><span data-hf-id="hf-wc2c" class="tile"><span data-hf-id="hf-7nqw" class="i" style="--i:url(assets/icons/credit-card.svg)"></span></span><div data-hf-id="hf-raee" class="nm">Payment &amp;<br data-hf-id="hf-rsrt" />Fintech Platforms</div></div>
+      <div data-hf-id="hf-fl35" class="s05-t" style="left:1426px;top:415px;border-radius:40px 0 40px 40px"><span data-hf-id="hf-vxrb" class="tile"><span data-hf-id="hf-xlz8" class="i" style="--i:url(assets/icons/mobile-screen-button.svg)"></span></span><div data-hf-id="hf-gtrd" class="nm">Travel apps</div></div>
+      <div data-hf-id="hf-n7cb" class="s05-t" style="left:67px;top:635px;border-radius:40px 40px 40px 0"><span data-hf-id="hf-x4oe" class="tile"><span data-hf-id="hf-6nvp" class="i" style="--i:url(assets/icons/layer-group.svg)"></span></span><div data-hf-id="hf-z4zx" class="nm">Travel Technology<br data-hf-id="hf-szow" />Platforms</div></div>
+      <div data-hf-id="hf-s3f1" class="s05-t" style="left:520px;top:635px;border-radius:40px 0 40px 40px"><span data-hf-id="hf-wqdd" class="tile"><span data-hf-id="hf-ntw6" class="i" style="--i:url(assets/icons/briefcase.svg)"></span></span><div data-hf-id="hf-cnnd" class="nm">Corporate travel<br data-hf-id="hf-sldv" />&amp; TMCs</div></div>
+      <div data-hf-id="hf-ymhd" class="s05-t" style="left:973px;top:635px;border-radius:40px 40px 0 40px"><span data-hf-id="hf-xxag" class="tile"><span data-hf-id="hf-m9ff" class="i" style="--i:url(assets/icons/award.svg)"></span></span><div data-hf-id="hf-2etg" class="nm">Loyalty programs</div></div>
+      <div data-hf-id="hf-bz4h" class="s05-t" style="left:1426px;top:635px;border-radius:40px"><span data-hf-id="hf-xizf" class="tile"><span data-hf-id="hf-7x3t" class="i" style="--i:url(assets/icons/bed.svg)"></span></span><div data-hf-id="hf-5lic" class="nm">Hotels</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s05-eb", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 0.05);
+    MS.words(tl, "#s05-h .lt", 0.12, { s: 0.09 });
+    MS.words(tl, "#s05-h .bd", 1.42, { s: 0.14 });
+    MS.pop(tl, ".s05-t", 0.3, { y: 50, sc: 0.9, s: 0.07 });
+    // pushes out onto the music drop
+    MS.exit(tl, "#s05-stage", 2.25, "push");
+    window.__timelines["s05"] = tl;
+  </script>
+</template>

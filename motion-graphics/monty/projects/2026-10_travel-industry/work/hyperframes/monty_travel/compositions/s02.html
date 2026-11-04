@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .s02-card { position: absolute; left: 260px; width: 1400px; height: 150px; display: flex; align-items: center; padding: 0 40px; gap: 22px; }
+    .s02-card .t1 { font-weight: 700; font-size: 29px; color: var(--navy); }
+    .s02-card .t2 { font-size: 19px; color: var(--navy); margin-top: 4px; }
+    .s02-card .badge-red { position: absolute; right: 58px; top: 55px; }
+    #s02-c1 { top: 213px; } #s02-c2 { top: 388px; } #s02-c3 { top: 563px; }
+    #s02-l1, #s02-l2 { left: 0; width: 1920px; text-align: center; }
+    #s02-l1 { top: 790px; } #s02-l2 { top: 875px; }
+  </style>
+  <div data-hf-id="hf-m6ce" id="root" data-composition-id="s02" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-nkes" class="stage" id="s02-stage">
+      <div data-hf-id="hf-k362" id="s02-c1" class="s02-card card">
+        <span data-hf-id="hf-dvjt" class="tile"><span data-hf-id="hf-x3q8" class="i" style="--i:url(assets/icons/plane.svg)"></span></span>
+        <div data-hf-id="hf-yeow"><div data-hf-id="hf-jvh7" class="t1">Airport kiosk</div><div data-hf-id="hf-t3pt" class="t2">SIM bought at arrivals</div></div>
+        <span data-hf-id="hf-smli" class="badge-red"><span data-hf-id="hf-7l0g" class="i" style="--i:url(assets/icons/circle-exclamation.svg)"></span>Revenue lost</span>
+      </div>
+      <div data-hf-id="hf-g521" id="s02-c2" class="s02-card card">
+        <span data-hf-id="hf-v559" class="tile"><span data-hf-id="hf-pipb" class="i" style="--i:url(assets/icons/file-invoice-dollar.svg)"></span></span>
+        <div data-hf-id="hf-y7yw"><div data-hf-id="hf-d9zp" class="t1">Roaming bill</div><div data-hf-id="hf-p1ys" class="t2">Paid to their home carrier</div></div>
+        <span data-hf-id="hf-adbe" class="badge-red"><span data-hf-id="hf-jqjc" class="i" style="--i:url(assets/icons/circle-exclamation.svg)"></span>Revenue lost</span>
+      </div>
+      <div data-hf-id="hf-fde8" id="s02-c3" class="s02-card card">
+        <span data-hf-id="hf-wc2c" class="tile"><span data-hf-id="hf-g3t4" class="i" style="--i:url(assets/icons/sim-card.svg)"></span></span>
+        <div data-hf-id="hf-x11t"><div data-hf-id="hf-jrh1" class="t1">Another eSIM app</div><div data-hf-id="hf-fmkw" class="t2">Downloaded in the taxi queue</div></div>
+        <span data-hf-id="hf-armf" class="badge-red"><span data-hf-id="hf-ijm9" class="i" style="--i:url(assets/icons/circle-exclamation.svg)"></span>Revenue lost</span>
+      </div>
+      <div data-hf-id="hf-5pyh" id="s02-l1" class="abs h lt"><span data-hf-id="hf-bnfr" class="w">Then </span><span data-hf-id="hf-tg9q" class="w">they </span><span data-hf-id="hf-6lst" class="w">land</span></div>
+      <div data-hf-id="hf-zj6o" id="s02-l2" class="abs h bd"><span data-hf-id="hf-difl" class="w">and </span><span data-hf-id="hf-t5pk" class="w">buy </span><span data-hf-id="hf-p5sw" class="w">data </span><span data-hf-id="hf-cd4m" class="w">elsewhere.</span></div>
+    </div>
+  </div>
+  <script>
+    MS.grad("#s02-l2", [36, 160, 196], [108, 172, 196]);
+    const tl = gsap.timeline({ paused: true });
+    MS.words(tl, "#s02-l1 .w", 0.15, { s: 0.12 });
+    MS.words(tl, "#s02-l2 .w", 1.62, { s: 0.11 });
+    // each way they buy data, on the word that names it
+    MS.pop(tl, "#s02-c1", 2.45, { x: 160, y: 0, sc: 0.96 });
+    MS.pop(tl, "#s02-c2", 3.05, { x: 160, y: 0, sc: 0.96 });
+    MS.pop(tl, "#s02-c3", 3.75, { x: 160, y: 0, sc: 0.96 });
+    // "That's revenue..." : the cost lands on each card
+    MS.badge(tl, "#s02-c1 .badge-red", 5.4);
+    MS.badge(tl, "#s02-c2 .badge-red", 5.65);
+    MS.badge(tl, "#s02-c3 .badge-red", 5.9);
+    MS.exit(tl, "#s02-stage", 7.65, "blur");
+    window.__timelines["s02"] = tl;
+  </script>
+</template>

@@ -1,0 +1,32 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; src: url("assets/fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Inter", sans-serif; }
+    .top { position: absolute; left: 0; width: 1080px; top: 262px; text-align: center; white-space: nowrap;
+      font-size: 124px; font-weight: 600; letter-spacing: -0.075em; line-height: 1; color: #c30a0a; }
+    .bottom { position: absolute; left: 56px; top: 1470px; white-space: nowrap;
+      font-size: 150px; font-weight: 600; letter-spacing: -0.07em; line-height: 1; color: #ffffff; }
+    .w { opacity: 0; }
+    .chunk { position: absolute; left: 0; top: 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <!-- "The name Low Stress Options. What does that mean to you?" -->
+    <div id="hook-top" class="top"><span id="ht1" class="w">Low</span> <span id="ht2" class="w">Stress</span> <span id="ht3" class="w">Options</span></div>
+    <div id="hook-bottom" class="bottom">
+      <div id="hb1" class="chunk"><span id="hb1a" class="w">what</span> <span id="hb1b" class="w">does</span> <span id="hb2a" class="w">that</span></div>
+      <div id="hb2" class="chunk" style="top: 150px"><span id="hb2b" class="w">mean</span> <span id="hb3a" class="w">to</span> <span id="hb3b" class="w">you?</span></div>
+    </div>
+    <div id="hook-drv" class="clip" data-start="0" data-duration="2.40" data-track-index="0" style="position:absolute;width:1px;height:1px;opacity:0"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Word-synced reveals (cut times): low .40 stress .60 options .86 / what 1.38 does 1.44 that 1.56 mean 1.68 to 1.80 you 2.00
+      [["#ht1", 0.40], ["#ht2", 0.60], ["#ht3", 0.86]].forEach(([s, t]) => tl.set(s, { opacity: 1 }, t));
+      [["#hb1a", 1.38], ["#hb1b", 1.44]].forEach(([s, t]) => tl.set(s, { opacity: 1 }, t));
+      [["#hb2a", 1.56], ["#hb2b", 1.68]].forEach(([s, t]) => tl.set(s, { opacity: 1 }, t));
+      [["#hb3a", 1.80], ["#hb3b", 2.00]].forEach(([s, t]) => tl.set(s, { opacity: 1 }, t));
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

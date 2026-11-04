@@ -1,0 +1,27 @@
+<template>
+  <style>
+    @font-face { font-family: "Hanken Grotesk"; src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    #g-card { position: absolute; left: 65px; top: 300px; width: 950px; height: 340px; border-radius: 26px; background: #fff; box-shadow: 0 8px 28px rgba(30, 41, 59, 0.16); padding: 36px 40px; opacity: 0; }
+    #g-kicker { font-weight: 600; font-size: 34px; color: #6c7786; letter-spacing: -0.01em; line-height: 1; opacity: 0; }
+    #g-head { margin-top: 22px; font-weight: 800; font-size: 76px; color: #1e293b; letter-spacing: -0.025em; line-height: 1.04; opacity: 0; }
+    #g-head em { font-style: normal; color: #ff5532; }
+  </style>
+  <div id="root" data-composition-id="guarantee" data-width="1080" data-height="1920">
+    <!-- host at 13.3: card on "why" (13.5 -> 0.2), headline on "15-day" (14.45 -> 1.15), out at 16.05 (2.75) -->
+    <div id="g-card" class="clip" data-start="0" data-duration="2.9" data-track-index="0">
+      <div id="g-kicker">Delesign offers a</div>
+      <div id="g-head"><em>15-day</em> money-back<br />guarantee</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#g-card", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" }, 0.2);
+      tl.fromTo("#g-kicker", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, 0.34);
+      tl.fromTo("#g-head", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" }, 0.65); // lands 0.5 s ahead of "15-day" so the card never sits empty
+      tl.to("#g-card", { opacity: 0, y: -18, duration: 0.16, ease: "power2.in" }, 2.72);
+      window.__timelines["guarantee"] = tl;
+    })();
+  </script>
+</template>

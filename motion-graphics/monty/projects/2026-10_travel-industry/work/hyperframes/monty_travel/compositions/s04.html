@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .s04-lab { position: absolute; top: 226px; font-weight: 700; font-size: 30px; white-space: nowrap; }
+    .s04-rule { position: absolute; top: 307px; width: 618px; height: 3px; transform-origin: left center; }
+    .s04-line { position: absolute; top: 489px; height: 3px; transform-origin: left center; }
+    .s04-node { position: absolute; top: 437px; width: 100px; height: 100px; margin-left: -50px; }
+    .s04-node .disc { font-size: 42px; }
+    .s04-node .nm { position: absolute; top: 128px; left: 50%; transform: translateX(-50%); width: 240px; text-align: center;
+      font-weight: 700; font-size: 30px; line-height: 1.1; }
+    .s04-a .disc { background: var(--teal-d); } .s04-a .nm { color: var(--teal-d); }
+    .s04-b .disc { background: #17acd3; box-shadow: 0 0 0 12px rgba(23, 172, 211, 0.2); } .s04-b .nm { color: var(--cyan); }
+    .s04-chip { position: absolute; top: 643px; height: 40px; padding: 0 20px; border-radius: 20px; display: flex; align-items: center;
+      background: rgba(150, 210, 230, 0.55); color: var(--cyan); font-weight: 700; font-size: 20px; white-space: nowrap; }
+    #s04-l1, #s04-l2, #s04-sub { left: 0; width: 1920px; text-align: center; }
+    #s04-l1 { top: 748px; } #s04-l2 { top: 833px; } #s04-sub { top: 940px; }
+  </style>
+  <div data-hf-id="hf-h6so" id="root" data-composition-id="s04" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-jpgi" class="stage" id="s04-stage">
+      <div data-hf-id="hf-45yi" id="s04-lab1" class="s04-lab" style="left:247px;color:var(--teal-d)">Your journey today:</div>
+      <div data-hf-id="hf-s72q" id="s04-rule1" class="s04-rule" style="left:246px;background:var(--teal-d)"></div>
+      <div data-hf-id="hf-dda9" id="s04-lab2" class="s04-lab" style="left:1021px;color:var(--cyan)">Could be part of your journey too:</div>
+      <div data-hf-id="hf-3dr4" id="s04-rule2" class="s04-rule" style="left:1020px;background:var(--cyan)"></div>
+
+      <div data-hf-id="hf-hwrj" id="s04-ln1" class="s04-line" style="left:297px;width:774px;background:var(--teal-d)"></div>
+      <div data-hf-id="hf-rbg0" id="s04-ln2" class="s04-line" style="left:1071px;width:516px;background:#17acd3"></div>
+
+      <div data-hf-id="hf-zakf" id="s04-n1" class="s04-node s04-a" style="left:297px"><span data-hf-id="hf-vrea" class="disc"><span data-hf-id="hf-3ahk" class="i" style="--i:url(assets/icons/magnifying-glass.svg)"></span></span><div data-hf-id="hf-ugrb" class="nm">Search</div></div>
+      <div data-hf-id="hf-ex3n" id="s04-n2" class="s04-node s04-a" style="left:555px"><span data-hf-id="hf-lcfq" class="disc"><span data-hf-id="hf-i6f4" class="i" style="--i:url(assets/icons/ticket.svg)"></span></span><div data-hf-id="hf-t23m" class="nm">Book</div></div>
+      <div data-hf-id="hf-ahcz" id="s04-n3" class="s04-node s04-a" style="left:813px"><span data-hf-id="hf-lqqr" class="disc"><span data-hf-id="hf-7nqw" class="i" style="--i:url(assets/icons/credit-card.svg)"></span></span><div data-hf-id="hf-kwof" class="nm">Pay</div></div>
+      <div data-hf-id="hf-feai" id="s04-n4" class="s04-node s04-b" style="left:1071px"><span data-hf-id="hf-m51s" class="disc"><span data-hf-id="hf-7eef" class="i" style="--i:url(assets/icons/globe.svg)"></span></span><div data-hf-id="hf-to20" class="nm">Add eSIM</div></div>
+      <div data-hf-id="hf-9dz7" id="s04-n5" class="s04-node s04-b" style="left:1329px"><span data-hf-id="hf-jcwl" class="disc"><span data-hf-id="hf-wpxk" class="i" style="--i:url(assets/icons/plane-arrival.svg)"></span></span><div data-hf-id="hf-5i8t" class="nm">Land connected</div></div>
+      <div data-hf-id="hf-u2la" id="s04-n6" class="s04-node s04-b" style="left:1587px"><span data-hf-id="hf-jr7m" class="disc"><span data-hf-id="hf-6wtd" class="i" style="--i:url(assets/icons/arrow-up.svg)"></span></span><div data-hf-id="hf-nvtr" class="nm">Top up</div></div>
+
+      <div data-hf-id="hf-fvi3" id="s04-ch1" class="s04-chip" style="left:986px">+ New Revenue</div>
+      <div data-hf-id="hf-cvxb" id="s04-ch2" class="s04-chip" style="left:1411px">+ Repeat Revenue</div>
+
+      <div data-hf-id="hf-xicn" id="s04-l1" class="abs h lt"><span data-hf-id="hf-lrhv" class="w">You </span><span data-hf-id="hf-iq7y" class="w">have </span><span data-hf-id="hf-9o0j" class="w">the </span><span data-hf-id="hf-h06y" class="w">customer.</span></div>
+      <div data-hf-id="hf-1zyu" id="s04-l2" class="abs h bd"><span data-hf-id="hf-1neg" class="w">Own </span><span data-hf-id="hf-kdtg" class="w">their </span><span data-hf-id="hf-u5q7" class="w">connectivity </span><span data-hf-id="hf-vezg" class="w">too.</span></div>
+      <div data-hf-id="hf-6k4t" id="s04-sub" class="abs sub">Unlock a new revenue stream on every trip you sell.</div>
+    </div>
+  </div>
+  <script>
+    MS.grad("#s04-l2", [70, 160, 196], [0, 165, 205]);
+    const tl = gsap.timeline({ paused: true });
+    const draw = (sel, t, d) => tl.fromTo(sel, { scaleX: 0 }, { scaleX: 1, duration: d, ease: "power2.inOut" }, t);
+    // today's journey: three steps along the line
+    tl.fromTo("#s04-lab1", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 0.05);
+    draw("#s04-rule1", 0.05, 0.6);
+    draw("#s04-ln1", 0.15, 0.75);
+    MS.pop(tl, "#s04-n1, #s04-n2, #s04-n3", 0.15, { y: 20, sc: 0.6, s: 0.15 });
+    MS.words(tl, "#s04-l1 .w", 0.2, { s: 0.1 });
+    // the part they could own
+    tl.fromTo("#s04-lab2", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, 1.55);
+    draw("#s04-rule2", 1.55, 0.6);
+    draw("#s04-ln2", 1.7, 0.7);
+    MS.pop(tl, "#s04-n4, #s04-n5, #s04-n6", 1.7, { y: 20, sc: 0.6, s: 0.15 });
+    MS.words(tl, "#s04-l2 .w", 1.72, { s: 0.12 });
+    MS.badge(tl, "#s04-ch1", 2.32);
+    MS.badge(tl, "#s04-ch2", 2.55);
+    tl.fromTo("#s04-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 2.95);
+    MS.exit(tl, "#s04-stage", 3.6, "push");
+    window.__timelines["s04"] = tl;
+  </script>
+</template>

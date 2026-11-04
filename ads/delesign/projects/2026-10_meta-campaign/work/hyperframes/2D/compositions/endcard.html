@@ -1,0 +1,78 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hanken Grotesk";
+      src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: block;
+    }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    #end-bg { position: absolute; inset: 0; background: #ffffff; opacity: 0; }
+    #end-stack {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding-bottom: 120px; /* visual centre sits a little above the frame centre */
+    }
+    #end-logo { width: 420px; height: auto; opacity: 0; }
+    #end-headline {
+      margin-top: 72px;
+      font-weight: 800;
+      font-size: 84px;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+      color: #1e293b;
+      text-align: center;
+      opacity: 0;
+    }
+    #end-button {
+      margin-top: 48px;
+      padding: 28px 56px 32px;
+      border-radius: 999px;
+      background: #ff5532;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      box-shadow: 0 10px 30px rgba(255, 85, 50, 0.28);
+      opacity: 0;
+    }
+    #end-sub {
+      margin-top: 36px;
+      font-weight: 500;
+      font-size: 34px;
+      color: #33473b;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+    <div id="end-bg" class="clip" data-start="0" data-duration="3" data-track-index="0"></div>
+    <div id="end-stack" class="clip" data-start="0" data-duration="3" data-track-index="1">
+      <img id="end-logo" src="assets/brand/logo.svg" alt="Delesign" />
+      <div id="end-headline">Your clients’ brands,<br />remembered</div>
+      <div id="end-button">Book a call</div>
+      <div id="end-sub">A designer you can rely on</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      // White wipes up over the last frame of Shaival, then the stack lands. Everything is still from 1.0 s on;
+      // the final second (2.0-3.0) holds completely still.
+      tl.fromTo("#end-bg", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power2.out" }, 0);
+      tl.fromTo("#end-logo", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.12);
+      tl.fromTo("#end-headline", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 0.26);
+      tl.fromTo("#end-button", { opacity: 0, y: 24, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power3.out" }, 0.42);
+      tl.fromTo("#end-sub", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.56);
+      window.__timelines["endcard"] = tl;
+    })();
+  </script>
+</template>

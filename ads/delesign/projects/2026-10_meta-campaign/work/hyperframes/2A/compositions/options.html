@@ -1,0 +1,152 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hanken Grotesk";
+      src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Architects Daughter";
+      src: url("assets/fonts/ArchitectsDaughter-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-display: block;
+    }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    .card {
+      position: absolute;
+      left: 350px;
+      width: 665px;
+      border-radius: 26px;
+      background: #ffffff;
+      color: #1e293b;
+      box-shadow: 0 8px 28px rgba(30, 41, 59, 0.16);
+      overflow: hidden;
+      opacity: 0;
+    }
+    .card .head {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 26px 24px;
+      font-weight: 800;
+      font-size: 46px;
+      letter-spacing: -0.015em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .card .num {
+      width: 58px; height: 58px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f1f5f9; color: #1e293b; font-size: 34px; font-weight: 800; flex: 0 0 auto;
+    }
+    .card .body { position: relative; height: 150px; padding: 0 24px 16px; }
+    /* card 1: price tag */
+    #opt-price {
+      position: absolute; left: 24px; top: 12px;
+      padding: 18px 28px 20px; border-radius: 18px;
+      background: #ff5532; color: #fff; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.01em;
+      opacity: 0; white-space: nowrap;
+    }
+    /* card 2: two items + hand note */
+    .item {
+      position: absolute; left: 24px;
+      display: flex; align-items: center; gap: 16px;
+      font-weight: 600; font-size: 42px; line-height: 1; color: #1e293b; opacity: 0; white-space: nowrap;
+    }
+    .item .dot { width: 14px; height: 14px; border-radius: 50%; background: #ff5532; flex: 0 0 auto; }
+    #opt-item1 { top: 16px; }
+    #opt-item2 { top: 62px; }
+    #opt-note {
+      position: absolute; right: 28px; top: 70px;
+      font-family: "Architects Daughter", cursive; font-size: 52px; color: #ff5532; opacity: 0;
+      transform-origin: 50% 50%;
+    }
+    /* card 3: flat calendar with stacked deadlines */
+    #opt-cal { position: absolute; left: 24px; top: 8px; width: 617px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; opacity: 0; }
+    #opt-cal .day { height: 34px; border-radius: 6px; background: #f1f5f9; }
+    .dl {
+      position: absolute; height: 26px; border-radius: 7px; background: #ff5532; opacity: 0;
+      box-shadow: 0 2px 6px rgba(30, 41, 59, 0.18);
+    }
+    .dl.lav { background: #c7b0ff; }
+    .dl.grn { background: #33473b; }
+    /* card 4 */
+    #opt-card4 { background: #ff5532; color: #fff; }
+    #opt-card4 .num { background: rgba(255, 255, 255, 0.22); color: #fff; }
+    #opt-card4 .body { height: 0; padding: 0; }
+  </style>
+  <div id="root" data-composition-id="options" data-width="1080" data-height="1920">
+    <div id="opt-card1" class="card clip" data-start="0" data-duration="11.1" data-track-index="0" style="top: 300px; height: 260px">
+      <div class="head"><span class="num">1</span><span>Hire another designer</span></div>
+      <div class="body"><div id="opt-price">$85,000 / year</div></div>
+    </div>
+    <div id="opt-card2" class="card clip" data-start="4.3" data-duration="6.8" data-track-index="1" style="top: 580px; height: 260px">
+      <div class="head"><span class="num">2</span><span>Freelancers</span></div>
+      <div class="body">
+        <div class="item" id="opt-item1"><span class="dot"></span><span>Chasing deadlines</span></div>
+        <div id="opt-note">…again?</div>
+      </div>
+    </div>
+    <div id="opt-card3" class="card clip" data-start="6.9" data-duration="4.25" data-track-index="2" style="top: 860px; height: 260px">
+      <div class="head"><span class="num">3</span><span>Your current designer</span></div>
+      <div class="body">
+        <div id="opt-cal">
+          <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+          <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+          <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+        </div>
+        <div class="dl" id="opt-dl1" style="left: 110px; top: 14px; width: 210px"></div>
+        <div class="dl lav" id="opt-dl2" style="left: 200px; top: 30px; width: 230px"></div>
+        <div class="dl grn" id="opt-dl3" style="left: 290px; top: 46px; width: 200px"></div>
+        <div class="dl" id="opt-dl4" style="left: 385px; top: 62px; width: 210px"></div>
+        <div class="dl lav" id="opt-dl5" style="left: 150px; top: 96px; width: 290px"></div>
+        <div class="dl grn" id="opt-dl6" style="left: 340px; top: 112px; width: 250px"></div>
+      </div>
+    </div>
+    <div id="opt-card4" class="card clip" data-start="11.4" data-duration="1.0" data-track-index="3" style="top: 580px; height: 110px">
+      <div class="head"><span class="num">4</span><span>Delesign</span></div>
+      <div class="body"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // Host starts at 14.03 s of the film (cut v2). Local = film - 14.03. Times after the removed sentence shifted by -2.673.
+      var tl = gsap.timeline({ paused: true });
+      // Cards are 234 px tall (84 head + 150 body) at fixed tops 760 / 856 / 952. A card "collapses"
+      // to its head with a clip-path inset (paint only, no layout, shadow follows the clip).
+      var OPEN = "inset(0px 0px 0px 0px round 26px)";
+      var SHUT = "inset(0px 0px 150px 0px round 26px)";
+      function land(sel, at) {
+        tl.fromTo(sel, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" }, at);
+      }
+      function collapse(sel, at) {
+        tl.fromTo(sel, { clipPath: OPEN }, { clipPath: SHUT, duration: 0.3, ease: "power3.inOut" }, at);
+      }
+      // Card 1 lands on "You can hire" (14.07): local 0.04.
+      land("#opt-card1", 0.04);
+      // "$85,000" at 16.95: local 2.92
+      tl.fromTo("#opt-price", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.22, ease: "power3.out" }, 2.92);
+      // Card 2 on "You could find" (18.39): local 4.36. Card 1 collapses to a slim row above.
+      collapse("#opt-card1", 4.3);
+      land("#opt-card2", 4.36);
+      // item on "chasing" (19.83 -> 5.8); "...again?" note right after "deadlines" (20.7 -> 6.7)
+      tl.fromTo("#opt-item1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, 5.8);
+      tl.fromTo("#opt-note", { opacity: 0, rotation: -6, scale: 0.9 }, { opacity: 1, rotation: -4, scale: 1, duration: 0.22, ease: "power3.out" }, 6.7);
+      // Card 3 on "You could keep" (21.0): local 6.97. Card 2 collapses; stack: 740 / 842 / 944.
+      collapse("#opt-card2", 6.91);
+      land("#opt-card3", 6.97);
+      // calendar on "negotiation" (24.28 -> 10.25), deadlines pile up 50 ms apart
+      tl.fromTo("#opt-cal", { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out" }, 9.63);
+      ["#opt-dl1", "#opt-dl2", "#opt-dl3", "#opt-dl4", "#opt-dl5", "#opt-dl6"].forEach(function (s, i) {
+        tl.fromTo(s, { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" }, 10.25 + i * 0.05);
+      });
+      // Stack clears on "Or" (25.0 -> 10.97); card 4 lands on "use" (25.48 -> 11.45)
+      tl.to(["#opt-card1", "#opt-card2", "#opt-card3"], { opacity: 0, y: -18, duration: 0.14, ease: "power2.in", stagger: 0.03 }, 10.97);
+      tl.fromTo("#opt-card4", { opacity: 0, y: 26, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power3.out" }, 11.45);
+      // exit before the portfolio flashes (26.28 -> 12.25)
+      tl.to("#opt-card4", { opacity: 0, duration: 0.14, ease: "power2.in" }, 12.23);
+      window.__timelines["options"] = tl;
+    })();
+  </script>
+</template>

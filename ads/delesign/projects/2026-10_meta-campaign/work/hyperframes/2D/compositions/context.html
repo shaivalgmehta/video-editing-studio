@@ -1,0 +1,108 @@
+<template>
+  <style>
+    @font-face { font-family: "Hanken Grotesk"; src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    @font-face { font-family: "Architects Daughter"; src: url("assets/fonts/ArchitectsDaughter-Regular.ttf") format("truetype"); font-weight: 400; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    .screen { position: absolute; left: 65px; width: 950px; border-radius: 26px; overflow: hidden; background: #fff; box-shadow: 0 14px 44px rgba(30, 41, 59, 0.2); opacity: 0; }
+    .screen .push { position: absolute; inset: 0; }
+    .screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .illus { position: absolute; right: 16px; bottom: 12px; font-size: 14px; font-weight: 500; color: #6c7786; }
+    .hand { position: absolute; font-family: "Architects Daughter", cursive; font-size: 46px; color: #1e293b; white-space: nowrap; opacity: 0; }
+    .ask { position: absolute; left: 65px; display: flex; align-items: center; gap: 20px; padding: 26px 38px 30px; border-radius: 999px; background: #fff; color: #1e293b; font-weight: 700; font-size: 54px; line-height: 1; box-shadow: 0 6px 20px rgba(30, 41, 59, 0.12); opacity: 0; white-space: nowrap; }
+    .ask .ck { width: 44px; height: 44px; border-radius: 50%; background: #ff5532; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; flex: 0 0 auto; }
+    #c-title { position: absolute; left: 65px; top: 280px; font-weight: 800; font-size: 64px; color: #1e293b; letter-spacing: -0.015em; opacity: 0; }
+    #c-title em { font-style: normal; color: #ff5532; }
+    #k-1 { top: 400px; } #k-2 { top: 530px; } #k-3 { top: 660px; }
+  </style>
+  <div id="root" data-composition-id="context" data-width="1080" data-height="1920">
+    <!-- host at 16.9 (local = film - 16.9).
+         A. request list still on "The last round of feedback" (17.07 -> 0.17), note; out 2.5
+         B. Go brands list on "We keep the guidelines" (19.51 -> 2.61), note; out 4.5; request-list recording full-bleed on "close to the requests" (21.45 -> 4.55) to 23.6 (6.7)
+         C. "Not from zero:" chips on "zero" (23.69 -> 6.79): Guidelines / Reference work / Last feedback; out 25.5 (8.6)
+         D. team panel on "cover an account" (25.7 -> 8.8), push to the backup on "cover" (26.70 -> 9.8), note "same context" (27.6 -> 10.7); out 28.8 (11.9)
+         E. Go brands list on "several client brands" (28.95 -> 12.05), slow push; out 31.3 (14.4) -->
+    <!-- A. the CD's "feedback after" brief (2000x1480 at 0.475 = 950x703); the magnified "You know the drill by now." callout sits at
+         image (860,805)-(1860,1160) -> screen (408,382)-(883,551); an orange outline lands on it on "feedback". Label bottom-left (bottom-right is under the picture-in-picture). -->
+    <div id="c-req" class="screen clip" data-start="0.1" data-duration="2.45" data-track-index="1" style="top: 300px; height: 400px">
+      <div class="push" id="c-req-push">
+        <img src="assets/go/feedback_after.jpg" alt="" style="position: absolute; left: 0; top: -230px; width: 950px; height: 703px; object-fit: fill" />
+        <div id="c-req-hl" style="position: absolute; left: 400px; top: 144px; width: 492px; height: 186px; border: 5px solid #ff5532; border-radius: 20px; background: rgba(255, 85, 50, 0.06); opacity: 0"></div>
+      </div>
+      <div class="illus" style="right: auto; left: 16px">Illustrative workflow</div>
+    </div>
+
+    <!-- B. brand guidelines image (714x715 square, shown as a 950x520 window on its top part); label bottom-left -->
+    <div id="c-brands" class="screen clip" data-start="2.55" data-duration="2.0" data-track-index="1" style="top: 290px; height: 520px">
+      <div class="push" id="c-brands-push"><img src="assets/go/brand_guidelines_example.png" style="object-position: 50% 12%" alt="" /></div>
+      <div class="illus" style="right: auto; left: 16px">Illustrative workflow</div>
+    </div>
+    <div id="c-brands-note" class="hand clip" data-start="2.55" data-duration="2.0" data-track-index="2" style="left: 110px; top: 860px">guidelines live here</div>
+
+    <!-- untimed wrapper, timed video -->
+    <div id="c-rec" style="position: absolute; inset: 0; overflow: hidden; opacity: 0">
+      <div class="push" id="c-rec-push" style="position: absolute; inset: 0">
+        <video id="c-rec-video" class="clip" src="assets/go/requests_scroll_6s_2x.mp4" data-start="4.5" data-duration="2.3" data-track-index="1" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; object-position: 50% 20%"></video>
+      </div>
+      <div class="illus" style="right: 24px; bottom: 420px">Illustrative workflow</div>
+    </div>
+
+    <div id="c-title" class="clip" data-start="6.7" data-duration="1.95" data-track-index="1">Not from <em>zero</em>:</div>
+    <div id="k-1" class="ask clip" data-start="6.7" data-duration="1.95" data-track-index="2"><span class="ck">✓</span><span>Guidelines</span></div>
+    <div id="k-2" class="ask clip" data-start="6.7" data-duration="1.95" data-track-index="3"><span class="ck">✓</span><span>Reference work</span></div>
+    <div id="k-3" class="ask clip" data-start="6.7" data-duration="1.95" data-track-index="4"><span class="ck">✓</span><span>Last feedback</span></div>
+
+    <div id="c-team" class="screen clip" data-start="8.7" data-duration="3.25" data-track-index="1" style="top: 300px; height: 297px">
+      <div class="push" id="c-team-push"><img src="assets/go/team_panel_stacked_2x.png" alt="" /></div>
+      <div class="illus">Illustrative workflow</div>
+    </div>
+    <div id="c-team-note" class="hand clip" data-start="8.7" data-duration="3.25" data-track-index="2" style="left: 110px; top: 640px">same context</div>
+
+    <div id="c-brands2" class="screen clip" data-start="12.0" data-duration="2.5" data-track-index="1" style="top: 290px; height: 380px">
+      <div class="push" id="c-brands2-push"><img src="assets/go/brands_list_phone_2x.png" alt="" /></div>
+      <div class="illus">Illustrative workflow</div>
+    </div>
+    <div id="c-brands2-note" class="hand clip" data-start="12.0" data-duration="2.5" data-track-index="2" style="left: 110px; top: 750px">every brand, one place</div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      function slideIn(sel, at) { tl.fromTo(sel, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.24, ease: "power3.out" }, at); }
+      function out(sel, at) { tl.to(sel, { opacity: 0, x: -40, duration: 0.18, ease: "power2.in" }, at); }
+      function note(sel, at) { tl.fromTo(sel, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, at); }
+      // A
+      slideIn("#c-req", 0.17);
+      gsap.set("#c-req-push", { transformOrigin: "68% 59%" }); // the callout
+      tl.fromTo("#c-req-push", { scale: 1 }, { scale: 1.12, duration: 2.3, ease: "none" }, 0.17);
+      tl.fromTo("#c-req-hl", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power3.out" }, 1.1); // "feedback"
+      out("#c-req", 2.4);
+      // B
+      slideIn("#c-brands", 2.61);
+      gsap.set("#c-brands-push", { transformOrigin: "20% 20%" });
+      tl.fromTo("#c-brands-push", { scale: 1 }, { scale: 1.06, duration: 1.9, ease: "none" }, 2.61);
+      note("#c-brands-note", 3.5); // "guidelines" 20.42
+      out("#c-brands", 4.4); out("#c-brands-note", 4.4);
+      tl.fromTo("#c-rec", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 4.55);
+      tl.fromTo("#c-rec-push", { scale: 1.0 }, { scale: 1.03, duration: 2.2, ease: "none" }, 4.55);
+      tl.to("#c-rec", { opacity: 0, duration: 0.15, ease: "power2.in" }, 6.6);
+      // C
+      tl.fromTo("#c-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 6.79);
+      [["#k-1", 6.95], ["#k-2", 7.03], ["#k-3", 7.11]].forEach(function (p) {
+        tl.fromTo(p[0], { opacity: 0, y: 16, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.22, ease: "power3.out" }, p[1]);
+      });
+      tl.to(["#c-title", "#k-1", "#k-2", "#k-3"], { opacity: 0, duration: 0.14, ease: "power2.in" }, 8.5);
+      // D
+      slideIn("#c-team", 8.8);
+      gsap.set("#c-team-push", { transformOrigin: "4% 66%" });
+      tl.fromTo("#c-team-push", { scale: 1 }, { scale: 1.0, duration: 1.0, ease: "none" }, 8.8);
+      tl.to("#c-team-push", { scale: 1.22, duration: 0.9, ease: "power2.inOut" }, 9.8); // "cover"
+      note("#c-team-note", 10.7); // "context" 27.82
+      out("#c-team", 11.8); out("#c-team-note", 11.8);
+      // E
+      slideIn("#c-brands2", 12.05);
+      tl.fromTo("#c-brands2-push", { scale: 1 }, { scale: 1.06, duration: 2.4, ease: "none" }, 12.05);
+      note("#c-brands2-note", 13.3); // "client brands" 30.21
+      out("#c-brands2", 14.3); out("#c-brands2-note", 14.3);
+      window.__timelines["context"] = tl;
+    })();
+  </script>
+</template>

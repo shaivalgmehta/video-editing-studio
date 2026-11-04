@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Monty eSIM house kit, sampled from the storyboard frames */
+      :root {
+        --ink: #0b0b0b;
+        --navy: #13294b;
+        --teal-d: #05658e;
+        --teal: #0a7ea8;
+        --cyan: #00a5cd;
+        --cyan-l: #6cb5cd;
+        --purple: #7a58de;
+        --lav: #ece7fc;
+        --red: #e5203d;
+        --red-bg: #fde4e9;
+        --green: #1f9a6b;
+        --amber: #fbb02b;
+        --magenta: #e266b4;
+        --font: "Montserrat", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #e9f2f6;
+        font-family: var(--font);
+      }
+      #root { position: absolute; inset: 0; font-family: var(--font); }
+      .ground {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(118deg, #ffffff 0%, #edf4f7 30%, #d3e8ef 65%, #abdae8 100%);
+      }
+
+      /* scene frame */
+      .stage { position: absolute; inset: 0; font-family: var(--font); color: var(--ink); }
+      .abs { position: absolute; }
+
+      /* type */
+      .h { font-size: 81px; line-height: 1.13; letter-spacing: -0.005em; white-space: nowrap; }
+      .h.xl { font-size: 116px; }
+      .h.md { font-size: 72px; }
+      .lt { font-weight: 400; color: var(--ink); }
+      .bd { font-weight: 700; color: var(--cyan); }
+      .bd.dark { color: var(--teal-d); }
+      .w { display: inline-block; white-space: pre; }
+      .sub { font-size: 32px; font-weight: 400; color: var(--ink); white-space: nowrap; }
+      .eyebrow { font-size: 32px; font-weight: 400; color: var(--ink); }
+
+      /* pills and chips */
+      .pill {
+        display: inline-flex; align-items: center; height: 60px; padding: 0 28px;
+        border-radius: 30px; background: linear-gradient(90deg, #17a4cb, #3ea0c3);
+        color: #fff; font-weight: 700; font-size: 27px; white-space: nowrap;
+      }
+      .chip {
+        display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 20px;
+        border-radius: 21px; background: #fff; color: var(--teal-d);
+        font-weight: 700; font-size: 20px; white-space: nowrap;
+      }
+      .chip .i { font-size: 17px; color: var(--cyan); }
+
+      /* icons: Font Awesome 6 solid as masks, coloured by currentColor */
+      .i {
+        display: inline-block; width: 1em; height: 1em; flex: none;
+        background: currentColor;
+        -webkit-mask: var(--i) center / contain no-repeat;
+        mask: var(--i) center / contain no-repeat;
+      }
+      .tile {
+        display: inline-flex; align-items: center; justify-content: center; flex: none;
+        width: 52px; height: 52px; border-radius: 12px;
+        background: linear-gradient(160deg, #46acce, #a7d7e6); color: #fff; font-size: 26px;
+      }
+      .tile.lav { background: linear-gradient(160deg, #8d6be6, #c9b8f5); }
+      .tile.sq { border-radius: 22px; }
+      .disc {
+        display: inline-flex; align-items: center; justify-content: center; flex: none;
+        width: 100px; height: 100px; border-radius: 50%; color: #fff; font-size: 44px;
+      }
+      .halo { box-shadow: 0 0 0 12px rgba(0, 165, 205, 0.18); }
+
+      /* cards */
+      .card { background: #fff; border-radius: 26px; }
+      .row {
+        display: flex; align-items: center; gap: 20px; background: #fff;
+        border: 2px solid #dfe5ea; border-radius: 22px; padding: 0 24px;
+      }
+      .row .t1 { font-weight: 700; font-size: 21px; color: var(--teal-d); }
+      .row .t2 { font-weight: 400; font-size: 19px; color: var(--navy); margin-top: 3px; }
+      .esim {
+        background: linear-gradient(90deg, #f3effd, #dcd3f8); border: 2px solid #8a69e4;
+      }
+      .esim .t1 { color: var(--purple); }
+      .btn {
+        display: flex; align-items: center; justify-content: center;
+        height: 74px; border-radius: 22px; color: #fff; font-weight: 700; font-size: 29px;
+        background: linear-gradient(90deg, #0d4c7b, #0787b2);
+      }
+      .badge-red {
+        display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 20px;
+        border-radius: 20px; background: var(--red-bg); color: var(--red); font-weight: 700; font-size: 21px;
+      }
+
+      /* phone */
+      .phone {
+        position: absolute; width: 490px; height: 1004px; border-radius: 74px; padding: 12px;
+        background: linear-gradient(180deg, #b6dce8 0%, #20aed2 45%, #00a5cd 100%);
+      }
+      .phone .scr {
+        position: relative; width: 100%; height: 100%; border-radius: 64px; overflow: hidden;
+        background: linear-gradient(180deg, #ffffff 58%, #c2eaf4 100%);
+      }
+      .phone .pad { position: absolute; left: 31px; right: 31px; }
+      .ph-title { font-weight: 700; font-size: 27px; color: var(--navy); }
+      .ph-sub { font-weight: 400; font-size: 18px; color: var(--navy); }
+    </style>
+    <script>
+      // Shared motion helpers for every scene. Pure functions of the scene timeline.
+      window.MS = {
+        // per word: blur 8 -> 0, faint -> ink, no travel
+        words(tl, sel, t, o = {}) {
+          return tl.fromTo(sel,
+            { opacity: 0, filter: "blur(8px)" },
+            { opacity: 1, filter: "blur(0px)", duration: o.d ?? 0.42, ease: "power3.out", stagger: o.s ?? 0.085 }, t);
+        },
+        // card or block arriving: lands on a long tail
+        pop(tl, sel, t, o = {}) {
+          return tl.fromTo(sel,
+            { opacity: 0, scale: o.sc ?? 0.88, x: o.x ?? 0, y: o.y ?? 40, filter: `blur(${o.b ?? 12}px)` },
+            { opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)", duration: o.d ?? 0.75, ease: o.e ?? "expo.out", stagger: o.s ?? 0 }, t);
+        },
+        // small badge or chip landing
+        badge(tl, sel, t, o = {}) {
+          return tl.fromTo(sel,
+            { opacity: 0, scale: 0.4 },
+            { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.2)", stagger: o.s ?? 0 }, t);
+        },
+        // exits: one smooth motion of the whole stage
+        exit(tl, sel, t, kind = "blur") {
+          const from = { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" };
+          const to = {
+            blur: { opacity: 0, filter: "blur(14px)", duration: 0.36, ease: "power2.in" },
+            whip: { opacity: 0, x: -340, filter: "blur(16px)", duration: 0.4, ease: "power3.in" },
+            push: { opacity: 0, scale: 1.12, filter: "blur(14px)", duration: 0.4, ease: "power3.in" },
+          }[kind];
+          return tl.fromTo(sel, from, to, t);
+        },
+        // colour each .w child along a left-to-right gradient (storyboard bold lines)
+        grad(sel, from = [108, 181, 205], to = [0, 165, 205]) {
+          document.querySelectorAll(sel).forEach((line) => {
+            const ws = line.querySelectorAll(".w");
+            ws.forEach((w, k) => {
+              const f = ws.length > 1 ? k / (ws.length - 1) : 1;
+              const c = from.map((v, j) => Math.round(v + (to[j] - v) * f));
+              w.style.color = `rgb(${c.join(",")})`;
+            });
+          });
+        },
+        // integer count-up written into an element, deterministic per frame
+        count(tl, sel, t, a, b, o = {}) {
+          const el = document.querySelector(sel);
+          const st = { v: a };
+          const fmt = (v) => (o.pre ?? "") + Math.round(v).toLocaleString("en-US") + (o.post ?? "");
+          return tl.fromTo(st, { v: a }, { v: b, duration: o.d ?? 0.9, ease: o.e ?? "power2.out", onUpdate: () => (el.textContent = fmt(st.v)) }, t);
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div data-hf-id="hf-0x77"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="81"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div data-hf-id="hf-ygft" class="ground"></div>
+
+      <!-- Scenes. Slot = VO beat + 0.45 s overlap for the exit. S4 plays before S3 to sit on the voice. -->
+      <div data-hf-id="hf-mwnc" id="s01" data-composition-id="s01" data-composition-src="compositions/s01.html" data-start="0" data-duration="5.15" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-5c26" id="s02" data-composition-id="s02" data-composition-src="compositions/s02.html" data-start="4.7" data-duration="8.4" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-9e7c" id="s04" data-composition-id="s04" data-composition-src="compositions/s04.html" data-start="12.65" data-duration="4.35" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-0gep" id="s03" data-composition-id="s03" data-composition-src="compositions/s03.html" data-start="16.55" data-duration="2.75" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-knf4" id="s05" data-composition-id="s05" data-composition-src="compositions/s05.html" data-start="18.85" data-duration="3" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-ir3m" id="s06" data-composition-id="s06" data-composition-src="compositions/s06.html" data-start="21.4" data-duration="5.3" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-jc2o" id="s07" data-composition-id="s07" data-composition-src="compositions/s07.html" data-start="26.25" data-duration="4.8" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-ni4b" id="s08" data-composition-id="s08" data-composition-src="compositions/s08.html" data-start="30.6" data-duration="3.95" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-hvkc" id="s09" data-composition-id="s09" data-composition-src="compositions/s09.html" data-start="34.1" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-9xdh" id="s10" data-composition-id="s10" data-composition-src="compositions/s10.html" data-start="36.85" data-duration="3.15" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-km7f" id="s11" data-composition-id="s11" data-composition-src="compositions/s11.html" data-start="39.55" data-duration="3.35" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-dpmt" id="s12" data-composition-id="s12" data-composition-src="compositions/s12.html" data-start="42.45" data-duration="5.85" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-hhys" id="s13" data-composition-id="s13" data-composition-src="compositions/s13.html" data-start="47.85" data-duration="5.25" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-w8kh" id="s14" data-composition-id="s14" data-composition-src="compositions/s14.html" data-start="52.65" data-duration="4.65" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-wmkr" id="s15" data-composition-id="s15" data-composition-src="compositions/s15.html" data-start="56.85" data-duration="5.95" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-qowc" id="s16" data-composition-id="s16" data-composition-src="compositions/s16.html" data-start="62.35" data-duration="3.65" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-7ffv" id="s17" data-composition-id="s17" data-composition-src="compositions/s17.html" data-start="65.55" data-duration="4.8" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-x6xy" id="s18" data-composition-id="s18" data-composition-src="compositions/s18.html" data-start="69.9" data-duration="4.4" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-jwuy" id="s19" data-composition-id="s19" data-composition-src="compositions/s19.html" data-start="73.85" data-duration="7.15" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+
+      <!-- Sound: VO at -16 LUFS, Proximity extended by 4 bars (final hit on the URL), SFX on visible actions only -->
+      <audio data-hf-id="hf-8lp1" id="vo" class="clip" src="assets/audio/vo.wav" data-start="0" data-duration="78.29" data-track-index="10" data-volume="1"></audio>
+      <audio data-hf-id="hf-m83r" id="music" class="clip" src="assets/audio/music.wav" data-start="0" data-duration="81" data-track-index="11" data-volume="1" data-fade-out="1.2"></audio>
+
+      <!-- whooshes on the whip exits (peak 0.16 s into the file) -->
+      <audio data-hf-id="hf-kgp9" id="fx-wh1" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="4.6" data-duration="0.57" data-track-index="12" data-volume="0.22"></audio>
+      <audio data-hf-id="hf-fwl5" id="fx-wh2" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="26.15" data-duration="0.5" data-track-index="12" data-volume="0.18" data-playback-rate="1.15"></audio>
+      <audio data-hf-id="hf-tozp" id="fx-wh3" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="36.75" data-duration="0.57" data-track-index="12" data-volume="0.2" data-playback-rate="0.9"></audio>
+      <audio data-hf-id="hf-x4ys" id="fx-wh4" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="42.35" data-duration="0.52" data-track-index="12" data-volume="0.18" data-playback-rate="1.1"></audio>
+      <audio data-hf-id="hf-tbac" id="fx-wh5" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="52.55" data-duration="0.57" data-track-index="12" data-volume="0.2"></audio>
+      <audio data-hf-id="hf-1quo" id="fx-wh6" class="clip" src="assets/audio/sfx-whoosh.mp3" data-start="65.45" data-duration="0.57" data-track-index="12" data-volume="0.18" data-playback-rate="0.92"></audio>
+
+      <!-- pops on badges landing (peak 0.12 s into the file) -->
+      <audio data-hf-id="hf-4dld" id="fx-p1" class="clip" src="assets/audio/sfx-pop.mp3" data-start="10.11" data-duration="0.72" data-track-index="13" data-volume="0.45"></audio>
+      <audio data-hf-id="hf-70ds" id="fx-p2" class="clip" src="assets/audio/sfx-pop.mp3" data-start="10.36" data-duration="0.67" data-track-index="14" data-volume="0.4" data-playback-rate="1.08"></audio>
+      <audio data-hf-id="hf-7z21" id="fx-p3" class="clip" src="assets/audio/sfx-pop.mp3" data-start="10.61" data-duration="0.62" data-track-index="15" data-volume="0.45" data-playback-rate="1.16"></audio>
+      <audio data-hf-id="hf-2qbo" id="fx-p4" class="clip" src="assets/audio/sfx-pop.mp3" data-start="14.98" data-duration="0.72" data-track-index="13" data-volume="0.4"></audio>
+      <audio data-hf-id="hf-par1" id="fx-p5" class="clip" src="assets/audio/sfx-pop.mp3" data-start="28.53" data-duration="0.65" data-track-index="13" data-volume="0.4" data-playback-rate="1.1"></audio>
+      <audio data-hf-id="hf-mv0n" id="fx-p6" class="clip" src="assets/audio/sfx-pop.mp3" data-start="35.94" data-duration="0.72" data-track-index="13" data-volume="0.4"></audio>
+      <audio data-hf-id="hf-qxlf" id="fx-p7" class="clip" src="assets/audio/sfx-pop.mp3" data-start="46.0" data-duration="0.65" data-track-index="13" data-volume="0.4" data-playback-rate="1.1"></audio>
+      <audio data-hf-id="hf-sit2" id="fx-p8" class="clip" src="assets/audio/sfx-pop.mp3" data-start="61.4" data-duration="0.72" data-track-index="13" data-volume="0.45"></audio>
+      <audio data-hf-id="hf-p1cm" id="fx-p9" class="clip" src="assets/audio/sfx-pop.mp3" data-start="72.75" data-duration="0.65" data-track-index="13" data-volume="0.4" data-playback-rate="1.1"></audio>
+      <audio data-hf-id="hf-lwl3" id="fx-sp" class="clip" src="assets/audio/sfx-sparkle.mp3" data-start="76.55" data-duration="1.8" data-track-index="13" data-volume="0.2"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

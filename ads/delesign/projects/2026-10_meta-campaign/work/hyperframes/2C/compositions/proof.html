@@ -1,0 +1,67 @@
+<template>
+  <style>
+    @font-face { font-family: "Hanken Grotesk"; src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    #p-title { position: absolute; left: 65px; top: 280px; font-weight: 800; font-size: 64px; color: #1e293b; letter-spacing: -0.015em; opacity: 0; }
+    #p-title em { font-style: normal; color: #ff5532; }
+    .ask { position: absolute; left: 65px; display: flex; align-items: center; gap: 20px; padding: 26px 38px 30px; border-radius: 999px; background: #fff; color: #1e293b; font-weight: 700; font-size: 54px; line-height: 1; box-shadow: 0 6px 20px rgba(30, 41, 59, 0.12); opacity: 0; white-space: nowrap; }
+    .ask .ck { width: 44px; height: 44px; border-radius: 50%; background: #ff5532; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; flex: 0 0 auto; }
+    #p-1 { top: 400px; } #p-2 { top: 530px; } #p-3 { top: 660px; }
+    /* proof slot, bottom-left, clear of the picture-in-picture (x >= 755, y >= 680) and the caption pill (y >= 1130) */
+    .slot { position: absolute; left: 65px; top: 790px; width: 665px; height: 320px; border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 12px 40px rgba(30, 41, 59, 0.2); opacity: 0; }
+    .slot .push { position: absolute; inset: 0; }
+    .slot img, .slot video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .slot .lbl { position: absolute; left: 20px; top: 20px; padding: 10px 18px 12px; border-radius: 999px; background: rgba(30, 41, 59, 0.85); color: #fff; font-weight: 700; font-size: 28px; line-height: 1; }
+    .illus { position: absolute; right: 16px; bottom: 12px; font-size: 14px; font-weight: 500; color: #6c7786; }
+  </style>
+  <div id="root" data-composition-id="proof" data-width="1080" data-height="1920">
+    <!-- host at 8.7. Title on "You should see" (8.89 -> 0.19); chips on "actual designs" (9.70 -> 1.0), "how we handle" (10.49 -> 1.79), "and what it's like" (11.66 -> 2.96).
+         Slot: two portfolio flashes 1.02-1.79, the request-list recording 1.79-2.96, the team panel 2.96-4.45. Everything out at 4.45 (13.15). -->
+    <div id="p-title" class="clip" data-start="0.1" data-duration="4.5" data-track-index="0">See for <em>yourself</em>:</div>
+    <div id="p-1" class="ask clip" data-start="0.9" data-duration="3.7" data-track-index="1"><span class="ck">✓</span><span>Actual designs</span></div>
+    <div id="p-2" class="ask clip" data-start="1.7" data-duration="2.9" data-track-index="2"><span class="ck">✓</span><span>How we handle feedback</span></div>
+    <div id="p-3" class="ask clip" data-start="2.85" data-duration="1.75" data-track-index="3"><span class="ck">✓</span><span>Work with the team</span></div>
+
+    <div id="s-ads" class="slot clip" data-start="0.95" data-duration="0.5" data-track-index="4">
+      <div class="push" id="s-ads-push"><img src="assets/portfolio/ads.jpg" style="object-position: 70% 50%" alt="" /></div>
+      <div class="lbl">Ads</div>
+    </div>
+    <div id="s-landing" class="slot clip" data-start="1.4" data-duration="0.45" data-track-index="5">
+      <div class="push" id="s-landing-push"><img src="assets/portfolio/landing.jpg" style="object-position: 50% 0%" alt="" /></div>
+      <div class="lbl">Landing pages</div>
+    </div>
+    <!-- untimed wrapper, timed video (lint rule) -->
+    <div id="s-req" class="slot">
+      <div class="push" id="s-req-push"><video id="s-req-video" class="clip" src="assets/go/requests_scroll_6s_2x.mp4" data-start="1.79" data-duration="1.2" data-track-index="6" muted playsinline style="object-position: 72% 14%"></video></div>
+      <div class="illus">Illustrative workflow</div>
+    </div>
+    <div id="s-team" class="slot clip" data-start="2.9" data-duration="1.6" data-track-index="5" style="height: 208px">
+      <div class="push" id="s-team-push"><img src="assets/go/team_panel_stacked_2x.png" alt="" /></div>
+      <div class="illus">Illustrative workflow</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#p-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 0.19);
+      [["#p-1", 1.0], ["#p-2", 1.79], ["#p-3", 2.96]].forEach(function (p) {
+        tl.fromTo(p[0], { opacity: 0, y: 16, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.22, ease: "power3.out" }, p[1]);
+      });
+      function flash(sel, at, out) {
+        tl.fromTo(sel, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.16, ease: "power3.out" }, at);
+        tl.fromTo(sel + "-push", { scale: 1.0 }, { scale: 1.05, duration: out - at, ease: "none" }, at);
+        tl.to(sel, { opacity: 0, duration: 0.08, ease: "power2.in" }, out - 0.08);
+      }
+      flash("#s-ads", 1.02, 1.42);
+      flash("#s-landing", 1.42, 1.80);
+      tl.fromTo("#s-req", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, 1.80);
+      tl.fromTo("#s-req-push", { scale: 1.0 }, { scale: 1.03, duration: 1.15, ease: "none" }, 1.80);
+      tl.to("#s-req", { opacity: 0, x: -30, duration: 0.14, ease: "power2.in" }, 2.84);
+      tl.fromTo("#s-team", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, 2.98);
+      gsap.set("#s-team-push", { transformOrigin: "4% 30%" });
+      tl.fromTo("#s-team-push", { scale: 1.0 }, { scale: 1.08, duration: 1.4, ease: "none" }, 2.98);
+      tl.to(["#p-title", "#p-1", "#p-2", "#p-3", "#s-team"], { opacity: 0, y: -14, duration: 0.14, ease: "power2.in", stagger: 0.02 }, 4.38);
+      window.__timelines["proof"] = tl;
+    })();
+  </script>
+</template>

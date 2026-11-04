@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s08-rings { left: 960px; top: 500px; width: 0; height: 0; }
+    .s08-ring { position: absolute; border-radius: 50%; }
+    #s08-eb { left: 0; top: 268px; width: 1920px; text-align: center; font-weight: 700; font-size: 34px; letter-spacing: 0.02em; color: var(--navy); }
+    #s08-eb b { color: var(--purple); font-weight: 700; }
+    #s08-hl { left: 0; top: 330px; width: 1920px; font-size: 104px; }
+    #s08-hl .ln { margin: 0 auto; }
+    #s08-url { left: 760px; top: 628px; width: 400px; height: 76px; border-radius: 38px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 31px; color: #fff; background: linear-gradient(90deg, var(--navy) 0%, #0b6e99 55%, var(--purple) 100%);
+      box-shadow: 0 20px 44px rgba(19, 41, 75, 0.22); }
+  </style>
+  <div id="root" data-composition-id="s08" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s08-stage"><div class="cam" id="s08-cam">
+      <div id="s08-rings" class="abs">
+        <div class="s08-ring" style="left:-660px;top:-660px;width:1320px;height:1320px;border:2px solid rgba(122,88,222,0.16)"></div>
+        <div class="s08-ring" style="left:-520px;top:-520px;width:1040px;height:1040px;border:2px solid rgba(0,165,205,0.28)"></div>
+        <div class="s08-ring" style="left:-380px;top:-380px;width:760px;height:760px;border:2px solid rgba(251,176,43,0.35)"></div>
+      </div>
+
+      <div id="s08-eb" class="abs">Monty <b>eSIM</b></div>
+      <div id="s08-hl" class="hl" style="text-align:center">
+        <div class="ln"><span class="w">Travel </span><span class="w">data,</span></div>
+        <div class="ln acc"><span class="w">built </span><span class="w">into </span><span class="w">your </span><span class="w">wallet.</span></div>
+      </div>
+      <div id="s08-url" class="abs">montyesim.com</div>
+    </div></div>
+  </div>
+  <script>
+    KIT.acc("#s08-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    KIT.panIn(tl, "#s08-stage", "y");
+    // a slow push-in for the finish
+    KIT.drift(tl, "#s08-cam", 7.35, { x: 0, sc: 1.07 });
+    KIT.build(tl, "#s08-eb", 0.5);
+    KIT.build(tl, "#s08-hl .ln:nth-child(1)", 1.95);
+    KIT.build(tl, "#s08-hl .ln:nth-child(2)", 2.95);
+    // the address on the music's final hit
+    KIT.build(tl, "#s08-url", 4.85, { y: 16 });
+    window.__timelines["s08"] = tl;
+  </script>
+</template>

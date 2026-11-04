@@ -1,0 +1,63 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s07-hl { left: 80px; top: 230px; }
+    #s07-hl .ln.wrap { width: 680px; }
+    /* 9:16: the API steps run down a vertical line, alternating sides */
+    #s07-line { left: 534px; top: 530px; width: 12px; height: 860px; border-radius: 6px; transform-origin: center top;
+      background: linear-gradient(180deg, #00a5cd 0%, #3e86d6 55%, #7a58de 100%); }
+    .s07-c { width: 260px; height: 256px; }
+    .s07-c.l { left: 250px; }
+    .s07-c.r { left: 570px; }
+    .s07-c .tile { position: absolute; left: 36px; top: 36px; width: 74px; height: 74px; font-size: 34px; border-radius: 16px; }
+    .s07-c .ct { position: absolute; left: 36px; top: 142px; font-size: 27px; }
+    .s07-c .cs { position: absolute; left: 36px; top: 182px; font-size: 21px; }
+    .tile.blue2 { background: #dcecf5; color: var(--blue); }
+  </style>
+  <div id="root" data-composition-id="s07" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s07-stage">
+      <div id="s07-hl" class="hl">
+        <div class="ln"><span class="w">One </span><span class="w">API.</span></div>
+        <div class="ln acc wrap"><span class="w">200+ </span><span class="w">countries </span><span class="w">and </span><span class="w">regions.</span></div>
+      </div>
+
+      <div id="s07-line" class="abs"></div>
+      <div id="s07-c1" class="card s07-c l" style="top:510px">
+        <span class="tile purple"><span class="i" style="--i:url(assets/icons/globe.svg)"></span></span>
+        <div class="ct">Catalog</div><div class="cs">Live bundles</div>
+      </div>
+      <div id="s07-c2" class="card s07-c r" style="top:675px">
+        <span class="tile amber"><span class="i" style="--i:url(assets/icons/credit-card.svg)"></span></span>
+        <div class="ct">Order</div><div class="cs">Pay from balance</div>
+      </div>
+      <div id="s07-c3" class="card s07-c l" style="top:840px">
+        <span class="tile cyan"><span class="i" style="--i:url(assets/icons/bolt.svg)"></span></span>
+        <div class="ct">Activate</div><div class="cs">QR or in-app</div>
+      </div>
+      <div id="s07-c4" class="card s07-c r" style="top:1005px">
+        <span class="tile navy"><span class="i" style="--i:url(assets/icons/arrows-rotate.svg)"></span></span>
+        <div class="ct">Top up</div><div class="cs">Mid-trip</div>
+      </div>
+      <div id="s07-c5" class="card s07-c l" style="top:1170px">
+        <span class="tile blue2"><span class="i" style="--i:url(assets/icons/bell.svg)"></span></span>
+        <div class="ct">Webhooks</div><div class="cs">Low data alerts</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    KIT.acc("#s07-hl .acc");
+    const tl = gsap.timeline({ paused: true });
+    // "One API covers it all,"
+    KIT.rise(tl, "#s07-hl .ln:nth-child(1) .w", 0.2);
+    tl.fromTo("#s07-line", { scaleY: 0 }, { scaleY: 1, duration: 1.75, ease: "power1.inOut" }, 0.85);
+    [1, 2, 3, 4, 5].forEach((k) => KIT.card(tl, `#s07-c${k}`, 0.8 + (k - 1) * 0.4, { y: 50, sc: 0.75, d: 0.55 }));
+    // "...in 200-plus countries and regions."
+    KIT.rise(tl, "#s07-hl .ln:nth-child(2) .w", 2.35);
+    // exit: the column pulls into the centre
+    tl.to(["#s07-c1", "#s07-c2", "#s07-c4", "#s07-c5"], { y: (k) => [330, 165, -165, -330][k], opacity: 0, scale: 0.7, duration: 0.3, ease: "power2.in" }, 4.5);
+    KIT.out(tl, "#s07-c3", 4.5, { sc: 0.7, d: 0.42 });
+    tl.to("#s07-line", { scaleY: 0, transformOrigin: "50% 50%", duration: 0.3, ease: "power2.in" }, 4.5);
+    KIT.out(tl, "#s07-hl", 4.5, { y: -80, d: 0.38 });
+    window.__timelines["s07"] = tl;
+  </script>
+</template>

@@ -1,0 +1,59 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s15-pill { left: 123px; top: 372px; }
+    #s15-l1 { left: 122px; top: 452px; }
+    #s15-l2 { left: 122px; top: 540px; }
+    #s15-sub { left: 124px; top: 655px; }
+    #s15-card { left: 1109px; top: 198px; width: 659px; height: 624px; border-radius: 40px 40px 50px 0; background: #fff; overflow: hidden; }
+    #s15-ph { position: absolute; left: 0; top: 0; width: 659px; height: 310px; overflow: hidden; }
+    /* placed as in Scene15.ai: 851 x 566 at board (1119, 10), seen through the card */
+    #s15-img { position: absolute; left: 10px; top: -188px; width: 851px; height: 566px; transform-origin: 40% 60%; }
+    #s15-pin { left: 56px; top: 205px; height: 62px; padding: 0 30px 0 22px; border-radius: 31px; background: #fff;
+      display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 21px; color: var(--cyan); white-space: nowrap; }
+    #s15-pin .i { font-size: 26px; }
+    #s15-gd { position: absolute; left: 56px; top: 350px; }
+    #s15-gd .k { font-weight: 700; font-size: 19px; color: var(--cyan); letter-spacing: 0.01em; }
+    #s15-gd .t { font-weight: 700; font-size: 42px; color: var(--teal-d); margin-top: 6px; white-space: nowrap; }
+    #s15-bn { position: absolute; left: 47px; top: 457px; width: 564px; height: 117px; border-radius: 26px; background: #eef7fa;
+      display: flex; align-items: center; gap: 28px; padding-left: 37px; }
+    #s15-bn .i { font-size: 38px; color: var(--teal-d); }
+    #s15-bn .a { font-weight: 700; font-size: 22px; color: var(--ink); } #s15-bn .b { font-weight: 700; font-size: 20px; color: var(--cyan); margin-top: 4px; }
+    #s15-com { left: 930px; top: 790px; height: 62px; padding: 0 40px 0 28px; border-radius: 31px; background: #fbb02b;
+      display: flex; align-items: center; gap: 18px; color: #fff; font-weight: 700; font-size: 26px; white-space: nowrap; }
+  </style>
+  <div data-hf-id="hf-bz7a" id="root" data-composition-id="s15" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-lsk8" class="stage" id="s15-stage">
+      <div data-hf-id="hf-7m95" id="s15-pill" class="abs pill">Tour operators and creators · Affiliate</div>
+      <div data-hf-id="hf-ah3t" id="s15-l1" class="abs h lt"><span data-hf-id="hf-y98j" class="w">Share </span><span data-hf-id="hf-b7a3" class="w">a </span><span data-hf-id="hf-6r2q" class="w">link.</span></div>
+      <div data-hf-id="hf-skis" id="s15-l2" class="abs h bd dark"><span data-hf-id="hf-ds3u" class="w">Earn </span><span data-hf-id="hf-mx6p" class="w">on </span><span data-hf-id="hf-l0wr" class="w">every </span><span data-hf-id="hf-x11z" class="w">sale.</span></div>
+      <div data-hf-id="hf-y6gc" id="s15-sub" class="abs sub">No integration needed.</div>
+
+      <div data-hf-id="hf-c6ye" id="s15-card" class="abs">
+        <div data-hf-id="hf-z1lm" id="s15-ph" data-layout-allow-overflow><img data-hf-id="hf-wpjv" id="s15-img" src="assets/img/lisbon_tram.jpg" alt="Lisbon tram" /></div>
+        <div data-hf-id="hf-yll4" id="s15-pin" class="abs"><span data-hf-id="hf-qqqx" class="i" style="--i:url(assets/icons/location-dot.svg)"></span>Lisbon, Portugal</div>
+        <div data-hf-id="hf-93cm" id="s15-gd"><div data-hf-id="hf-1uf7" class="k">TRAVEL GUIDE</div><div data-hf-id="hf-izd6" class="t">4 perfect days in Lisbon</div></div>
+        <div data-hf-id="hf-lc5r" id="s15-bn"><span data-hf-id="hf-7eef" class="i" style="--i:url(assets/icons/globe.svg)"></span><div data-hf-id="hf-yeow"><div data-hf-id="hf-6ioc" class="a">Stay connected in Portugal</div><div data-hf-id="hf-z3p1" class="b">Get your eSIM</div></div></div>
+      </div>
+      <div data-hf-id="hf-kzrp" id="s15-com" class="abs"><span data-hf-id="hf-lg0r" class="i" style="--i:url(assets/icons/bolt.svg)"></span>Commission earned</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    MS.pop(tl, "#s15-card", 0.15, { x: 220, y: 0, sc: 0.96 });
+    // the photo keeps living: a slow push for the whole scene
+    tl.fromTo("#s15-img", { scale: 1.08 }, { scale: 1.0, duration: 5.4, ease: "none" }, 0);
+    MS.pop(tl, "#s15-pin", 0.5, { x: -30, y: 0, sc: 0.9 });
+    MS.pop(tl, "#s15-gd", 0.62, { y: 20, b: 8 });
+    MS.pop(tl, "#s15-bn", 0.8, { y: 20, b: 8 });
+    MS.pop(tl, "#s15-pill", 1.6, { x: -40, y: 0, sc: 0.95 });
+    MS.words(tl, "#s15-l1 .w", 2.9, { s: 0.12 });
+    // "share a link": the eSIM link in the guide is the thing shared
+    tl.fromTo("#s15-bn", { scale: 1 }, { scale: 1.05, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 3.05);
+    MS.words(tl, "#s15-l2 .w", 3.55, { s: 0.14 });
+    MS.badge(tl, "#s15-com", 4.54);
+    tl.fromTo("#s15-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 4.3);
+    MS.exit(tl, "#s15-stage", 5.2, "push");
+    window.__timelines["s15"] = tl;
+  </script>
+</template>

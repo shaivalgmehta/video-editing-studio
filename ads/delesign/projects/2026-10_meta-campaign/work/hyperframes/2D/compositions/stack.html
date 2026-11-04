@@ -1,0 +1,58 @@
+<template>
+  <style>
+    @font-face { font-family: "Hanken Grotesk"; src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    .card { position: absolute; left: 65px; width: 950px; height: 230px; border-radius: 26px; background: #fff; color: #1e293b; box-shadow: 0 8px 28px rgba(30, 41, 59, 0.16); overflow: hidden; opacity: 0; }
+    .card .head { display: flex; align-items: center; gap: 20px; padding: 24px 28px; font-weight: 800; font-size: 50px; letter-spacing: -0.015em; line-height: 1; white-space: nowrap; }
+    .card .num { width: 58px; height: 58px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; color: #1e293b; font-size: 34px; font-weight: 800; flex: 0 0 auto; }
+    .card .body { position: relative; height: 120px; padding: 0 28px 16px; }
+    .tag { position: absolute; left: 28px; top: 6px; padding: 18px 30px 20px; border-radius: 18px; background: #33473b; color: #fff; font-weight: 800; font-size: 46px; line-height: 1; opacity: 0; white-space: nowrap; }
+    /* 1: three simple layout blocks */
+    #st-layout { position: absolute; left: 420px; top: 10px; display: flex; gap: 10px; opacity: 0; }
+    #st-layout div { width: 70px; height: 88px; border-radius: 10px; background: #f1f5f9; border: 3px solid #d7dee8; }
+    #st-layout div:nth-child(2) { width: 120px; }
+    /* 2: type sample */
+    #st-type { position: absolute; left: 520px; top: -2px; font-weight: 800; font-size: 92px; letter-spacing: -0.04em; color: #c7b0ff; line-height: 1; opacity: 0; }
+    #st-type span { font-weight: 300; }
+    /* 3: two ad frames */
+    #st-frames { position: absolute; left: 520px; top: 8px; display: flex; gap: 12px; align-items: flex-end; opacity: 0; }
+    #st-frames div { border: 4px solid #ff5532; border-radius: 10px; background: rgba(255, 85, 50, 0.08); }
+    #st-frames .f1 { width: 56px; height: 98px; } #st-frames .f2 { width: 78px; height: 98px; } #st-frames .f3 { width: 98px; height: 98px; }
+  </style>
+  <div id="root" data-composition-id="stack" data-width="1080" data-height="1920">
+    <!-- host at 10.5. 1: "Client one" (10.61 -> 0.11), "simple layouts" (11.41 -> 0.91); 2: "client two" (12.24 -> 1.74), "specific typography" (13.13 -> 2.63);
+         3: "client three" (14.42 -> 3.92), "ad format" (15.04 -> 4.54); all out at 16.7 (6.2) -->
+    <div id="st-card1" class="card clip" data-start="0" data-duration="6.3" data-track-index="0" style="top: 260px">
+      <div class="head"><span class="num">1</span><span>Client one</span></div>
+      <div class="body"><div id="st-t1" class="tag">Simple layouts</div><div id="st-layout"><div></div><div></div><div></div></div></div>
+    </div>
+    <div id="st-card2" class="card clip" data-start="1.65" data-duration="4.65" data-track-index="1" style="top: 500px">
+      <div class="head"><span class="num">2</span><span>Client two</span></div>
+      <div class="body"><div id="st-t2" class="tag">Specific typography</div><div id="st-type">Aa<span>Aa</span></div></div>
+    </div>
+    <div id="st-card3" class="card clip" data-start="3.85" data-duration="2.45" data-track-index="2" style="top: 740px">
+      <div class="head"><span class="num">3</span><span>Client three</span></div>
+      <div class="body"><div id="st-t3" class="tag">Preferred ad format</div><div id="st-frames"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var OPEN = "inset(0px 0px 0px 0px round 26px)", SHUT = "inset(0px 0px 120px 0px round 26px)";
+      function land(sel, at) { tl.fromTo(sel, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.24, ease: "power3.out" }, at); }
+      function collapse(sel, at) { tl.fromTo(sel, { clipPath: OPEN }, { clipPath: SHUT, duration: 0.3, ease: "power3.inOut" }, at); }
+      function tag(sel, at) { tl.fromTo(sel, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.2, ease: "power3.out" }, at); }
+      land("#st-card1", 0.11);
+      tag("#st-t1", 0.91);
+      tl.fromTo("#st-layout", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 1.05);
+      collapse("#st-card1", 1.7); land("#st-card2", 1.74);
+      tag("#st-t2", 2.63);
+      tl.fromTo("#st-type", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 2.8);
+      collapse("#st-card2", 3.88); land("#st-card3", 3.92);
+      tag("#st-t3", 4.54);
+      tl.fromTo("#st-frames", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 4.7);
+      tl.to(["#st-card1", "#st-card2", "#st-card3"], { opacity: 0, y: -18, duration: 0.14, ease: "power2.in", stagger: 0.03 }, 6.15);
+      window.__timelines["stack"] = tl;
+    })();
+  </script>
+</template>

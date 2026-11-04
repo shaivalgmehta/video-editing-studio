@@ -1,0 +1,44 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hanken Grotesk";
+      src: url("assets/fonts/HankenGrotesk-Variable.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: block;
+    }
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Hanken Grotesk", sans-serif; }
+    #hook-bar {
+      position: absolute;
+      left: 0;
+      top: 300px; /* top of the safe band (top 14% is app UI) */
+      width: 1080px;
+      display: flex;
+      justify-content: center;
+    }
+    #hook-pill {
+      padding: 22px 44px 26px;
+      border-radius: 28px;
+      background: #ffffff;
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 68px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      box-shadow: 0 8px 28px rgba(30, 41, 59, 0.18);
+      white-space: nowrap;
+    }
+    #hook-pill em { font-style: normal; color: #ff5532; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-bar" class="clip" data-start="0" data-duration="7.43" data-track-index="0">
+      <div id="hook-pill"><em>Painted</em> all year round.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // On screen from frame 1 (the thumbnail). A tiny settle so it isn't frozen, then dead still.
+    tl.fromTo("#hook-pill", { scale: 1.04, opacity: 1 }, { scale: 1, duration: 0.3, ease: "power3.out" }, 0);
+    tl.to("#hook-pill", { opacity: 0, y: -16, duration: 0.18, ease: "power2.in" }, 7.23);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

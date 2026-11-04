@@ -1,0 +1,47 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    /* house captions: Montserrat, white on a soft navy pill, low centre */
+    .cap { position: absolute; left: 0; top: 966px; width: 1920px; text-align: center; opacity: 0; visibility: hidden; }
+    .cap span { display: inline-block; padding: 8px 24px 10px; border-radius: 14px; background: rgba(19, 41, 75, 0.82);
+      font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 32px; line-height: 1.2; color: #fff; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="caps" data-width="1920" data-height="1080" data-layout-allow-overlap>
+      <div class="cap" id="cap00"><span>Your users already plan their trips in your wallet.</span></div>
+      <div class="cap" id="cap01"><span>Then they land, and buy data somewhere else.</span></div>
+      <div class="cap" id="cap02"><span>With the Monty eSIM API, your wallet spots the trip</span></div>
+      <div class="cap" id="cap03"><span>and offers data at the right moment.</span></div>
+      <div class="cap" id="cap04"><span>Users pay from their balance in one tap.</span></div>
+      <div class="cap" id="cap05"><span>No card, no second checkout.</span></div>
+      <div class="cap" id="cap06"><span>They land online.</span></div>
+      <div class="cap" id="cap07"><span>And when data runs low, they top up in the app.</span></div>
+      <div class="cap" id="cap08"><span>You earn on every bundle, keep balances in your wallet,</span></div>
+      <div class="cap" id="cap09"><span>and give users one more reason to open your app.</span></div>
+      <div class="cap" id="cap10"><span>One API covers it all, in 200-plus countries and regions.</span></div>
+      <div class="cap" id="cap11"><span>Monty eSIM. Travel data, built into your wallet.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // [group, open, close] in film seconds, from work/transcript.json via work/make_caps.py
+    [
+      ["#cap00", 0.24, 3.68],
+      ["#cap01", 3.68, 7.04],
+      ["#cap02", 7.04, 11.2],
+      ["#cap03", 11.2, 13.68],
+      ["#cap04", 13.68, 16.64],
+      ["#cap05", 16.64, 18.96],
+      ["#cap06", 18.96, 20.64],
+      ["#cap07", 20.64, 23.84],
+      ["#cap08", 23.84, 27.6],
+      ["#cap09", 27.6, 30.96],
+      ["#cap10", 30.96, 35.68],
+      ["#cap11", 35.68, 40.15]
+    ].forEach(([sel, s, e]) => {
+      tl.set(sel, { visibility: "visible" }, s);
+      tl.fromTo(sel, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, s);
+      tl.to(sel, { opacity: 0, duration: 0.1, ease: "power2.in" }, e - 0.1);
+      tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+    });
+    window.__timelines["caps"] = tl;
+  </script>
+</template>

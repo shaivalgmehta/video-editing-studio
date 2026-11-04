@@ -1,0 +1,68 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s02-hl { left: 410px; top: 122px; }
+    #s02-hl .ln + .ln { margin-left: 202px; }
+    #s02-ph { left: 710px; top: 372px; }
+    #s02-ph .scr { background: linear-gradient(180deg, #f4572f 0%, #f4572f 38%, #b9452a 80%, #8a3524 100%); }
+    #s02-tx { position: absolute; left: 44px; top: 222px; font-weight: 700; font-size: 74px; line-height: 0.92; letter-spacing: -0.01em; white-space: nowrap; }
+    #s02-tx1 { color: #0b0b0b; }
+    #s02-tx2 { color: #fff; margin-top: 22px; }
+    .s02-h { position: absolute; width: 252px; height: 252px; border-radius: 52px; background: rgba(236, 226, 224, 0.6); }
+    .s02-h .in { position: absolute; left: 22px; top: 22px; width: 208px; height: 208px; border-radius: 40px;
+      background: linear-gradient(160deg, #f1e3e0, #e8d6d2); }
+    .s02-h .tile { position: absolute; left: 32px; top: 32px; border-radius: 14px; }
+    .s02-h .tx { position: absolute; left: 32px; top: 114px; }
+    .s02-h .cs { font-size: 20px; }
+    #s02-c1 { left: 396px; top: 586px; }
+    #s02-c2 { left: 1163px; top: 318px; }
+    #s02-c3 { left: 1290px; top: 690px; }
+  </style>
+  <div id="root" data-composition-id="s02" data-width="1920" data-height="1080" data-layout-allow-overflow data-layout-allow-overlap>
+    <div class="stage" id="s02-stage"><div class="cam" id="s02-cam">
+      <div id="s02-hl" class="hl">
+        <div class="ln"><span class="w">Then </span><span class="w">they </span><span class="w">land</span></div>
+        <div class="ln acc orange"><span class="w">and </span><span class="w">pay </span><span class="w">someone </span><span class="w">else.</span></div>
+      </div>
+
+      <div id="s02-ph" class="phone">
+        <span class="btn-l" style="top:150px;height:40px"></span><span class="btn-l" style="top:220px;height:80px"></span><span class="btn-r"></span>
+        <div class="scr">
+          <div class="notch"></div>
+          <div id="s02-tx">
+            <div id="s02-tx1">Paid<br />Elsewhere</div>
+            <div id="s02-tx2">Revenue<br />Lost</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="s02-c1" class="s02-h"><div class="in">
+        <span class="tile orange"><span class="i" style="--i:url(assets/icons/sim-card.svg)"></span></span>
+        <div class="tx"><div class="ct">Airport Sim</div><div class="cs">Bought at<br />arrivals</div></div>
+      </div></div>
+      <div id="s02-c2" class="s02-h"><div class="in">
+        <span class="tile orange"><span class="i" style="--i:url(assets/icons/sim-card.svg)"></span></span>
+        <div class="tx"><div class="ct">Roaming</div><div class="cs">Charged by<br />their carrier</div></div>
+      </div></div>
+      <div id="s02-c3" class="s02-h"><div class="in">
+        <span class="tile orange"><span class="i" style="--i:url(assets/icons/sim-card.svg)"></span></span>
+        <div class="tx"><div class="ct">Another app</div><div class="cs">Downloaded<br />at the gate</div></div>
+      </div></div>
+    </div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // the camera pans in on "Then they land" already in place
+    KIT.panIn(tl, "#s02-stage");
+    KIT.drift(tl, "#s02-cam", 4.2);
+    tl.fromTo("#s02-ph", { y: 560 }, { y: 0, duration: 0.95, ease: "expo.out" }, 0.7);
+    // "...and buy data somewhere else."  second line -> where the money went, one by one -> the verdict on the phone
+    KIT.build(tl, "#s02-hl .ln:nth-child(2)", 1.85);
+    KIT.build(tl, "#s02-c1", 2.05, { x: 24, y: 0 });
+    KIT.build(tl, "#s02-c2", 2.25, { x: -24, y: 0 });
+    KIT.build(tl, "#s02-c3", 2.45, { x: -24, y: 0 });
+    tl.fromTo("#s02-tx2", { opacity: 0, scale: 1.35, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, 2.88);
+    KIT.panOut(tl, "#s02-stage", 3.4);
+    window.__timelines["s02"] = tl;
+  </script>
+</template>
